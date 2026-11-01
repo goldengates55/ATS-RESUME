@@ -1,1 +1,19 @@
-# ATS-RESUME
+# ATS Resume Optimiser
+
+Installable web app (PWA). Scan a resume against official job classifications and a job posting, tailor it, and download it as PDF, DOCX or TXT. Everything runs in the browser; nothing is uploaded.
+
+## Publish on GitHub Pages
+1. Create a new repository and upload **all files and the `vendor` folder** from this zip to the root (keep the structure; include the hidden `.nojekyll` file).
+2. Go to **Settings, Pages**, choose **Deploy from a branch**, pick `main` and `/ (root)`, then Save.
+3. Share `https://YOUR-NAME.github.io/REPO/install.html` with your users. It has an **Install the app** button and English and French steps for iPhone (Safari) and Android (Chrome). The app itself also shows an **Install on your phone** button.
+4. To change the WhatsApp number for activation codes, edit `WA` in the script of `install.html` and the number in its footer.
+
+After that first visit the app opens with no internet. PDF and DOCX export work offline because the libraries are bundled.
+
+## Release an update
+Replace `index.html`, then change `VERSION` in `sw.js` (for example `atsresume-3`). Devices will show "A new version is ready" with an Update button.
+
+## Notes
+- Fonts load from Google Fonts on the first online visit and are then kept; until then the app uses system fonts.
+- The optional local AI rewriting downloads its own ~1 GB model on first use and needs a connection then.
+- Files: `index.html`, `install.html`, `sw.js`, `manifest.webmanifest`, 3 icons, `vendor/` (pdf-lib, JSZip), `.nojekyll`.

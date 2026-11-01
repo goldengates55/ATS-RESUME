@@ -3,6 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" href="icon-192.png">
+<meta name="theme-color" content="#3558F0">
+<meta name="description" content="Scan your resume against official job classifications and a job posting, tailor it, and download it. Works offline once installed; nothing is uploaded.">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ATS Resume">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>ATS Resume Optimiser</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;800&display=swap">
@@ -102,7 +111,8 @@ mark{background:var(--hl);color:inherit}
 <div class="row" style="justify-content:center"><button id="lkr" type="button">Check again</button></div></div></div>
 <p id="lkb" class="m" hidden style="max-width:960px;margin:8px auto 0;padding:0 16px"></p>
 <details id="lkxd" hidden style="max-width:960px;margin:4px auto 0;padding:0 16px"><summary class="m">Have a code to add time?</summary><textarea id="lkxt" rows="3" autocomplete="off" placeholder="Activation code" aria-label="Code to add time"></textarea><div class="row"><button class="p" id="lkxb" type="button">Add time</button></div><p class="m" id="lkxs" role="status"></p></details>
-<header class="hero"><div class="hw"><div><h1>ATS Resume Optimiser</h1><p>Check your resume against official job classifications and a job posting, then build a stronger one. Everything runs in your browser; nothing is uploaded.</p></div>
+<header class="hero"><div class="hw"><div><h1>ATS Resume Optimiser</h1><p>Check your resume against official job classifications and a job posting, then build a stronger one. Everything runs in your browser; nothing is uploaded.</p>
+<button type="button" id="pwaI" hidden style="margin-top:10px;background:transparent;color:inherit;border:1px solid currentColor;border-radius:8px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer">Install on your phone</button></div>
 <div class="key" aria-label="How to read the highlights"><b>Reading the highlights</b><span><mark class="hk g">Python</mark> found in your resume</span><span><mark class="hk y">ML</mark> matched through a synonym</span><span><mark class="hk r">Kubernetes</mark> missing</span></div></div></header>
 <main>
 <div class="tabs" role="tablist"><button class="on" data-tab="tscan">Scan &amp; match</button><button data-tab="bld">Resume builder</button><button data-tab="tcl">Cover letter</button><button data-tab="tjb">Jobs &amp; employers</button><button data-tab="tlb">Library</button><button data-tab="trw">Release watch</button></div>
@@ -140,7 +150,11 @@ mark{background:var(--hl);color:inherit}
 <div id="nbar" class="card" hidden><h3>Pre-filled numbers</h3><p class="m">Suggested lines come with example numbers already in place, so they are ready to add. Examples fit the role type found in your resume (you can change it) and how senior the title sounds. Pick how strong the examples should be, and change any number with Change numbers under a line.</p><div class="g2"><label for="nlvl" style="font-weight:400">Example level</label><select id="nlvl"><option value="high" selected>High</option><option value="average">Average</option><option value="low">Low</option></select></div><div class="g2"><label for="nfamsel" style="font-weight:400">Role type</label><select id="nfamsel"><option value="">Automatic (from your resume)</option><option>General</option><option>Retail and hospitality</option><option>Customer support</option><option>Software and IT</option><option>Sales</option><option>Marketing</option><option>HR and recruiting</option><option>Administration</option><option>Finance</option><option>Operations and trades</option><option>Management</option><option>Project management</option><option>Health and teaching</option></select></div><p class="m" id="nfam"></p>
 <label style="font-weight:400;display:block;margin-top:6px"><input type="checkbox" id="nok" style="width:auto"> I confirm that every number, skill and duty I add is true for me.</label>
 <div class="row"><button class="p" id="upall" type="button">Upgrade my whole resume</button></div><p class="m">Adds the missing posting keywords to Skills, writes a summary if yours is empty, adds every missing official duty with example numbers, then re-scans and shows the new match score. Undo puts everything back.</p><p class="m" id="ups" role="status"></p>
-<h4 style="margin:16px 0 4px">Tailor to this posting</h4><p class="m">Builds a plan to point your resume at this posting, all on this device. It puts the posting's keywords first in Skills, moves your most relevant bullets to the top of each role, and writes a summary aimed at the role. Nothing new is claimed unless you tick the add-on items below, and those need the confirmation box above. Review the plan, untick anything you do not want, then apply. Undo puts everything back.</p><div class="row"><button class="p" id="tlr" type="button">Make my tailoring plan</button></div><p class="m" id="tls" role="status"></p><div id="tlo"></div>
+<h4 style="margin:16px 0 4px">Tailor to this posting</h4><p class="m">Builds a plan to point your resume at this posting, all on this device. It puts the posting's keywords first in Skills, moves your most relevant bullets to the top of each role, and writes a summary aimed at the role. Nothing new is claimed unless you tick the add-on items below, and those need the confirmation box above. Review the plan, untick anything you do not want, then apply. Keywords are now weighted by how often and how firmly the posting asks for them (and matched through synonyms), and wording the posting already uses for the same thing (for example ML and machine learning) can be swapped in. You get a line-by-line view of what changed, and the result can be saved as a named version. Undo puts everything back.</p><div class="row"><button class="p" id="tlr" type="button">Make my tailoring plan</button></div><p class="m" id="tls" role="status"></p><div id="tlo"></div>
+<h4 style="margin:16px 0 4px">Fit to a page limit</h4><p class="m">Measures how many pages your resume runs in the builder's PDF layout. If it runs over, it removes the least relevant bullets (using the posting if there is one, and always keeping at least 2 per role) until it fits. You see every removed line, and Undo puts them back.</p><div class="row"><select id="tlpg" aria-label="Page limit" style="padding:6px 8px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--fg);font:inherit"><option value="1">1 page</option><option value="2">2 pages</option></select><button id="tlfit" type="button">Check and trim to fit</button></div><p class="m" id="tlfs" role="status"></p><div id="tlfo"></div>
+<h4 style="margin:16px 0 4px">TEER upgrade (Canada, NOC)</h4><p class="m">Finds your latest role's NOC match and TEER level, then shows the closest occupations one or more TEER levels up in the same field (TEER 0 is the top level, 5 the lowest), with their typical entry requirements. For each one it lists official duties your resume does not yet show. Tick only the duties you have truly performed, tick “I confirm” above, and add them to your latest role. A higher TEER is only honest if the work was real: leave out anything you have not done.</p><div class="row"><button id="tup" type="button">Show my TEER upgrade path</button></div><p class="m" id="tus" role="status"></p><div id="tuo"></div>
+<h4 style="margin:16px 0 4px">Push my TEER match to 100%</h4><p class="m">For every role in the builder, finds the occupation it matches and the fewest official duty lines that lift that match to 100% (the top score, 1.00). You see each role's score before and after, can untick any line, and nothing is added until you tick “I confirm” above and press Apply. These lines are the official wording for the role, so keep only the ones that are true for you and edit them to say what you did. Undo puts everything back.</p><div class="row"><button class="p" id="tpush" type="button">Plan my 100% match</button></div><p class="m" id="tps" role="status"></p><div id="tpo"></div>
+<h4 style="margin:16px 0 4px">Job heading suggestions</h4><p class="m">For each role in the builder, suggests job titles the evidence supports: the official titles of the occupations your duties match, alternate titles whose wording already appears in your duties, and the posting's title when it fits the role. Only use a title that honestly describes what you did and your level, because employers check titles. Undo restores the old one.</p><div class="row"><button id="hdr" type="button">Suggest headings for my jobs</button></div><p class="m" id="hds" role="status"></p><div id="hdo"></div>
 <details style="margin-top:14px"><summary>Optional: local AI rewriting (experimental)</summary>
 <p class="m">Rewrites your existing bullets so they use the posting's wording where it honestly describes the same work. The model runs in your browser on your device, and nothing is uploaded. It needs a desktop browser with WebGPU (recent Chrome or Edge) and a one-time download of about 1 GB, which the browser then keeps for later sessions. Every rewrite is checked automatically: it is dropped if it adds a number, or a capitalized name or tool, that is not already in your resume. You still review each one before it is applied.</p>
 <div class="g2"><label for="aim" style="font-weight:400">Model</label><input id="aim" value="Qwen2.5-1.5B-Instruct-q4f16_1-MLC" aria-label="Model id"></div>
@@ -514,7 +528,7 @@ function improve(text,post,jobs,tops){
 let LAST=null,IMPORTED=false;
 const T={classic:{f:"helvetica",df:"Calibri",ac:[0,0,0],hex:"000000",ns:20,bs:10.5,rule:1,sp:1,pc:"inherit"},modern:{f:"helvetica",df:"Calibri",ac:[31,111,92],hex:"1F6F5C",ns:24,bs:10.5,rule:0,sp:1.15,pc:"var(--ac)"},serif:{f:"times",df:"Times New Roman",ac:[0,0,0],hex:"000000",ns:20,bs:11,rule:1,sp:1,pc:"inherit"},compact:{f:"helvetica",df:"Calibri",ac:[0,0,0],hex:"000000",ns:18,bs:9.5,rule:1,sp:.7,pc:"inherit"}};
 const tpl=()=>T[$("btpl").value]||T.classic;
-const JSPDF="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js",JSZIP="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js";
+const PDFLIB="vendor/pdf-lib.min.js",JSZIP="vendor/jszip.min.js";
 const jobT=(j={})=>`<div class="card"><input placeholder="Job title" value="${esc(j.title)}" data-k="t"><input placeholder="Employer" value="${esc(j.employer)}" data-k="e"><input placeholder="Dates (e.g. Jan 2021 - Present)" value="${esc(j.dates)}" data-k="d"><textarea data-k="b" placeholder="One bullet per line">${esc((j.duties||[]).join("\n"))}</textarea><button class="rm">Remove job</button></div>`;
 const refT=()=>`<div class="card"><input placeholder="Name" data-k="n"><input placeholder="Title, company" data-k="r"><input placeholder="Email or phone" data-k="c"><button class="rm">Remove reference</button></div>`;
 const eduT=s=>`<div class="er"><input value="${esc(s)}" placeholder="Credential, institution (year)"><button class="rm">Remove</button></div>`;
@@ -536,20 +550,21 @@ function pvw(B){return B.map(b=>b.t==="name"?`<h3>${esc(b.s)}</h3>`:b.t==="conta
 const pv=()=>{const t=tpl(),e=$("pv");e.style.fontFamily=t.f==="times"?"Georgia,'Times New Roman',serif":"";e.style.setProperty("--pa",t.pc);e.style.setProperty("--pr",t.rule?"1px solid var(--bd)":"none");e.innerHTML=pvw(blocks(model()))};
 const toTxt=B=>B.map(b=>b.t==="h"?"\n"+b.s.toUpperCase():b.t==="job"?b.s+(b.r?"  ("+b.r+")":""):b.t==="b"?"• "+b.s:b.s).join("\n");
 const PS=s=>String(s).replace(/[\u00A0\u2000-\u200A\u202F\u205F\u3000]/g," ").replace(/[\u200B-\u200D\u2060\uFEFF]/g,"").replace(/\t/g," ").replace(/[\x00-\x08\x0B-\x1F\x7F-\x9F]/g,"").replace(/[\u2018\u2019\u201A\u2032\u02BC]/g,"'").replace(/[\u201C\u201D\u201E\u2033]/g,'"').replace(/[\u2010-\u2015\u2212]/g,"-").replace(/\u2026/g,"...").replace(/[\u2022\u2023\u25AA\u25AB\u25CF\u25E6\u2043]/g,"-").replace(/\u0141/g,"L").replace(/\u0142/g,"l").replace(/\u0110/g,"D").replace(/\u0111/g,"d").replace(/\u0153/g,"oe").replace(/\u0152/g,"OE").replace(/\u20AC/g,"EUR").replace(/\u2122/g,"(TM)").replace(/\uFB00/g,"ff").replace(/\uFB01/g,"fi").replace(/\uFB02/g,"fl").replace(/\uFB03/g,"ffi").replace(/\uFB04/g,"ffl").normalize("NFC").replace(/[^\x00-\xFF]/g,c=>{const b=c.normalize("NFD").replace(/[\u0300-\u036f]/g,"");return/^[\x00-\xFF]+$/.test(b)?b:""});
-async function mkPdf(B0){if(!window.jspdf)await loadScript(JSPDF);const t=tpl(),lh=t.bs*1.3,B=B0.map(b=>({...b,s:PS(b.s),r:b.r?PS(b.r):b.r}));
- const pgz=RG[RGC()].pg==="a4"?[595,842]:[612,792],d=new window.jspdf.jsPDF({unit:"pt",format:pgz[0]===595?"a4":"letter"}),W=pgz[0],HT=pgz[1],M=54,mw=W-2*M;let y=M;
+async function mkPdf(B0){if(!window.PDFLib)await loadScript(PDFLIB);const{PDFDocument,StandardFonts:SF,rgb}=window.PDFLib,t=tpl(),lh=t.bs*1.3,tm=t.f==="times",doc=await PDFDocument.create(),fn=await doc.embedFont(tm?SF.TimesRoman:SF.Helvetica),fb=await doc.embedFont(tm?SF.TimesRomanBold:SF.HelveticaBold),
+ sf=x=>{try{fn.encodeText(x);return x}catch(e){return[...x].map(c=>{try{fn.encodeText(c);return c}catch(_){return"?"}}).join("")}},
+ B=B0.map(b=>({...b,s:sf(PS(b.s)),r:b.r?sf(PS(b.r)):b.r})),pgz=RG[RGC()].pg==="a4"?[595,842]:[612,792],W=pgz[0],HT=pgz[1],M=54,mw=W-2*M,ac=rgb(t.ac[0]/255,t.ac[1]/255,t.ac[2]/255),blk=rgb(0,0,0);
+ const wrap=(txt,f,sz,m)=>{const o=[];String(txt).split("\n").forEach(par=>{let cur="";par.split(" ").forEach(w=>{const ts=cur?cur+" "+w:w;if(f.widthOfTextAtSize(ts,sz)<=m){cur=ts;return}if(cur){o.push(cur);cur=""}while(f.widthOfTextAtSize(w,sz)>m&&w.length>1){let k=w.length-1;while(k>1&&f.widthOfTextAtSize(w.slice(0,k),sz)>m)k--;o.push(w.slice(0,k));w=w.slice(k)}cur=w});o.push(cur)});return o};
+ let pg=doc.addPage([W,HT]),y=M;const np=()=>{pg=doc.addPage([W,HT]);y=M},tx=(x,px,yy,f,sz,c,right)=>{if(!x)return;pg.drawText(x,{x:right?px-f.widthOfTextAtSize(x,sz):px,y:HT-yy,size:sz,font:f,color:c})};
  B.forEach(b=>{
-  if(b.t==="name"){d.setFont(t.f,"bold").setFontSize(t.ns).setTextColor(...t.ac);d.splitTextToSize(b.s,mw).forEach(l=>{d.text(l,M,y+t.ns*.8);y+=t.ns*1.2});y+=t.ns*.3;d.setTextColor(0,0,0)}
-  else if(b.t==="contact"){d.setFont(t.f,"normal").setFontSize(t.bs-.5);d.splitTextToSize(b.s,mw).forEach(l=>{d.text(l,M,y+t.bs);y+=lh});y+=4}
-  else if(b.t==="h"){if(y+60>HT-M){d.addPage();y=M}y+=8*t.sp;d.setFont(t.f,"bold").setFontSize(t.bs+.5).setTextColor(...t.ac);d.text(b.s.toUpperCase(),M,y+t.bs);d.setTextColor(0,0,0);y+=lh+2;if(t.rule){d.setDrawColor(...t.ac).setLineWidth(.5).line(M,y,W-M,y)}y+=6*t.sp}
+  if(b.t==="name"){wrap(b.s,fb,t.ns,mw).forEach(l=>{tx(l,M,y+t.ns*.8,fb,t.ns,ac);y+=t.ns*1.2});y+=t.ns*.3}
+  else if(b.t==="contact"){wrap(b.s,fn,t.bs-.5,mw).forEach(l=>{tx(l,M,y+t.bs,fn,t.bs-.5,blk);y+=lh});y+=4}
+  else if(b.t==="h"){if(y+60>HT-M)np();y+=8*t.sp;tx(sf(b.s.toUpperCase()),M,y+t.bs,fb,t.bs+.5,ac);y+=lh+2;if(t.rule)pg.drawLine({start:{x:M,y:HT-y},end:{x:W-M,y:HT-y},thickness:.5,color:ac});y+=6*t.sp}
   else{if(!b.s.trim()){y+=lh*.7;return}
-   const bu=b.t==="b",jb=b.t==="job";let dw=0;if(b.r){d.setFont(t.f,"normal").setFontSize(t.bs);dw=d.getTextWidth(b.r)+14}
-   d.setFont(t.f,jb?"bold":"normal").setFontSize(t.bs);
-   const ls=d.splitTextToSize(b.s,mw-(bu?14:0)-dw);if(y+ls.length*lh>HT-M){d.addPage();y=M}
-   if(bu){d.setFillColor(0,0,0);d.circle(M+4,y+t.bs*.65,1.3,"F")}
-   ls.forEach((l,i)=>{d.text(l,M+(bu?14:0),y+t.bs);if(i===0&&b.r){d.setFont(t.f,"normal");d.text(b.r,W-M,y+t.bs,{align:"right"});d.setFont(t.f,"bold")}y+=lh});
+   const bu=b.t==="b",jb=b.t==="job",f=jb?fb:fn,dw=b.r?fn.widthOfTextAtSize(b.r,t.bs)+14:0,ls=wrap(b.s,f,t.bs,mw-(bu?14:0)-dw);if(y+ls.length*lh>HT-M)np();
+   if(bu)pg.drawCircle({x:M+4,y:HT-(y+t.bs*.65),size:1.3,color:blk});
+   ls.forEach((l,i)=>{tx(l,M+(bu?14:0),y+t.bs,f,t.bs,blk);if(i===0&&b.r)tx(b.r,W-M,y+t.bs,fn,t.bs,blk,true);y+=lh});
    y+=(jb?2:bu?1:4)*t.sp}});
- return d.output("arraybuffer")}
+ window.__pg=doc.getPageCount();return await doc.save()}
 async function mkDocx(B){if(!window.JSZip)await loadScript(JSZIP);const t=tpl(),bs=Math.round(t.bs*2),a4=RG[RGC()].pg==="a4";
  const run=(s,bo,sz=bs,ac)=>`<w:r><w:rPr><w:rFonts w:ascii="${t.df}" w:hAnsi="${t.df}"/>${bo?"<w:b/>":""}${ac?`<w:color w:val="${t.hex}"/>`:""}<w:sz w:val="${sz}"/></w:rPr><w:t xml:space="preserve">${esc(s)}</w:t></w:r>`;
  const P=(i,p="")=>`<w:p><w:pPr>${p}</w:pPr>${i}</w:p>`;
@@ -808,7 +823,7 @@ function run(){LNS={};LNID=0;NFAMSEEN={};buildSyn();setOcc();
  jobs.forEach(j=>{const c=IDX.match(j.title,j.duties.join(" "));
   const top=c[0],st0=tops.push(top||null),st=!c.length?"no_match":(top.conf==="high"&&(c.length<2||top.score-c[1].score>.1))?"suggested":"needs_review";
   h+=`<div class="card"><h3>${esc(j.title||"(untitled)")}${j.employer?" · "+esc(j.employer):""}</h3><div class="m">${esc(j.dates||"dates not detected")} · ${j.duties.length} duty line(s) · <span class="${STAT[st][1]}">${STAT[st][0]}</span></div>`+
-  c.map((m,ix)=>`<div class="cand"><span class="code">${esc(m.code)}</span><span>${esc(m.title)}</span><span class="m">${m.teer?OCCT()+" "+esc(m.teer)+" · ":""}score ${m.score}</span><span class="b ${m.conf}">${m.conf}</span><span class="m" style="flex-basis:100%">matched: ${esc(m.ev.join(", ")||"none")}</span>${ix===0&&m.extra?`<span class="m" style="flex-basis:100%">${esc(m.xl||"Typical entry")}: ${esc(m.extra.length>420?m.extra.slice(0,420)+"…":m.extra)}</span>`:""}</div>`).join("")+"</div>"});
+  c.map((m,ix)=>`<div class="cand"><span class="code">${esc(m.code)}</span><span>${esc(m.title)}</span><span class="m">${m.teer?OCCT()+" "+esc(m.teer)+" · ":""}score ${m.score}</span><span class="b ${m.conf}">${m.conf}</span><span class="m" style="flex-basis:100%">matched: ${esc(m.ev.join(", ")||"none")}</span>${ix===0&&m.extra?`<span class="m" style="flex-basis:100%">${esc(m.xl||"Typical entry")}: ${esc(m.extra.length>420?m.extra.slice(0,420)+"…":m.extra)}</span>`:""}</div>`).join("")+hdLine(j,c,post)+"</div>"});
  h+="<h2>Education</h2>";
  if(!edu.length)h+='<p class="m">No education credentials detected.</p>';
  edu.forEach(e=>{h+=`<div class="card"><h3>${esc(e.level)}</h3><div class="m">${e.country?"Country: "+esc(e.country):"Country not detected"}${e.eca?' · <span class="warn">Foreign credential: an ECA may be needed</span>':""}</div><div class="cmp"><div><span class="m">As written</span><br>${esc(e.original)}</div><div><span class="m">Suggested</span><br>${esc(e.suggested)}<br><button data-ed data-old="${esc(e.original)}" data-new="${esc(e.suggested)}" style="margin-top:6px">Add to builder</button></div></div></div>`});
@@ -1560,26 +1575,32 @@ $("out").addEventListener("click",e=>{const t=e.target,push=t.closest&&t.closest
 
 /* offline resume tailor: reorders and rewords what the resume already says; additions are optional and need confirmation */
 var TLP=[],TLSNAP=null;
-function tlSc(x,P){return toks(norm(x)).filter(w=>w.length>=3&&P.has(w)).length}
+function tlW(post){const P=new Map();post.split(/\r?\n/).forEach(l=>{const w=/\b(required|must|essential|minimum|mandatory|requirements?|requis|exigé|obligatoire)\b/i.test(l)?2:/\b(preferred|asset|nice to have|bonus|atout)\b/i.test(l)?1.3:1;toks(norm(l)).filter(t=>t.length>=3).forEach(t=>P.set(t,(P.get(t)||0)+w))});P.forEach((v,k)=>P.set(k,1+Math.log(v)));return P}
+function tlSc(x,P){const u=new Set(toks(norm(x)).filter(w=>w.length>=3));let n=0;u.forEach(w=>n+=P.get(w)||0);return n}
 function tlSort(a,P){return a.map((x,i)=>[x,i,tlSc(x,P)]).sort((p,q)=>q[2]-p[2]||p[1]-q[1]).map(p=>p[0])}
 function tlSkills(P,sort){const v=$("bsk").value;if(!v.trim())return v;return v.split("\n").map(l=>{const m=/^([^:,;]{1,30}:\s*)?(.*)$/.exec(l),it=m[2].split(/[,;]+/).map(x=>x.trim()).filter(Boolean);return(m[1]||"")+(sort?tlSort(it,P):it).join(", ")}).join("\n")}
-function tlTitle(post){const l=post.split(/\r?\n/).map(x=>x.trim()).filter(Boolean)[0]||"";return l.length<=70?l.replace(/[\s:;,.\-–—|]+$/,""):""}
+function tlTitle(post){const L=post.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);let l="",m;for(const x of L.slice(0,12)){if(m=/^(?:job\s*title|position|role|poste|titre)\s*[:\-–]\s*(.+)$/i.exec(x)){l=m[1];break}}if(!l)l=L[0]||"";l=l.replace(/\([^)]*\)/g,"").split(/\s[-–—|@]\s|\s(?:at|chez)\s/i)[0].replace(/[\s:;,.\-–—|]+$/,"").trim();return l&&l.length<=60&&l.split(/\s+/).length<=8&&!/\b(we|our|you|are|is|nous|vous)\b/i.test(l)?l:""}
 function tlPlan(){
  const st=$("tls"),out=$("tlo"),fr=docLang()==="fr",post=($("post").value||"").trim();TLP=[];out.innerHTML="";
  if(!LAST||!String($("out").innerHTML||"").trim()){st.textContent=uiTr("Run a scan first.");return}
  if(!post){st.textContent=uiTr("Paste a job posting first.");return}
  if(bdEmpty())fromLast();
- const P=new Set(toks(norm(post)).filter(w=>w.length>=3)),cards=[...document.querySelectorAll("#bj .card")];
+ const P=tlW(post),cards=[...document.querySelectorAll("#bj .card")];
  const add=(p)=>TLP.push(p);
  /* summary */
  const cur=$("bs").value.trim(),v=sumVariants()[0];
- if(v){const t=tlTitle(post),nv=v+(t&&!norm(v).includes(norm(t))?(fr?" Objectif : ":" Targeting: ")+t+".":"");
+ if(v){const t=tlTitle(post),nv=v+(t&&!norm(v).includes(norm(t))?(fr?" Recherche un poste de "+t+".":" Seeking a "+t+" role."):"");
   if(nv!==cur)add({o:2,def:!cur,h:fr?"Profil ciblé":"Summary aimed at the role",d:nv+(cur?"  (replaces your current summary)":""),run(){$("bs").value=nv}})}
  /* skills order */
  if($("bsk").value.trim()&&tlSkills(P,true)!==tlSkills(P,false)){const prev=tlSkills(P,true).split("\n")[0].slice(0,140);add({o:2,def:true,h:fr?"Compétences : mots-clés de l'offre en premier":"Skills: posting keywords first",d:prev+" …",run(){$("bsk").value=tlSkills(P,true)}})}
  /* bullet order */
  cards.forEach((c,j)=>{const ta=c.querySelector("[data-k=b]"),b=ta.value.split("\n").map(x=>x.trim()).filter(Boolean),sd=tlSort(b,P);
   if(b.length>1&&sd.join("\n")!==b.join("\n")){const t=c.querySelector("[data-k=t]").value.trim()||("Role "+(j+1));add({o:2,def:true,h:(fr?"Puces les plus pertinentes en premier : ":"Most relevant bullets first: ")+t,d:"1. "+sd[0],run(){const b2=ta.value.split("\n").map(x=>x.trim()).filter(Boolean);ta.value=tlSort(b2,P).join("\n")}})}});
+ /* rule-based rewording: swaps only wording the posting already uses for the same thing */
+ {const fx=(vb)=>tlRw(post,vb),ex=(vb)=>{const f=fx(vb),ch=[];cards.forEach(c=>c.querySelector("[data-k=b]").value.split("\n").forEach(x=>{const y=f(x.trim());if(x.trim()&&y!==x.trim())ch.push([x.trim(),y])}));return ch};
+  [[false,true,fr?"Reformuler avec les termes de l'offre":"Use the posting's terms (abbreviations and synonyms)"],[true,false,fr?"Verbes d'action repris de l'offre (à vérifier)":"Action verbs matching the posting (check they still fit)"]].forEach(([vb,df,h])=>{const ch=ex(vb);if(ch.length)add({o:2,def:df,h:h+" ("+ch.length+")",d:ch.slice(0,2).map(c=>c[0].slice(0,70)+" → "+c[1].slice(0,70)).join("  |  "),run(){const f=fx(vb);cards.forEach(c=>{const ta=c.querySelector("[data-k=b]");ta.value=ta.value.split("\n").map(l=>l.trim()?f(l.trim()):l).join("\n")})}})})}
+ /* trimming: bullets with no overlap with the posting, keeping the 3 best per role */
+ {const rk=tlRank(P,3).filter(c=>c.s===0);if(rk.length)add({o:2,def:false,h:(fr?"Retirer ":"Remove ")+rk.length+(fr?" puce(s) sans lien avec l'offre":" bullet(s) unrelated to the posting"),d:rk.slice(0,2).map(c=>c.x.slice(0,70)).join("  |  "),run(){tlRank(P,3).filter(c=>c.s===0).forEach(c=>tlDrop(c.j,c.x))}})}
  /* optional additions (never ticked by default) */
  const sk=SKL.filter(x=>x.name),du=PHL.filter(x=>!x.met&&LNS[x.id]),so=SFL.filter(x=>x.id&&LNS[x.id]);
  if(sk.length)add({o:1,def:false,h:(fr?"Ajouter ":"Add ")+sk.length+(fr?" compétence(s) de l'offre (si vraies pour vous)":" posting skill(s) (only if true for you)"),d:sk.map(x=>x.name).join(", "),Ls:()=>sk.map(x=>LNS[x.id]).filter(Boolean),run(){const lines=sk.map(x=>x.id&&LNS[x.id]?lnText(LNS[x.id]):null).filter(Boolean);if(cards[0]&&lines.length)mrAddLines(0,lines);skillsAddCat(sk.map(x=>[x.name,x.cat]),fr)}});
@@ -1587,17 +1608,123 @@ function tlPlan(){
  if(so.length&&cards[0])add({o:1,def:false,h:(fr?"Ajouter ":"Add ")+so.length+(fr?" ligne(s) de compétences interpersonnelles (si vraies pour vous)":" soft-skill line(s) (only if true for you)"),d:lnText(LNS[so[0].id]),Ls:()=>so.map(x=>LNS[x.id]),run(){mrAddLines(0,so.map(x=>lnText(LNS[x.id])))}});
  if(!TLP.length){st.textContent=uiTr("Your resume is already in the best order for this posting.");return}
  st.textContent="";
- out.innerHTML='<div class="card"><h3>'+esc(uiTr("Tailoring plan"))+'</h3>'+TLP.map((p,i)=>'<label class="cand" style="display:block;font-weight:400"><input type="checkbox" data-tl="'+i+'" style="width:auto"'+(p.def?" checked":"")+'> <b>'+esc(p.h)+'</b><span class="m" style="display:block;margin-left:22px">'+esc(p.d)+'</span></label>').join("")+'<div class="row"><button class="p" id="tla" type="button">'+esc(uiTr("Apply selected changes"))+'</button></div></div>'}
+ out.innerHTML='<div class="card"><h3>'+esc(uiTr("Tailoring plan"))+'</h3>'+TLP.map((p,i)=>'<label class="cand" style="display:block;font-weight:400"><input type="checkbox" data-tl="'+i+'" style="width:auto"'+(p.def?" checked":"")+'> <b>'+esc(p.h)+'</b><span class="m" style="display:block;margin-left:22px">'+esc(p.d)+'</span></label>').join("")+'<label class="m" style="display:block;font-weight:400;margin:8px 0"><input type="checkbox" id="tlsv" checked style="width:auto"> '+esc(uiTr("Save the result as a named version"))+'</label><div class="row"><button class="p" id="tla" type="button">'+esc(uiTr("Apply selected changes"))+'</button></div></div>'}
+function tlRank(P,keep){const C=[...document.querySelectorAll("#bj .card")],o=[];C.forEach((c,j)=>{const b=c.querySelector("[data-k=b]").value.split("\n").map(x=>x.trim()).filter(Boolean),sc=b.map(x=>P?tlSc(x,P):0),r=b.map((x,i)=>i).sort((p,q)=>sc[q]-sc[p]||p-q),pr=new Set(r.slice(0,keep));b.forEach((x,i)=>{if(!pr.has(i))o.push({j,i,x,s:sc[i]})})});return o.sort((a,b)=>a.s-b.s||b.j-a.j||b.i-a.i)}
+function tlDrop(j,x){const ta=document.querySelectorAll("#bj .card")[j].querySelector("[data-k=b]"),L=ta.value.split("\n"),k=L.findIndex(l=>l.trim()===x);if(k>=0){L.splice(k,1);ta.value=L.join("\n")}}
+async function tlPages(){await mkPdf(blocks(model()));return window.__pg||0}
+var TRS=null;
+$("tlfit").onclick=async()=>{const st=$("tlfs"),o=$("tlfo"),tg=+$("tlpg").value,post=($("post").value||"").trim();o.innerHTML="";
+ if(!LAST||!String($("out").innerHTML||"").trim()){st.textContent=uiTr("Run a scan first.");return}
+ if(bdEmpty())fromLast();
+ st.textContent=uiTr("Measuring…");let n=0;try{n=await tlPages()}catch(e){}
+ if(!n){st.textContent=uiTr("Could not measure the page count. The PDF library may not have loaded.");return}
+ if(n<=tg){st.textContent=uiTr("It already fits: ")+n+uiTr(" page(s).");return}
+ const P=post?tlW(post):null,s0=snapshot(),bt=toTxt(blocks(model()));let k=0;
+ while(n>tg&&k<40){const c=tlRank(P,2)[0];if(!c)break;tlDrop(c.j,c.x);k++;try{n=await tlPages()}catch(e){break}}
+ if(!k){st.textContent=uiTr("It runs ")+n+uiTr(" page(s), but every role is already down to 2 bullets. Try the Compact template.");return}
+ pv();const at=toTxt(blocks(model())),orig=$("res").value;if(RESORIG==null)RESORIG=orig;TRS={snap:s0,orig};$("res").value=at;run();
+ st.innerHTML="<span>"+esc(uiTr("Removed ")+k+uiTr(" bullet(s). Now ")+n+uiTr(" page(s).")+(n>tg?uiTr(" Still over: try the Compact template or trim by hand."):""))+'</span> <button id="tlfund" type="button">'+esc(uiTr("Undo trim"))+"</button>";o.innerHTML=tlDiff(bt,at)};
+$("tlfs").addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#tlfund")&&TRS){bdRestore(TRS.snap);$("res").value=TRS.orig;TRS=null;run();$("tlfs").textContent=uiTr("Undone. The bullets are back.");$("tlfo").innerHTML=""}});
+((P)=>P.forEach(([a,b])=>FRD.set(a,b)))([["Measuring…","Mesure en cours…"],["It already fits: ","Il tient déjà : "],[" page(s).",""+" page(s)."],["Removed ","Retiré : "],[" bullet(s). Now "," puce(s). Maintenant "],["Undo trim","Annuler le retrait"],["Undone. The bullets are back.","Annulé. Les puces sont revenues."],["Could not measure the page count. The PDF library may not have loaded.","Impossible de mesurer le nombre de pages. La bibliothèque PDF ne s'est peut-être pas chargée."]]);
+var TUG=[];
+function tupGo(){const st=$("tus"),o=$("tuo");o.innerHTML="";TUG=[];
+ if($("os").value!=="noc"){st.textContent=uiTr("TEER applies to the Canadian NOC. Choose NOC 2021 under Occupation data.");return}
+ if(!LAST||!String($("out").innerHTML||"").trim()){st.textContent=uiTr("Run a scan first.");return}
+ if(bdEmpty())fromLast();
+ const m=model(),j0=m.jobs[0];if(!j0||!j0.title){st.textContent=uiTr("Add your most recent job title first.");return}
+ const du=j0.bullets.join(" "),cur=IDX.match(j0.title,du,1)[0];if(!cur){st.textContent=uiTr("No matching occupation found for your latest role.");return}
+ const tv=c=>/^\d{5}$/.test(String(c.code))?+String(c.code)[1]:parseInt(c.teer),ct=tv(cur);
+ if(isNaN(ct)){st.textContent=uiTr("This occupation list has no TEER levels.");return}
+ if(ct===0){st.textContent=uiTr("Your latest role already matches TEER 0, the top level.");return}
+ const rs=new Set(toks(norm([m.summary,...m.jobs.flatMap(j=>j.bullets),m.skills].join(" ")))),byc=Object.fromEntries(IDX.E.map(e=>[e.code,e])),
+  gaps=e=>String(e.duties||"").split(/\s*(?:;|\.\s|\n)\s*/).map(x=>x.trim().replace(/\.$/,"")).filter(x=>x.length>25).filter(x=>{const t=toks(norm(x)).filter(w=>w.length>=3);return t.length&&t.filter(w=>rs.has(w)).length/t.length<.3}).slice(0,6),
+  cand=IDX.match(j0.title,du,IDX.n).filter(c=>String(c.code)[0]===String(cur.code)[0]&&tv(c)<ct).slice(0,3);
+ if(!cand.length){st.textContent=uiTr("No higher-TEER occupations found in the same field.");return}
+ st.textContent=uiTr("Latest role matches ")+cur.code+" "+cur.title+" (TEER "+ct+").";
+ o.innerHTML=cand.map((c,i)=>{const e=byc[c.code]||{},g=gaps(e);TUG.push(g);return'<div class="card"><h3>'+esc(c.code+" "+c.title)+'</h3><div class="m">TEER '+esc(String(tv(c)))+" · "+esc(uiTr("similarity "))+c.score+"</div>"+(e.extra?'<div class="m">'+esc((e.xl||"Typical entry")+": "+(e.extra.length>300?e.extra.slice(0,300)+"…":e.extra))+"</div>":"")+(g.length?'<p style="margin:8px 0 2px"><b>'+esc(uiTr("Duties your resume does not show yet"))+"</b></p>"+g.map((x,k)=>'<label class="cand" style="display:block;font-weight:400"><input type="checkbox" data-tud="'+i+"-"+k+'" style="width:auto"> '+esc(x)+"</label>").join("")+'<div class="row"><button type="button" class="tuadd" data-i="'+i+'">'+esc(uiTr("Add ticked duties to my latest role"))+"</button></div>":'<p class="m">'+esc(uiTr("Your resume already covers this role's listed duties."))+"</p>")+"</div>"}).join("")}
+$("tup").onclick=tupGo;
+$("tuo").addEventListener("click",e=>{const b=e.target.closest&&e.target.closest(".tuadd");if(!b)return;const i=+b.dataset.i,st=$("tus"),L=[...document.querySelectorAll('#tuo [data-tud^="'+i+'-"]')].filter(x=>x.checked).map(x=>TUG[i][+x.dataset.tud.split("-")[1]]).filter(Boolean).map(x=>x.charAt(0).toUpperCase()+x.slice(1));
+ if(!L.length){st.textContent=uiTr("Tick at least one duty first.");return}
+ if(!$("nok").checked){st.textContent=uiTr("Tick “I confirm” first, then try again.");return}
+ mrAddLines(0,L);pv();if(RESORIG==null)RESORIG=$("res").value;$("res").value=toTxt(blocks(model()));run();st.textContent=uiTr("Added ")+L.length+uiTr(" duty line(s) to your latest role. Edit them so they describe what you actually did.")});
+((P)=>P.forEach(([a,b])=>FRD.set(a,b)))([["Show my TEER upgrade path","Voir ma voie d'avancement TEER"],["TEER applies to the Canadian NOC. Choose NOC 2021 under Occupation data.","Le TEER s'applique à la CNP canadienne. Choisissez CNP 2021 dans Données sur les professions."],["Duties your resume does not show yet","Tâches absentes de votre CV"],["Add ticked duties to my latest role","Ajouter les tâches cochées à mon poste le plus récent"],["Tick at least one duty first.","Cochez d'abord au moins une tâche."],["similarity ","similarité "]]);
+var TPP=[],TPS=null;
+const tpScore=(t,d,code)=>{const c=IDX.match(t,d,IDX.n).find(x=>x.code===code);return c?c.score:0},tpPct=x=>Math.round(x*100)+"%";
+function tpPlan(){const st=$("tps"),o=$("tpo");o.innerHTML="";TPP=[];
+ if($("os").value!=="noc"){st.textContent=uiTr("TEER applies to the Canadian NOC. Choose NOC 2021 under Occupation data.");return}
+ if(!LAST||!String($("out").innerHTML||"").trim()){st.textContent=uiTr("Run a scan first.");return}
+ if(bdEmpty())fromLast();
+ const byc=Object.fromEntries(IDX.E.map(e=>[e.code,e]));
+ document.querySelectorAll("#bj .card").forEach((c,j)=>{const t=c.querySelector("[data-k=t]").value.trim(),b=c.querySelector("[data-k=b]").value.split("\n").map(x=>x.trim()).filter(Boolean);if(!t)return;
+  const top=IDX.match(t,b.join(" "),1)[0];if(!top)return;let cur=top.score,have=b.join(" "),add=[];
+  const pool=String((byc[top.code]||{}).duties||"").split(/\s*(?:;|\.\s|\n)\s*/).map(x=>x.trim().replace(/\.$/,"")).filter(x=>x.length>25);
+  while(cur<1&&add.length<8&&pool.length){let bs=-1,bi=-1;pool.forEach((x,i)=>{const v=tpScore(t,have+" "+x,top.code);if(v>bs){bs=v;bi=i}});if(bi<0||bs<=cur+.001)break;cur=bs;have+=" "+pool[bi];add.push(pool.splice(bi,1)[0])}
+  TPP.push({j,t,from:top.score,to:cur,code:top.code,title:top.title,add})});
+ if(!TPP.length){st.textContent=uiTr("No roles with a title were found in the builder.");return}
+ const tot=TPP.reduce((a,p)=>a+p.add.length,0);st.textContent=uiTr("Average match ")+tpPct(TPP.reduce((a,p)=>a+p.from,0)/TPP.length)+" → "+tpPct(TPP.reduce((a,p)=>a+p.to,0)/TPP.length)+" ("+tot+uiTr(" line(s) proposed).");
+ o.innerHTML=TPP.map((p,i)=>'<div class="card"><h3>'+esc(p.t)+" → "+esc(p.code+" "+p.title)+'</h3><div class="m">TEER '+esc(String(p.code)[1]||"?")+" · "+esc(uiTr("match "))+tpPct(p.from)+" → "+tpPct(p.to)+"</div>"+(p.from>=1?'<p class="m">'+esc(uiTr("Already at 100%."))+"</p>":p.add.length?p.add.map((x,k)=>'<label class="cand" style="display:block;font-weight:400"><input type="checkbox" data-tpl="'+i+"-"+k+'" checked style="width:auto"> '+esc(x)+"</label>").join(""):'<p class="m">'+esc(uiTr("The listed duties cannot raise this match further."))+"</p>")+"</div>").join("")+(tot?'<div class="row"><button class="p" id="tpa" type="button">'+esc(uiTr("Apply ticked lines"))+"</button></div>":"")}
+$("tpush").onclick=tpPlan;
+$("tpo").addEventListener("click",e=>{if(!(e.target.closest&&e.target.closest("#tpa")))return;const st=$("tps"),P=TPP.map((p,i)=>({p,L:[...document.querySelectorAll('#tpo [data-tpl^="'+i+'-"]')].filter(x=>x.checked).map(x=>p.add[+x.dataset.tpl.split("-")[1]]).filter(Boolean).map(x=>x.charAt(0).toUpperCase()+x.slice(1))})).filter(x=>x.L.length);
+ if(!P.length){st.textContent=uiTr("Tick at least one line first.");return}
+ if(!$("nok").checked){st.textContent=uiTr("Tick “I confirm” first, then try again.");return}
+ const snap=snapshot(),orig=$("res").value,bt=toTxt(blocks(model()));P.forEach(x=>mrAddLines(x.p.j,x.L));pv();const at=toTxt(blocks(model()));if(RESORIG==null)RESORIG=orig;TPS={snap,orig};$("res").value=at;run();
+ const cards=document.querySelectorAll("#bj .card"),nw=P.map(x=>{const c=cards[x.p.j];return tpPct(tpScore(x.p.t,c.querySelector("[data-k=b]").value,x.p.code))});
+ st.innerHTML="<span>"+esc(uiTr("Added ")+P.reduce((a,x)=>a+x.L.length,0)+uiTr(" line(s). New match: ")+nw.join(", ")+". ")+'</span><button id="tpund" type="button">'+esc(uiTr("Undo"))+"</button>";$("tpo").innerHTML=tlDiff(bt,at)});
+$("tps").addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#tpund")&&TPS){bdRestore(TPS.snap);$("res").value=TPS.orig;TPS=null;run();$("tps").textContent=uiTr("Undone.");$("tpo").innerHTML=""}});
+((P)=>P.forEach(([a,b])=>FRD.set(a,b)))([["Plan my 100% match","Préparer mon appariement à 100 %"],["Apply ticked lines","Appliquer les lignes cochées"],["Already at 100%.","Déjà à 100 %."],["Tick at least one line first.","Cochez d'abord au moins une ligne."],["Undone.","Annulé."]]);
+function hdLine(j,c,post){try{const t=j.title||"",du=j.duties.join(" "),pt=post?tlTitle(post):"",nk=x=>toks(norm(x)).join(" "),rt=new Set(toks(norm(t+" "+du))),ov=x=>{const k=toks(norm(x)).filter(w=>w.length>=3);return k.length?k.filter(w=>rt.has(w)).length/k.length:0},S=[],seen=new Set([nk(t)]),
+ add=(x,w)=>{x=String(x).trim();const k=nk(x);if(!x||x.length>60||seen.has(k))return;seen.add(k);S.push([x,w])};
+ c.filter(m=>m.conf!=="low").forEach(m=>add(m.title,tpPct(m.score)+uiTr(" match")));
+ const e=c[0]&&IDX.E.find(z=>z.code===c[0].code);
+ if(e)String(e.ex||"").split(";").map(x=>x.trim()).filter(Boolean).map(x=>[x,ov(x)]).filter(p=>p[1]>=.5).sort((a,b)=>b[1]-a[1]).slice(0,4).forEach(p=>add(p[0],uiTr("alternate title")));
+ if(pt&&ov(pt)>=.34)add(pt,uiTr("posting's title"));
+ return S.length?'<div class="m" style="flex-basis:100%;margin-top:6px"><b>'+esc(uiTr("Title ideas"))+":</b> "+S.map(([x,w])=>'<button type="button" class="chip hdsc" data-jt="'+encodeURIComponent(t)+'" data-x="'+encodeURIComponent(x)+'">'+esc(x)+' <span class="m">('+esc(w)+")</span></button>").join(" ")+' <span class="hdst" role="status"></span><br>'+esc(uiTr("click one to use it as this job's title, but only if it honestly fits. Undo is under Job heading suggestions in the tailoring area above."))+"</div>":""}catch(_){return""}}
+var HDS=[],HDSN=null;
+function hdPlan(){const st=$("hds"),o=$("hdo");o.innerHTML="";HDS=[];
+ if(!LAST||!String($("out").innerHTML||"").trim()){st.textContent=uiTr("Run a scan first.");return}
+ if(bdEmpty())fromLast();
+ const post=($("post").value||"").trim(),pt=post?tlTitle(post):"",nk=x=>toks(norm(x)).join(" ");
+ document.querySelectorAll("#bj .card").forEach((c,j)=>{const t=c.querySelector("[data-k=t]").value.trim(),b=c.querySelector("[data-k=b]").value.split("\n").map(x=>x.trim()).filter(Boolean);if(!t&&!b.length)return;
+  const du=b.join(" "),rt=new Set(toks(norm(t+" "+du))),ov=x=>{const k=toks(norm(x)).filter(w=>w.length>=3);return k.length?k.filter(w=>rt.has(w)).length/k.length:0},S=[],seen=new Set([nk(t)]),
+   add=(x,src,why)=>{x=String(x).trim();const k=nk(x);if(!x||x.length>60||seen.has(k))return;seen.add(k);S.push({x,src,why})},m3=IDX.match(t,du,3);
+  m3.filter(m=>m.conf!=="low").forEach(m=>add(m.title,uiTr("Official title ")+m.code,tpPct(m.score)+uiTr(" match")));
+  const e=m3[0]&&IDX.E.find(z=>z.code===m3[0].code);
+  if(e)String(e.ex||"").split(";").map(x=>x.trim()).filter(Boolean).map(x=>[x,ov(x)]).filter(p=>p[1]>=.5).sort((a,b)=>b[1]-a[1]).slice(0,5).forEach(p=>add(p[0],uiTr("Alternate title"),uiTr("wording found in your duties")));
+  if(pt&&ov(pt)>=.34)add(pt,uiTr("Posting's title"),uiTr("shares wording with this role's duties"));
+  HDS.push({j,t,S})});
+ if(!HDS.length){st.textContent=uiTr("No roles found in the builder.");return}
+ o.innerHTML=HDS.map((h,i)=>'<div class="card"><h3>'+esc(h.t||uiTr("(untitled)"))+"</h3>"+(h.S.length?h.S.map((x,k)=>'<div class="cand"><b>'+esc(x.x)+'</b><span class="m">'+esc(x.src+" · "+x.why)+'</span><button type="button" class="hduse" data-i="'+i+'" data-k="'+k+'">'+esc(uiTr("Use this title"))+"</button></div>").join(""):'<p class="m">'+esc(uiTr("No better-supported title found for this role."))+"</p>")+"</div>").join("")}
+$("hdr").onclick=hdPlan;
+$("hdo").addEventListener("click",e=>{const b=e.target.closest&&e.target.closest(".hduse");if(!b)return;const h=HDS[+b.dataset.i],x=h&&h.S[+b.dataset.k];if(!x)return;
+ const inp=document.querySelectorAll("#bj .card")[h.j].querySelector("[data-k=t]"),old=inp.value,snap=snapshot(),orig=$("res").value;
+ inp.value=x.x;pv();if(RESORIG==null)RESORIG=orig;HDSN={snap,orig};$("res").value=toTxt(blocks(model()));run();hdPlan();
+ $("hds").innerHTML="<span>"+esc(uiTr("Title changed: ")+old+" → "+x.x+". ")+'</span><button id="hdund" type="button">'+esc(uiTr("Undo"))+"</button>"});
+$("hds").addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#hdund")&&HDSN){bdRestore(HDSN.snap);$("res").value=HDSN.orig;HDSN=null;run();hdPlan();$("hds").textContent=uiTr("Undone.")}});
+((P)=>P.forEach(([a,b])=>FRD.set(a,b)))([["Title ideas","Idées de titres"],["alternate title","autre appellation"],["posting's title","titre de l'offre"],["click one to use it as this job's title, but only if it honestly fits. Undo is under Job heading suggestions in the tailoring area above.","cliquez sur un titre pour l'utiliser pour ce poste, seulement s'il correspond honnêtement. Annuler se trouve sous Suggestions de titres dans la zone d'adaptation ci-dessus."],["Suggest headings for my jobs","Suggérer des titres pour mes postes"],["Use this title","Utiliser ce titre"],["Alternate title","Autre appellation"],["Official title ","Titre officiel "],[" match"," de correspondance"],["Title changed: ","Titre modifié : "],["No better-supported title found for this role.","Aucun titre mieux appuyé trouvé pour ce poste."],["(untitled)","(sans titre)"]]);
+$("out").addEventListener("click",e=>{const b=e.target.closest&&e.target.closest(".hdsc");if(!b)return;const jt=decodeURIComponent(b.dataset.jt),x=decodeURIComponent(b.dataset.x),msg=b.parentElement.querySelector(".hdst"),nk=q=>toks(norm(q)).join(" ");
+ if(bdEmpty())fromLast();
+ const card=[...document.querySelectorAll("#bj .card")].find(c=>nk(c.querySelector("[data-k=t]").value)===nk(jt));
+ if(!card){msg.textContent=uiTr("Could not find this job in the builder. Use Import from analyzed resume, then try again.");return}
+ const inp=card.querySelector("[data-k=t]"),old=inp.value,snap=snapshot(),orig=$("res").value;
+ inp.value=x;pv();if(RESORIG==null)RESORIG=orig;HDSN={snap,orig};$("res").value=toTxt(blocks(model()));run();hdPlan();
+ $("hds").innerHTML="<span>"+esc(uiTr("Title changed: ")+old+" → "+x+". ")+'</span><button id="hdund" type="button">'+esc(uiTr("Undo"))+"</button>"});
+((P)=>P.forEach(([a,b])=>FRD.set(a,b)))([["Could not find this job in the builder. Use Import from analyzed resume, then try again.","Poste introuvable dans l'outil de création. Utilisez Importer depuis le CV analysé, puis réessayez."]]);
+const TLV=[["managed","led","oversaw","supervised"],["developed","built","created"],["improved","enhanced","optimized","optimised"],["trained","coached","mentored"],["analyzed","analysed","assessed","evaluated"],["coordinated","organized","organised"],["increased","grew","boosted"],["reduced","decreased","lowered"]];
+function tlRw(post,vb){const ps=new Set(toks(norm(post))),pl=fold(post).toLowerCase(),R=x=>new RegExp("(^|[^a-z0-9+#])"+x.replace(/[.*+?^${}()|[\]\\\/]/g,"\\$&")+"(?![a-z0-9+#])","i"),cs=(a,b)=>a[0]===a[0].toUpperCase()&&a[0]!==a[0].toLowerCase()?b[0].toUpperCase()+b.slice(1):b;
+ return line=>{let t=line;for(const g of vb?TLV:SYNG){const inP=g.filter(x=>vb?ps.has(stem(x)):R(x).test(pl));if(!inP.length)continue;for(const x of g){if(inP.includes(x))continue;const re=R(x);if(vb){const m=/^(\W*)(\w+)/.exec(t);if(m&&m[2].toLowerCase()===x)t=m[1]+cs(m[2],inP[0])+t.slice(m[0].length)}else if(re.test(t)&&!inP.some(y=>R(y).test(t)))t=t.replace(re,(a,p)=>p+inP[0])}}return t}}
+function tlSave(post){const n=((tlTitle(post)||"Tailored").slice(0,44))+" (tailored)",s0=snapshot();if(!svHas(s0))return"";const d=acGet(),a=d.accounts.find(x=>x.id===d.cur)||d.accounts[0];a.versions=a.versions.filter(v=>v.name.toLowerCase()!==n.toLowerCase());a.versions.unshift({name:n,t:Date.now(),s:s0});a.versions=a.versions.slice(0,12);const ok=acSet(d);acRender();return ok?uiTr("Saved as version: ")+n:uiTr("Could not save here. Your browser may be blocking storage.")}
+function tlDiff(a,b){const A=a.split("\n"),B=b.split("\n"),n=A.length,m=B.length;if(n*m>4e6)return"";const D=Array.from({length:n+1},()=>new Uint16Array(m+1));for(let i=n-1;i>=0;i--)for(let j=m-1;j>=0;j--)D[i][j]=A[i]===B[j]?D[i+1][j+1]+1:Math.max(D[i+1][j],D[i][j+1]);let i=0,j=0;const o=[];while(i<n&&j<m){if(A[i]===B[j]){i++;j++}else if(D[i+1][j]>=D[i][j+1])o.push(["-",A[i++]]);else o.push(["+",B[j++]])}while(i<n)o.push(["-",A[i++]]);while(j<m)o.push(["+",B[j++]]);const r=o.filter(x=>x[1].trim());if(!r.length)return"";return'<details open><summary>'+esc(uiTr("What changed"))+" ("+r.length+")</summary>"+r.map(([k,x])=>'<div class="cand" style="display:block;color:var('+(k==="+"?"--ok":"--low")+')"><b>'+k+"</b> "+esc(x)+"</div>").join("")+"</details>"}
 function tlApply(){
  const st=$("tls"),sel=[...document.querySelectorAll("#tlo [data-tl]")].filter(x=>x.checked).map(x=>TLP[+x.dataset.tl]).sort((a,b)=>a.o-b.o),sc=h=>{const m=/aria-label="Match score (\d+)%/.exec(h);return m?+m[1]:null};
  if(!sel.length){st.textContent=uiTr("Tick at least one change first.");return}
  if(nNeed(sel.flatMap(p=>p.Ls?p.Ls():[]))){st.textContent=uiTr("Tick “I confirm” first, then try again.");return}
  const before=sc($("out").innerHTML),snap=snapshot(),orig=$("res").value,fr=docLang()==="fr";
- sel.forEach(p=>p.run());pv();
+ const bt=toTxt(blocks(model()));sel.forEach(p=>p.run());pv();const at=toTxt(blocks(model()));
  if(RESORIG==null)RESORIG=orig;TLSNAP={snap,orig};$("res").value=toTxt(blocks(model()));run();
- const after=sc($("out").innerHTML);$("tlo").innerHTML="";
- st.innerHTML="<span>"+esc((fr?"Adapté : ":"Tailored: ")+sel.length+(fr?" changement(s). Score de correspondance : ":" change(s). Match score: ")+(before==null?"?":before)+"% → "+(after==null?"?":after)+"%. ")+'</span> <button id="tlund" type="button">'+esc(uiTr("Undo tailoring"))+'</button> <button id="tlcl" type="button">'+esc(uiTr("Write a matching cover letter"))+"</button>"}
+ const after=sc($("out").innerHTML),post=($("post").value||"").trim(),sv=$("tlsv")&&$("tlsv").checked?tlSave(post):"";$("tlo").innerHTML=tlDiff(bt,at);
+ st.innerHTML="<span>"+esc((fr?"Adapté : ":"Tailored: ")+sel.length+(fr?" changement(s). Score de correspondance : ":" change(s). Match score: ")+(before==null?"?":before)+"% → "+(after==null?"?":after)+"%. ")+'</span> <button id="tlund" type="button">'+esc(uiTr("Undo tailoring"))+'</button> <button id="tlcl" type="button">'+esc(uiTr("Write a matching cover letter"))+"</button>"+(sv?' <span class="m">'+esc(sv)+"</span>":"")}
 $("tlr").onclick=tlPlan;
+((P)=>P.forEach(([a,b])=>FRD.set(a,b)))([["What changed","Ce qui a changé"],["Saved as version: ","Enregistré comme version : "],["Save the result as a named version","Enregistrer le résultat comme version nommée"]]);
 $("nbar").addEventListener("click",e=>{const t=e.target;if(!t.closest)return;
  if(t.closest("#tla"))tlApply();
  else if(t.closest("#tlund")&&TLSNAP){bdRestore(TLSNAP.snap);$("res").value=TLSNAP.orig;RESORIG=null;TLSNAP=null;run();$("tls").textContent=uiTr("Undone. Your resume and builder are back as they were.")}
@@ -1706,5 +1833,13 @@ document.querySelector('.tabs button[data-tab="bld"]').addEventListener("click",
 
 ((P)=>P.forEach(([a,b])=>FRD.set(a,b)))([["Activation required","Activation requise"],["Your access has ended","Votre accès est terminé"],["Send your device code to the administrator to get an activation code, then paste it below.","Envoyez le code de votre appareil à l'administrateur pour obtenir un code d'activation, puis collez-le ci-dessous."],["Copy device code","Copier le code de l'appareil"],["Have an activation code?","Vous avez un code d'activation?"],["Activation code","Code d'activation"],["Activate","Activer"],["Have a code to add time?","Vous avez un code pour ajouter du temps?"],["Code to add time","Code pour ajouter du temps"],["Paste your code first.","Collez d'abord votre code."],["That code is not valid. Check that you copied all of it.","Ce code n'est pas valide. Vérifiez que vous l'avez copié en entier."],["That code is not valid.","Ce code n'est pas valide."],["This code was already used on this device.","Ce code a déjà été utilisé sur cet appareil."],["Device code copied.","Code de l'appareil copié."],["Activated: lifetime access.","Activé : accès à vie."],["You already have lifetime access.","Vous avez déjà un accès à vie."],["Your time has already run out, so this code cannot add to it. Ask for a new activation code.","Votre temps est déjà écoulé, ce code ne peut donc pas en ajouter. Demandez un nouveau code d'activation."],["The date on this device looks wrong. Fix the date and time, then try again.","La date de cet appareil semble incorrecte. Corrigez la date et l'heure, puis réessayez."]]);
 </script>
+<script>(function(){var b=document.getElementById("pwaI"),ev=null,sa=(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)||navigator.standalone===true;if(!b||sa)return;
+function lab(){try{b.textContent=uiTr("Install on your phone")}catch(e){}}
+b.hidden=false;lab();var u=document.getElementById("ui");if(u)u.addEventListener("change",function(){setTimeout(lab,0)});
+window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();ev=e});
+window.addEventListener("appinstalled",function(){b.hidden=true});
+b.onclick=function(){if(ev){ev.prompt();ev=null}else location.href="install.html"}})();
+try{FRD.set("Install on your phone","Installer sur votre téléphone")}catch(e){}</script>
+<script>if("serviceWorker"in navigator){var hadSW=!!navigator.serviceWorker.controller;navigator.serviceWorker.addEventListener("controllerchange",function(){if(!hadSW){hadSW=true;return}if(document.getElementById("newver"))return;var d=document.createElement("div");d.id="newver";d.setAttribute("style","position:fixed;left:12px;right:12px;bottom:12px;z-index:99;background:#111;color:#fff;padding:12px 14px;border-radius:12px;display:flex;gap:12px;align-items:center;justify-content:space-between;font:15px system-ui,sans-serif");var fr=/^fr/i.test(document.documentElement.lang||navigator.language||"");d.innerHTML='<span>'+(fr?"Une nouvelle version est prête.":"A new version is ready.")+'</span><button style="background:#fff;color:#111;border:0;border-radius:8px;padding:8px 14px;font:600 15px system-ui">'+(fr?"Mettre à jour":"Update")+'</button>';d.querySelector("button").onclick=function(){location.reload()};document.body.appendChild(d)});window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}</script>
 </body>
 </html>
