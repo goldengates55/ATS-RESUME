@@ -109,7 +109,7 @@ button,.tabs,.abi{-webkit-user-select:none;user-select:none;touch-action:manipul
 .abi{display:flex;align-items:center;gap:10px;max-width:960px;margin:0 auto;padding:8px 14px;min-height:52px}
 .abi img{width:32px;height:32px;border-radius:8px;flex:none}
 .abt{display:flex;flex-direction:column;line-height:1.15;min-width:0;flex:1}
-.abt b{font-size:1rem;font-weight:800}.abt span{font-size:.8rem;opacity:.92;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.abt b{font-size:1rem;font-weight:800;white-space:nowrap;display:flex;align-items:center;gap:6px}#abv.upd{background:#FFE14D;color:#16213E;border-color:#FFE14D;cursor:pointer;opacity:1}#abv{font-size:.68rem;font-weight:700;opacity:.8;padding:1px 6px;border-radius:999px;border:1px solid rgba(255,255,255,.55);line-height:1.3}.abt span{font-size:.8rem;opacity:.92;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .abr{display:flex;gap:6px;align-items:center;flex:none}
 .abr button{background:rgba(255,255,255,.16);color:inherit;border:1px solid rgba(255,255,255,.5);border-radius:999px;min-height:38px;padding:4px 12px;font:inherit;font-weight:700;font-size:.85rem;cursor:pointer}
 #abg{width:42px;padding:0;font-size:1.15rem}
@@ -137,7 +137,7 @@ main{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
 <div class="row" style="justify-content:center"><button id="lkr" type="button">Check again</button></div></div></div>
 <p id="lkb" class="m" hidden style="max-width:960px;margin:8px auto 0;padding:0 16px"></p>
 <details id="lkxd" hidden style="max-width:960px;margin:4px auto 0;padding:0 16px"><summary class="m">Have a code to add time?</summary><textarea id="lkxt" rows="3" autocomplete="off" placeholder="Activation code" aria-label="Code to add time"></textarea><div class="row"><button class="p" id="lkxb" type="button">Add time</button></div><p class="m" id="lkxs" role="status"></p></details>
-<header class="hero appbar"><div class="abi"><img src="icon-192.png" alt="" width="32" height="32"><div class="abt"><b id="abn">ATS Resume</b><span id="abt">Scan &amp; match</span></div><div class="abr"><button type="button" id="pwaI" hidden>Install app</button><button type="button" id="abg" aria-label="Settings" aria-expanded="false">⚙</button></div></div></header>
+<header class="hero appbar"><div class="abi"><img src="icon-192.png" alt="" width="32" height="32"><div class="abt"><b id="abn">ATS Resume <small id="abv" title="Software version" data-v="v1.12">v1.12</small></b><span id="abt">Scan &amp; match</span></div><div class="abr"><button type="button" id="pwaI" hidden>Install app</button><button type="button" id="abg" aria-label="Settings" aria-expanded="false">⚙</button></div></div></header>
 <main>
 <div class="tabs" role="tablist"><button class="on" data-tab="tscan">Scan &amp; match</button><button data-tab="bld">Resume builder</button><button data-tab="tcl">Cover letter</button><button data-tab="tjb">Jobs &amp; employers</button><button data-tab="tlb">Library</button><button data-tab="trw">Release watch</button></div>
 <div class="set"><label for="rg">Region</label><select id="rg"><option value="ca">Canada</option><option value="us">United States</option><option value="uk">United Kingdom</option><option value="au">Australia</option><option value="nz">New Zealand</option><option value="it">Italy</option><option value="pt">Portugal</option><option value="be">Belgium</option></select><label for="lg">Document language</label><select id="lg"><option value="auto">Auto-detect</option><option value="en">English</option><option value="fr">Français</option></select><label for="ui">Interface</label><select id="ui"><option value="en">English</option><option value="fr">Français</option></select></div>
@@ -193,7 +193,7 @@ main{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
 <section id="bld" hidden>
 <h2>Resume builder</h2>
 <p class="m">Build a clean, single-column, ATS-friendly resume and download it as PDF, DOCX or plain text. Use Import to start from the resume you analyzed above, then apply the suggestions by editing the text.</p>
-<div class="row"><button id="bimp">Import from analyzed resume</button></div>
+<div class="row"><button id="bimp">Import from analyzed resume</button> <label class="m" style="font-weight:400"><input type="checkbox" id="bfmt" checked style="width:auto"> Fix tense and wording when importing</label></div>
 <div class="card" id="vcard"><h3>Accounts and saved resumes</h3><p class="m">Keep a separate account for each person or client, and save several named resumes in each one. Everything stays in this browser. Use Export accounts to back up or move to another device.</p>
 <div class="g2"><label for="acsel" style="font-weight:400">Account</label><select id="acsel" aria-label="Account"></select></div>
 <div class="g2"><input id="acn" placeholder="Account name (a person or client)"><div class="row"><button id="acadd" type="button">New account</button><button id="acren" type="button">Rename</button><button id="acdel" type="button">Delete</button></div></div>
@@ -213,7 +213,8 @@ main{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
 <div id="br"></div><button id="bar">Add reference</button>
 <p class="m">Get each person's permission before listing their contact details.</p>
 <div id="exq" class="card" hidden></div>
-<div class="row"><button class="p" id="bpdf">Download PDF</button><button id="bdoc">Download DOCX</button><button id="btxt">Download TXT</button><span class="m" id="bst" role="status"></span></div>
+<div class="row"><button class="p" id="bpdf">Download PDF</button><button id="bdoc">Download DOCX</button><button id="btxt">Download TXT</button><span class="m" id="bst" role="status"></span></div><div class="m" id="bfx"></div>
+<div class="row"><button id="vbr" type="button">Suggest stronger verbs</button></div><p class="m">Finds weak openers such as Worked on, Helped with or Handled and offers clearer verbs. Verbs under “Only if true” claim more ownership, so pick them only when they describe what you actually did. A star means the posting uses that verb.</p><p class="m" id="vbs" role="status"></p><div id="vbo"></div>
 <p class="m">PDF export supports Latin characters only; use DOCX for other scripts.</p>
 <h2>Preview</h2><div id="pv" class="card pv"></div>
 </section>
@@ -562,7 +563,7 @@ function model(){const v=id=>$(id).value.trim();
   jobs:[...document.querySelectorAll("#bj .card")].map(c=>{const g=k=>c.querySelector(`[data-k=${k}]`).value.trim();return{title:g("t"),employer:g("e"),dates:g("d"),bullets:g("b").split("\n").map(s=>s.trim()).filter(Boolean)}}).filter(j=>j.title||j.employer||j.bullets.length),
   edu:[...document.querySelectorAll("#bd input")].map(i=>i.value.trim()).filter(Boolean),skills:$("bsk").value.trim(),req:$("brq").checked,langs:$("bln").value.trim(),pd:v("bpd"),consent:$("bco").checked,
   refs:[...document.querySelectorAll("#br .card")].map(c=>{const g=k=>c.querySelector(`[data-k=${k}]`).value.trim();return{n:g("n"),r:g("r"),c:g("c")}}).filter(r=>r.n)}}
-function blocks(m){const lang=curLang(m.summary+" "+m.jobs.map(j=>j.bullets.join(" ")).join(" ")+" "+m.skills),B=[{t:"name",s:m.name||"Your Name"}],H=s=>B.push({t:"h",s:(HLB[lang]||{})[s]||s});
+function blocks0(m){const lang=curLang(m.summary+" "+m.jobs.map(j=>j.bullets.join(" ")).join(" ")+" "+m.skills),B=[{t:"name",s:m.name||"Your Name"}],H=s=>B.push({t:"h",s:(HLB[lang]||{})[s]||s});
  if(m.contact.length)B.push({t:"contact",s:m.contact.join(" | ")});if(m.pd)B.push({t:"contact",s:m.pd});
  if(m.summary){H("Summary");B.push({t:"p",s:m.summary})}
  if(m.jobs.length){H("Experience");m.jobs.forEach(j=>{B.push({t:"job",s:[j.title,j.employer].filter(Boolean).join(", "),r:j.dates});j.bullets.forEach(b=>B.push({t:"b",s:b}))})}
@@ -611,11 +612,69 @@ const exp=(name,mk)=>async()=>{const m=model();if(!m.name&&!m.jobs.length){$("bs
  if(typeof exFlag==="function"&&exFlag().length){exRender();$("bst").textContent="Confirm or replace the example numbers under Check your numbers first ("+exFlag().length+" line(s)).";return}
  if(m.jobs.some(j=>j.bullets.some(b=>/\[[^\]]*\]/.test(b)))){$("bst").textContent="Replace every [bracket] with a real figure (or delete that line) before downloading.";return}
  $("bst").textContent="Building…";try{await save(name,await mk(blocks(m)))}catch(e){$("bst").textContent="Couldn't build the file"+(e&&e.message?" ("+e.message+")":"")+"."}};
-function fromLast(){if(!LAST){$("bst").textContent="Analyze a resume first, then import.";return}
+const V_VB=new Set("manage lead supervise oversee coordinate organize organise plan develop design build create implement improve increase reduce analyze analyse assess evaluate train coach mentor deliver provide support assist handle process prepare maintain monitor review resolve negotiate sell serve operate install repair test write edit report present communicate collaborate schedule budget forecast audit launch establish streamline automate optimize optimise research identify direct administer execute perform conduct produce complete ensure verify document track record respond answer greet cook clean stock order receive ship drive teach tutor advise counsel recruit hire interview onboard retain generate achieve exceed lower raise grow expand open close secure submit file update upgrade migrate configure deploy debug code program integrate inspect calibrate assemble fabricate measure mediate facilitate translate interpret promote market merchandise redesign restructure reorganize transform spearhead champion initiate pioneer introduce enhance strengthen accelerate cut save earn win obtain acquire arrange book set run make take keep hold give bring find help guide motivate inspire orient triage diagnose treat dispense screen collect enter sort load unload pack stack weigh sanitize bake plate balance reconcile resolve issue approve authorize escalate enforce drive mentor tailor customize modernize standardize consolidate negotiate compile draft publish launch renovate".split(" ")),
+ V_IRR={lead:"led",build:"built",run:"ran",make:"made",give:"gave",take:"took",keep:"kept",hold:"held",sell:"sold",teach:"taught",win:"won",begin:"began",write:"wrote",grow:"grew",bring:"brought",find:"found",spend:"spent",send:"sent",speak:"spoke",oversee:"oversaw",drive:"drove",pay:"paid",meet:"met",seek:"sought",undertake:"undertook",understand:"understood",choose:"chose",feed:"fed",get:"got",set:"set",cut:"cut",put:"put",read:"read"},
+ V_DBL=new Set("plan ship stop drop map fit submit commit refer control program equip scan wrap trim skip tap prep step shop admit transfer".split(" ")),V_NOUNY=new Set("marketing accounting banking engineering consulting nursing advertising housing publishing manufacturing shipping".split(" ")),
+ V_ADJ=new Set("experienced motivated skilled dedicated seasoned qualified certified licensed accomplished dependable reliable hardworking detailed advanced limited".split(" ")),V_AMB=new Set("process support report record order design plan review test document market budget code file stock drive cook issue balance".split(" ")),V_IRRI=Object.fromEntries(Object.entries(V_IRR).map(([a,b])=>[b,a]));
+const vPast=b=>V_IRR[b]||(/e$/.test(b)?b+"d":/[^aeiou]y$/.test(b)?b.slice(0,-1)+"ied":V_DBL.has(b)?b+b.slice(-1)+"ed":b+"ed"),
+ vPick=st=>{const c=[st,st+"e",st.replace(/(.)\1$/,"$1")],k=c.find(x=>V_VB.has(x));if(k)return k;if(/(.)\1$/.test(st)&&!/(ll|ss|ff|zz)$/.test(st))return st.slice(0,-1);return/(at|iz|is|ut|ur|ov|uc|rg|rv|ac|ul|ar|ib)$/.test(st)?st+"e":st},
+ vBase=w=>{w=w.toLowerCase();if(V_VB.has(w))return[w,"b"];if(V_IRRI[w])return[V_IRRI[w],"p"];
+  if(/ing$/.test(w)&&w.length>5&&!V_NOUNY.has(w)){const b=vPick(w.slice(0,-3));return V_VB.has(b)?[b,"g"]:null}
+  if(/ied$/.test(w)){const b=w.slice(0,-3)+"y";return V_VB.has(b)?[b,"p"]:null}
+  if(/ed$/.test(w)&&w.length>4&&!/eed$/.test(w)&&!V_ADJ.has(w))return[vPick(w.slice(0,-2)),"p"];
+  if(/ies$/.test(w)&&V_VB.has(w.slice(0,-3)+"y"))return[w.slice(0,-3)+"y","s"];
+  if(/es$/.test(w)&&V_VB.has(w.slice(0,-2)))return[w.slice(0,-2),"s"];
+  if(/s$/.test(w)&&V_VB.has(w.slice(0,-1)))return[w.slice(0,-1),"s"];return null},
+ vForm=(w,cur,conj,par)=>{const r=vBase(w);if(!r)return null;const[b,k]=r;if(k==="b"&&(V_AMB.has(b)||(conj&&!par)))return null;if(conj&&k==="p"&&!cur)return null;const o=cur?b:vPast(b);if(o===w.toLowerCase())return null;return/^[A-Z]/.test(w)?o[0].toUpperCase()+o.slice(1):o};
+const V_FXO=[[/^(?:i|we)\s+(?:am|was|have been|had been)\s+(?:also\s+)?(?:responsible|in charge|accountable)\s+(?:for|of)\s+/i,1],[/^(?:was\s+|were\s+|am\s+)?(?:also\s+)?(?:responsible|in charge|accountable)\s+(?:for|of)\s+/i,1],[/^(?:duties|responsibilities|tasks)\s+(?:included?|involved?|consisted of|were|are)\s*:?\s*/i,0],[/^(?:my\s+)?(?:role|job|duty|task|responsibility)\s+(?:was|is)\s+(?:to\s+)?/i,0],[/^(?:tasked|charged|assigned)\s+with\s+/i,0],[/^(?:i|we)\s+(?:(?:also|currently|have|had|always|then)\s+)*/i,0]];
+function fixLine(raw,cur,fr){const r0=String(raw).trim();let s=r0.replace(BUL,"").replace(/^\s*\d+[.)]\s+/,"").replace(/\s+/g," ").trim();if(!s)return[];
+ const parts=s.replace(/([a-z0-9)]{2}[.!?])\s+(?=[A-Z])/g,"$1\n").split(/\n|;\s+/).map(x=>x.trim()).filter(Boolean);
+ return parts.map(p=>{let t=p,why=[];if(parts.length>1)why.push("split");
+  if(!fr){let res=false,sk=false,par=false;const h=/^(?:helped|assisted)\s+(?:with|in)\s+/i.exec(t);
+   if(h){t=(cur?"Assist with ":"Assisted with ")+t.slice(h[0].length);sk=true;why.push("wording")}
+   else V_FXO.some(([re,rs])=>{const m=re.exec(t);if(!m)return false;t=t.slice(m[0].length);res=!!rs;why.push("wording");return true});
+   if(!sk){const m=/^([A-Za-z-]+)(.*)$/.exec(t);if(m){const f=vForm(m[1],cur,false);par=!!vBase(m[1]);if(f){t=f+m[2];why.push("tense")}else if(res&&!vBase(m[1])){t=(cur?"Handle ":"Handled ")+t}}}
+   if(!sk)t=t.replace(/(\band\s+|,\s+)([A-Za-z]+)\b/g,(x,a,w)=>{const f=vForm(w,cur,true,par);if(f){if(!why.includes("tense"))why.push("tense");return a+f}return x});
+   t=t.replace(/\bmy own\b/gi,"own").replace(/\bmy\b/gi,"the")}
+  t=t.replace(/[\s.;,]+$/,"").replace(/^[a-z]/,c=>c.toUpperCase());if(t!==p&&!why.length)why.push("format");return{t,why}})}
+function fxSum(x){const o=String(x||"");let t=o.replace(/^(?:i\s+am|i'm)\s+(?:an?\s+)?/i,"").replace(/\bmy\b/gi,"the").trim();return t&&t!==o?t.charAt(0).toUpperCase()+t.slice(1):o}
+var V_FX=[];
+function fxJobs(jobs){V_FX=[];const on=$("bfmt")&&$("bfmt").checked;if(!on)return jobs;const fr=docLang()==="fr";
+ return jobs.map(j=>{const cur=/present|current|now|ongoing|today|pr[eé]sent|actuel|aujourd|en cours/i.test(j.dates||""),seen=new Set(),out=[];
+  (j.duties||[]).forEach(d=>fixLine(d,cur,fr).forEach(r=>{const k=r.t.toLowerCase();if(!r.t||seen.has(k))return;seen.add(k);out.push(r.t);if(r.t!==String(d).replace(BUL,"").trim())V_FX.push({role:j.title||"",old:String(d).trim(),nw:r.t,why:r.why.join(", ")})}));
+  return{...j,duties:out}})}
+function fxMsg(auto){const n=V_FX.length,el=$("bfx");let h="";
+ if(n)h='<details><summary>'+esc(uiTr("Show the changes")+" ("+n+")")+"</summary>"+V_FX.slice(0,40).map(f=>'<div class="cand" style="display:block"><span class="m">'+esc(f.role+(f.why?" · "+f.why:""))+"</span><br><s>"+esc(f.old)+"</s><br><b>"+esc(f.nw)+"</b></div>").join("")+"</details>";
+ if(el)el.innerHTML=h;
+ return(auto?uiTr("Imported automatically from your scan. "):"")+(n?uiTr("Fixed ")+n+uiTr(" phrase(s) for tense and wording. Check them below, then edit anything."):uiTr("Imported. Edit anything, then download."))}
+const V_VW=[[/^(?:worked|working|work)\s+on\s+/i,["contribute to","support"],["develop","deliver","build"]],[/^(?:helped|helping|help)\s+(?:with|in)\s+/i,["support","contribute to"],[]],[/^(?:did|doing|does|do)\s+/i,["perform","complete"],["deliver"]],[/^(?:handled|handling|handle)\s+/i,["address","process"],["resolve","manage"]],[/^(?:dealt|dealing|deal)\s+with\s+/i,["address"],["resolve","manage"]],[/^(?:took|taking|take)\s+care\s+of\s+/i,["maintain"],["manage"]],[/^(?:(?:was|were|been|being)\s+(?:involved|engaged)\s+in|(?:participated|participating|participate)\s+in|(?:took|taking|take)\s+part\s+in)\s+/i,["contribute to","collaborate on"],["support"]],[/^(?:used|using|use)\s+/i,["apply","leverage"],[]]];
+var V_VBL=[];
+function vbPlan(){const st=$("vbs"),o=$("vbo");o.innerHTML="";V_VBL=[];
+ if(docLang()==="fr"){st.textContent=uiTr("Verb suggestions work on English resumes.");return}
+ if(bdEmpty()){st.textContent=uiTr("Import or write your resume first.");return}
+ const pt=new Set(toks(norm($("post").value||"")));
+ document.querySelectorAll("#bj .card").forEach((c,j)=>{const cur=/present|current|now|ongoing|today|actuel|présent|en cours/i.test(c.querySelector("[data-k=d]").value),t=c.querySelector("[data-k=t]").value.trim();
+  c.querySelector("[data-k=b]").value.split("\n").forEach(line=>{const L=line.trim();if(!L)return;
+   for(const[re,sf,up]of V_VW){const m=re.exec(L);if(!m)continue;const rest=L.slice(m[0].length),
+    mk=a=>a.map(v=>{const w=v.split(" "),f=cur?w[0]:vPast(w[0]),vv=f[0].toUpperCase()+f.slice(1)+(w.length>1?" "+w.slice(1).join(" "):"");return{v:vv,txt:vv+" "+rest,post:toks(norm(w[0])).some(x=>pt.has(x))}}).sort((x,y)=>y.post-x.post);
+    V_VBL.push({j,t,L,safe:mk(sf),up:mk(up)});break}})});
+ if(!V_VBL.length){st.textContent=uiTr("No weak openers found.");return}
+ st.textContent=V_VBL.length+uiTr(" bullet(s) could open with a clearer verb.");
+ const ch=(i,g,a,k)=>'<button type="button" class="vbc" data-i="'+i+'" data-g="'+g+'" data-k="'+k+'" title="'+esc(a.txt)+'">'+(a.post?"★ ":"")+esc(a.v)+"</button> ";
+ o.innerHTML=V_VBL.map((x,i)=>'<div class="card"><div class="m">'+esc(x.t)+'</div><p style="margin:4px 0">'+esc(x.L)+"</p>"+x.safe.map((a,k)=>ch(i,"s",a,k)).join("")+(x.up.length?'<div class="m" style="margin-top:6px">'+esc(uiTr("Only if true, because these claim more ownership:"))+"</div>"+x.up.map((a,k)=>ch(i,"u",a,k)).join(""):"")+"</div>").join("")}
+var V_VBU=null;
+$("vbr").onclick=vbPlan;
+$("vbo").addEventListener("click",e=>{const b=e.target.closest&&e.target.closest(".vbc");if(!b)return;const x=V_VBL[+b.dataset.i],a=x&&(b.dataset.g==="s"?x.safe:x.up)[+b.dataset.k],st=$("vbs");if(!a)return;
+ const ta=document.querySelectorAll("#bj .card")[x.j].querySelector("[data-k=b]"),L=ta.value.split("\n"),ix=L.findIndex(l=>l.trim()===x.L);
+ if(ix<0){st.textContent=uiTr("That bullet changed. Check again.");return}
+ const snap=snapshot();L[ix]=a.txt;ta.value=L.join("\n");pv();V_VBU=snap;vbPlan();
+ st.innerHTML="<span>"+esc(uiTr("Changed to: ")+a.txt+" ")+'</span><button type="button" id="vbund">'+esc(uiTr("Undo"))+"</button>"});
+$("vbs").addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#vbund")&&V_VBU){bdRestore(V_VBU);V_VBU=null;pv();vbPlan();$("vbs").textContent=uiTr("Undone.")}});
+function fromLast(auto){if(!LAST){$("bst").textContent="Analyze a resume first, then import.";return}
  const{sec,jobs,edu}=LAST,hd=(sec.header||[]).map(s=>s.trim()).filter(Boolean),all=hd.join(" | ");
  $("bn").value=(hd[0]||"").split(/\s*[|•·]\s*/)[0];$("be").value=(all.match(/[\w.+-]+@[\w-]+\.[\w.]+/)||[""])[0];$("bp").value=(all.match(/\+?\d[\d\s().-]{8,}\d/)||[""])[0];
- $("bs").value=(sec.summary||[]).map(s=>s.trim()).join(" ").trim();$("bj").innerHTML=jobs.map(jobT).join("");$("bd").innerHTML=edu.map(e=>eduT(e.suggested)).join("");
- $("bsk").value=(sec.skills||[]).map(s=>s.replace(BUL,"").trim()).filter(Boolean).join(", ");$("brq").checked=/request/i.test((sec["other:references"]||[]).join(" "));pv();IMPORTED=true;$("bst").textContent="Imported. Edit anything, then download."}
+ $("bs").value=(($("bfmt")&&$("bfmt").checked)?fxSum:x=>x)((sec.summary||[]).map(s=>s.trim()).join(" ").trim());$("bj").innerHTML=fxJobs(jobs).map(jobT).join("");$("bd").innerHTML=edu.map(e=>eduT(e.suggested)).join("");
+ $("bsk").value=(sec.skills||[]).map(s=>s.replace(BUL,"").trim()).filter(Boolean).join(", ");$("brq").checked=/request/i.test((sec["other:references"]||[]).join(" "));pv();IMPORTED=true;$("bst").textContent=fxMsg(auto)}
 $("bld").addEventListener("input",pv);$("bld").addEventListener("change",pv);
 $("bld").addEventListener("click",e=>{if(e.target.classList.contains("rm")){(e.target.closest(".er")||e.target.parentElement).remove();pv()}});
 $("baj").onclick=()=>$("bj").insertAdjacentHTML("beforeend",jobT());$("bae").onclick=()=>$("bd").insertAdjacentHTML("beforeend",eduT(""));
@@ -628,9 +687,9 @@ $("out").addEventListener("click",e=>{const c=e.target.closest(".chip");if(c){c.
  $("kws").textContent=ws.length?addSkills(ws):"Tap at least one keyword first."});
 $("bar").onclick=()=>$("br").insertAdjacentHTML("beforeend",refT());
 $("out").addEventListener("click",e=>{if(e.target.id!=="phadd")return;const p=$("phin").value.trim(),st=$("phst");if(!p){st.textContent=uiTr("Paste a phrase first.");return}
- const jx=+$("phj").value,job=(LAST&&LAST.jobs&&LAST.jobs[jx])||{},fr=docLang()==="fr",cur=CUR[RGC()]||"$",L=lnReg(dutyBullet(p,{present:isCurJob(job),fr,cur}),{force:true,cur,fr,fam:jobFam(job,""),sen:jobSen(job)});
- if(nNeed([L])){st.textContent=uiTr("Tick “I confirm” first, then try again.");return}
- if(bdEmpty())fromLast();const added=mrAddLines(jx,[lnText(L)]);pv();$("phin").value="";st.textContent=(added.length?uiTr("Added: "):uiTr("Already in the builder: "))+lnText(L).slice(0,90)});
+ const jx=+$("phj").value,job=(LAST&&LAST.jobs&&LAST.jobs[jx])||{},fr=docLang()==="fr",cur=CUR[RGC()]||"$",pres=isCurJob(job),Ls=(fr?[p]:jobToBullets(p,pres)).filter(Boolean).map(x=>lnReg(dutyBullet(x,{present:pres,fr,cur}),{force:true,cur,fr,fam:jobFam(job,""),sen:jobSen(job)}));if(!Ls.length){st.textContent=uiTr("Paste a phrase first.");return}
+ if(nNeed(Ls)){st.textContent=uiTr("Tick “I confirm” first, then try again.");return}
+ if(bdEmpty())fromLast();const added=mrAddLines(jx,Ls.map(lnText));pv();$("phin").value="";st.textContent=(added.length?uiTr("Added: "):uiTr("Already in the builder: "))+Ls.map(lnText).join(" · ").slice(0,120)});
 $("out").addEventListener("click",e=>{const b=e.target.closest("[data-mr]");if(!b)return;const NL=b.dataset.ln&&LNS[b.dataset.ln];if(NL&&nNeed([NL])){const t0=b.textContent;b.textContent=uiTr("Tick “I confirm” first");setTimeout(()=>{b.textContent=t0},2500);return}if(bdEmpty())fromLast();
  const c=document.querySelectorAll("#bj .card")[+b.dataset.j];if(!c){$("bst").textContent="Couldn't find that job in the builder.";return}
  const ta=c.querySelector("[data-k=b]"),L=ta.value.split("\n"),o=b.dataset.old||"",i=o?L.findIndex(l=>l.trim()===o):-1;
@@ -854,7 +913,7 @@ function run(){LNS={};LNID=0;NFAMSEEN={};buildSyn();setOcc();
  edu.forEach(e=>{h+=`<div class="card"><h3>${esc(e.level)}</h3><div class="m">${e.country?"Country: "+esc(e.country):"Country not detected"}${e.eca?' · <span class="warn">Foreign credential: an ECA may be needed</span>':""}</div><div class="cmp"><div><span class="m">As written</span><br>${esc(e.original)}</div><div><span class="m">Suggested</span><br>${esc(e.suggested)}<br><button data-ed data-old="${esc(e.original)}" data-new="${esc(e.suggested)}" style="margin-top:6px">Add to builder</button></div></div></div>`});
  h+="<h2>ATS checks</h2>"+(warn.length?"<ul>"+warn.map(w=>`<li class="warn">${esc(w)}</li>`).join("")+"</ul>":'<p class="m high">No layout or structure issues found.</p>');
  if(post)h+=report(text,post,jobs,edu,tops);h+=improve(text,post,jobs,tops);
- LAST={sec,jobs,edu,tops};IMPORTED=false;$("out").innerHTML=h;$("out").scrollIntoView({behavior:"smooth"})}
+ LAST={sec,jobs,edu,tops};IMPORTED=false;$("out").innerHTML=h;try{if(bdEmpty()&&$("bfmt")&&$("bfmt").checked){fromLast(true);$("out").insertAdjacentHTML("afterbegin",'<div class="note">'+esc($("bst").textContent)+' <button type="button" data-goto="bs">'+esc(uiTr("Open in the Resume builder"))+"</button></div>")}}catch(_){}$("out").scrollIntoView({behavior:"smooth"})}
 const readFile=(f,cb)=>{const r=new FileReader();r.onload=()=>cb(String(r.result));r.readAsText(f)};
 const PDFV="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";
 const LIBCDN={"vendor/pdf-lib.min.js":"https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js","vendor/jszip.min.js":"https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"},
@@ -1300,9 +1359,9 @@ function dutySuffix(t,fr){const l=t.toLowerCase(),R=(a,b)=>fr?b:a,has=(a,b)=>(fr
  if(has(/order|invoice|document|record|report|file|form|application|claim|ticket|shipment|parcel|package|item|product|merchandise|goods|inventory|stock|cargo|freight|sample|specimen|data/,/commande|document|dossier|rapport|formulaire|demande|réclamation|billet|envoi|colis|article|produit|marchandise|inventaire|stock|cargaison|donnée|échantillon/))return R(", covering [X] items per week",", pour [X] éléments par semaine");
  if(has(/project|campaign|event|program|initiative|account|contract|case|schedule|route|site|installation/,/projet|campagne|événement|programme|initiative|compte|contrat|itinéraire|chantier/))return R(", across [X] projects",", sur [X] projets");
  return""}
-function dutyBullet(s,o){const fr=!!o.fr;let t=String(s).replace(/\s+/g," ").trim().replace(/[.;:]$/,"");t=t.replace(/^may (?:also )?/i,"");t=dutyClip(t);
+function dutyBullet0(s,o){const fr=!!o.fr;let t=String(s).replace(/\s+/g," ").trim().replace(/[.;:]$/,"");t=t.replace(/^may (?:also )?/i,"");t=dutyClip(t);
  const b=fr?t.charAt(0).toUpperCase()+t.slice(1):o.kn?(o.present?"Apply knowledge of ":"Applied knowledge of ")+t.charAt(0).toLowerCase()+t.slice(1):enVerbs(t,o.present);return b+dutySuffix(t,fr)}
-function mrAddLines(j,lines){if(bdEmpty())fromLast();const c=document.querySelectorAll("#bj .card")[j];if(!c)return[];const ta=c.querySelector("[data-k=b]"),cur=ta.value.split("\n").map(x=>x.trim()).filter(Boolean),low=new Set(cur.map(x=>x.toLowerCase())),add=lines.filter(l=>!low.has(l.toLowerCase()));ta.value=[...cur,...add].join("\n");pv();return add}
+function mrAddLines(j,lines){if(bdEmpty())fromLast();const c=document.querySelectorAll("#bj .card")[j];if(!c)return[];const ta=c.querySelector("[data-k=b]"),cur=ta.value.split("\n").map(x=>x.trim()).filter(Boolean),low=new Set(cur.map(x=>x.toLowerCase())),add=lines.flatMap(l=>jobToBullets(l,zCur(c))).filter((l,i,a)=>l&&!low.has(l.toLowerCase())&&a.findIndex(y=>y.toLowerCase()===l.toLowerCase())===i);ta.value=[...cur,...add].join("\n");pv();return add}
 $("out").addEventListener("click",e=>{const t=e.target,push=t.closest&&t.closest("[data-push]"),und=t.closest&&t.closest("[data-undo]"),res=t.closest&&t.closest("[data-rescan]"),rst=t.closest&&t.closest("[data-restore]");
  if(push){const all=push.dataset.push==="all",idx=all?Object.keys(PUSHB).map(Number):[+push.dataset.push];let n=0;const log=[];const Ls=idx.flatMap(j=>(PUSHB[j]||[]).map(id=>LNS[id]).filter(Boolean));if(nNeed(Ls)){const m=$(all?"psall":"ps"+idx[0]);if(m)m.textContent=uiTr("Tick “I confirm” first, then try again.");return}
   idx.forEach(j=>{const add=mrAddLines(j,(PUSHB[j]||[]).map(id=>LNS[id]).filter(Boolean).map(lnText));n+=add.length;log.push({j,add})});PUSHLOG=log;
@@ -1664,7 +1723,7 @@ function tupGo(){const st=$("tus"),o=$("tuo");o.innerHTML="";TUG=[];
  if(isNaN(ct)){st.textContent=uiTr("This occupation list has no TEER levels.");return}
  if(ct===0){st.textContent=uiTr("Your latest role already matches TEER 0, the top level.");return}
  const rs=new Set(toks(norm([m.summary,...m.jobs.flatMap(j=>j.bullets),m.skills].join(" ")))),byc=Object.fromEntries(IDX.E.map(e=>[e.code,e])),
-  gaps=e=>String(e.duties||"").split(/\s*(?:;|\.\s|\n)\s*/).map(x=>x.trim().replace(/\.$/,"")).filter(x=>x.length>25).filter(x=>{const t=toks(norm(x)).filter(w=>w.length>=3);return t.length&&t.filter(w=>rs.has(w)).length/t.length<.3}).slice(0,6),
+  gaps=e=>String(e.duties||"").split(/\s*(?:;|\.\s|\n)\s*/).map(x=>x.trim().replace(/\.$/,"")).filter(x=>x.length>25&&zIsV(x)).filter(x=>{const t=toks(norm(x)).filter(w=>w.length>=3);return t.length&&t.filter(w=>rs.has(w)).length/t.length<.3}).slice(0,6).flatMap(x=>jobToBullets(x,zCur(document.querySelector("#bj .card")))),
   cand=IDX.match(j0.title,du,IDX.n).filter(c=>String(c.code)[0]===String(cur.code)[0]&&tv(c)<ct).slice(0,3);
  if(!cand.length){st.textContent=uiTr("No higher-TEER occupations found in the same field.");return}
  st.textContent=uiTr("Latest role matches ")+cur.code+" "+cur.title+" (TEER "+ct+").";
@@ -1684,8 +1743,8 @@ function tpPlan(){const st=$("tps"),o=$("tpo");o.innerHTML="";TPP=[];
  const byc=Object.fromEntries(IDX.E.map(e=>[e.code,e]));
  document.querySelectorAll("#bj .card").forEach((c,j)=>{const t=c.querySelector("[data-k=t]").value.trim(),b=c.querySelector("[data-k=b]").value.split("\n").map(x=>x.trim()).filter(Boolean);if(!t)return;
   const top=IDX.match(t,b.join(" "),1)[0];if(!top)return;let cur=top.score,have=b.join(" "),add=[];
-  const pool=String((byc[top.code]||{}).duties||"").split(/\s*(?:;|\.\s|\n)\s*/).map(x=>x.trim().replace(/\.$/,"")).filter(x=>x.length>25);
-  while(cur<1&&add.length<8&&pool.length){let bs=-1,bi=-1;pool.forEach((x,i)=>{const v=tpScore(t,have+" "+x,top.code);if(v>bs){bs=v;bi=i}});if(bi<0||bs<=cur+.001)break;cur=bs;have+=" "+pool[bi];add.push(pool.splice(bi,1)[0])}
+  const pool=String((byc[top.code]||{}).duties||"").split(/\s*(?:;|\.\s|\n)\s*/).map(x=>x.trim().replace(/\.$/,"")).filter(x=>x.length>25&&zIsV(x));
+  while(cur<1&&add.length<8&&pool.length){let bs=-1,bi=-1;pool.forEach((x,i)=>{const v=tpScore(t,have+" "+x,top.code);if(v>bs){bs=v;bi=i}});if(bi<0||bs<=cur+.001)break;cur=bs;have+=" "+pool[bi];add.push(jobToBullets(pool.splice(bi,1)[0],zCur(c))[0]||"")}
   TPP.push({j,t,from:top.score,to:cur,code:top.code,title:top.title,add})});
  if(!TPP.length){st.textContent=uiTr("No roles with a title were found in the builder.");return}
  const tot=TPP.reduce((a,p)=>a+p.add.length,0);st.textContent=uiTr("Average match ")+tpPct(TPP.reduce((a,p)=>a+p.from,0)/TPP.length)+" → "+tpPct(TPP.reduce((a,p)=>a+p.to,0)/TPP.length)+" ("+tot+uiTr(" line(s) proposed).");
@@ -1859,6 +1918,136 @@ document.querySelector('.tabs button[data-tab="bld"]').addEventListener("click",
 ((P)=>P.forEach(([a,b])=>FRD.set(a,b)))([["Must-have requirements","Exigences incontournables"],["Check your numbers","Vérifiez vos chiffres"],["Use my numbers","Utiliser mes chiffres"],["True as written","Vrai tel quel"],["Remove line","Retirer la ligne"],["All of these are true for me","Tout cela est vrai pour moi"],["met","remplie(s)"],["missing","manquante(s)"],["to check yourself","à vérifier vous-même"],["Met","Remplie"],["Check yourself","À vérifier"],["Missing","Manquante"]]);
 
 ((P)=>P.forEach(([a,b])=>FRD.set(a,b)))([["Activation required","Activation requise"],["Your access has ended","Votre accès est terminé"],["Send your device code to the administrator to get an activation code, then paste it below.","Envoyez le code de votre appareil à l'administrateur pour obtenir un code d'activation, puis collez-le ci-dessous."],["Copy device code","Copier le code de l'appareil"],["Have an activation code?","Vous avez un code d'activation?"],["Activation code","Code d'activation"],["Activate","Activer"],["Have a code to add time?","Vous avez un code pour ajouter du temps?"],["Code to add time","Code pour ajouter du temps"],["Paste your code first.","Collez d'abord votre code."],["That code is not valid. Check that you copied all of it.","Ce code n'est pas valide. Vérifiez que vous l'avez copié en entier."],["That code is not valid.","Ce code n'est pas valide."],["This code was already used on this device.","Ce code a déjà été utilisé sur cet appareil."],["Device code copied.","Code de l'appareil copié."],["Activated: lifetime access.","Activé : accès à vie."],["You already have lifetime access.","Vous avez déjà un accès à vie."],["Your time has already run out, so this code cannot add to it. Ask for a new activation code.","Votre temps est déjà écoulé, ce code ne peut donc pas en ajouter. Demandez un nouveau code d'activation."],["The date on this device looks wrong. Fix the date and time, then try again.","La date de cet appareil semble incorrecte. Corrigez la date et l'heure, puis réessayez."]]);
+
+/* ===== Posting phrases -> complete sentences in the right tense ===== */
+Object.keys(V_IRR).concat("work use apply follow meet attend prioritize prioritise adapt contribute participate collaborate communicate".split(" ")).forEach(w=>V_VB.add(w));["work","use"].forEach(w=>V_AMB.add(w));
+const zIsV=x=>{const w=(String(x).match(/^[A-Za-z-]+/)||[""])[0];return!!w&&!!vBase(w)};
+function dutyBullet(s,o){const fr=!!o.fr;if(fr||o.kn)return dutyBullet0(s,o);let t=String(s).replace(/\s+/g," ").trim().replace(/[.;:]$/,"").replace(/^may (?:also )?/i,"");try{const c=dutyClip(t);if(c)t=c}catch(_){}
+ const P=jobToBullets(t,!!o.present);if(!P.length)return dutyBullet0(s,o);return P[0]+dutySuffix(P[0],fr)}
+function zCur(c){return!!c&&/present|current|now|ongoing|today|actuel|présent|en cours/i.test((c.querySelector("[data-k=d]")||{}).value||"")}
+function jobToBullets(raw,cur){let t=String(raw||"").replace(/\s+/g," ").trim();if(!t)return[];if(docLang()==="fr")return[t.charAt(0).toUpperCase()+t.slice(1)];
+ const t0=t.replace(BUL,"").replace(/[.;:]+$/,"");t=t0
+  .replace(/^(?:you|the (?:successful |ideal )?(?:candidate|applicant|incumbent|person|employee)|candidates?|we)\s+(?:will|would|must|should|shall|can|are expected to|are required to|are looking for(?: someone)? to|need(?: someone)? to|seek(?: someone)? to)\s+(?:be\s+)?/i,"")
+  .replace(/^(?:will|shall)\s+(?:be\s+)?/i,"").replace(/^(?:must be able to|should be able to|is able to|able to|ability to|capable of|expected to|required to|needed to|to)\s+/i,"");
+ const forced=t!==t0;let m;const W=(a,b)=>cur?a:b;
+ if(m=/^(?:\d+\+?\s*(?:years?|yrs)\s+(?:of\s+)?)?(?:work |related |relevant )?(?:experience|experienced)\s+(in|with|using|of)\s+(.+)$/i.exec(t))t=W("Work ","Worked ")+(m[1].toLowerCase()==="in"?"in ":"with ")+m[2];
+ else if(m=/^(?:fluency|fluent)\s+(?:in|with)\s+(.+)$/i.exec(t))t=W("Communicate ","Communicated ")+"in "+m[1];
+ else if(m=/^(?:proficiency|proficient|expertise|skilled|advanced|strong)\s+(?:in|with|using|of)\s+(.+)$/i.exec(t))t=W("Use ","Used ")+m[1];
+ else if(m=/^(?:knowledge|familiarity|understanding|awareness)\s+(?:of|with|in)\s+(.+)$/i.exec(t))t=W("Apply knowledge of ","Applied knowledge of ")+m[1];
+ if(forced&&!cur&&!m){const q=/^([A-Za-z]+)(.*)$/.exec(t);if(q){const w=q[1].toLowerCase(),r=vBase(w);if((!r||(r[1]==="b"&&V_AMB.has(r[0])))&&!/(ed|ing)$/.test(w)){const f=vPast(w);t=f.charAt(0).toUpperCase()+f.slice(1)+q[2]}}}
+ t=t.replace(/\byour own\b/gi,"own").replace(/\byour\b/gi,"the").replace(/\bour (team|clients?|customers?|staff|company|organi[sz]ation)\b/gi,"the $1").replace(/\bour\s+/gi,"");
+ return fixLine(t,cur,false).map(r=>r.t).filter(Boolean)}
+/* ===== More tailoring tools ===== */
+var ZSO="auto";
+const zKey=x=>{for(const l in HLB)for(const k in HLB[l])if(HLB[l][k]===x)return k;return x};
+function blocks(m){const B=blocks0(m);if(ZSO==="auto")return B;const i0=B.findIndex(b=>b.t==="h");if(i0<0)return B;const pre=B.slice(0,i0),S=[];B.slice(i0).forEach(b=>{if(b.t==="h")S.push({k:zKey(b.s),b:[b]});else S[S.length-1].b.push(b)});const want={experience:"Experience",skills:"Skills",education:"Education"}[ZSO];return pre.concat(...S.filter(x=>x.k==="Summary").map(x=>x.b),...S.filter(x=>x.k===want).map(x=>x.b),...S.filter(x=>x.k!=="Summary"&&x.k!==want).map(x=>x.b))}
+(function(){
+const T=[
+["1","Keyword placement map","For each posting keyword your resume is missing, shows the bullet you already wrote that is closest to it. Add a keyword only where you really did that work (tick “I confirm” in the tailor first).","Map my gaps"],
+["2","Job tracker (one version per posting)",'Paste one or more postings, separated by a line with only ---. Each gets a match score; save it to the tracker, and save your current resume as a version named for that job.<br><textarea id="x2in" rows="4" placeholder="Posting 1&#10;---&#10;Posting 2" style="width:100%"></textarea>',"Score postings"],
+["3","Acronym pairing","Finds terms where the posting or your resume uses only the short or the long form, and writes them as Long form (ABBR) the first time so either search finds you.","Find acronym pairs"],
+["4","Level check","Compares the seniority and years the posting asks for with your titles, dates and leadership verbs.","Check my level"],
+["5","Section order",'Suggests whether Experience, Skills or Education should come first. <select id="x5v"><option value="auto">Default order</option><option value="experience">Experience first</option><option value="skills">Skills first</option><option value="education">Education first</option></select> <button id="x5a" type="button">Apply order</button>',"Recommend an order"],
+["6","Result prompts","Lists bullets with no number or outcome and inserts a fill-in template. Replace the [brackets] with a real figure, or delete the template if you have none.","Find bullets to quantify"],
+["7","Summary variants","Three summaries with different emphasis. Pick one to put in the builder.","Show summary options"],
+["8","Verb variety","Flags the same opening verb used again and again in a role and offers alternatives. Pick one only if it is accurate.","Check verb variety"],
+["9","Gaps and dates","Looks for employment gaps, overlapping roles, missing dates and mixed date formats.","Check my dates"],
+["10","Real file check","Builds your PDF and DOCX, reads the text back out of them and tells you if any words or characters were lost or changed.","Test my files"],
+["11","Six-second skim view","Shows roughly what a recruiter sees in the top third of page one, with posting keywords highlighted.","Show skim view"]];
+$("hdo").insertAdjacentHTML("afterend",'<h4 style="margin:16px 0 4px">More tailoring tools</h4>'+T.map(([n,t,d,b])=>'<details class="card" style="margin:8px 0"><summary><b>'+n+". "+t+'</b></summary><p class="m">'+d+'</p><div class="row"><button id="x'+n+'" type="button">'+b+'</button></div><p class="m" id="x'+n+'s" role="status"></p><div id="x'+n+'o"></div></details>').join(""));
+const BC=()=>[...document.querySelectorAll("#bj .card")],postT=()=>($("post").value||"").trim(),CUR=/present|current|now|ongoing|today|actuel|présent|en cours/i,
+ ensB=()=>{if(bdEmpty()&&LAST)fromLast();return!bdEmpty()},allTxt=()=>{const m=model();return[m.summary,...m.jobs.flatMap(j=>[j.title,...j.bullets]),m.skills].join("\n")},
+ out=(n,st,h)=>{$("x"+n+"s").textContent=st||"";$("x"+n+"o").innerHTML=h||""},
+ bl=()=>BC().flatMap((c,j)=>{const t=c.querySelector("[data-k=t]").value.trim(),cur=CUR.test(c.querySelector("[data-k=d]").value);return c.querySelector("[data-k=b]").value.split("\n").map(x=>x.trim()).filter(Boolean).map(L=>({j,t,cur,L}))}),
+ setLine=(j,old,nw)=>{const ta=BC()[j].querySelector("[data-k=b]"),L=ta.value.split("\n"),i=L.findIndex(l=>l.trim()===old);if(i<0)return false;L[i]=nw;ta.value=L.join("\n");pv();return true},
+ need=()=>{if(!ensB()){return"Import or write your resume first."}return""},esx=x=>String(x).replace(/[.*+?^${}()|[\]\\\/]/g,"\\$&"),cap=x=>x.charAt(0).toUpperCase()+x.slice(1);
+const GEN=new Set("required requirements requirement years year experience team ability strong skills skill work working role roles candidate candidates responsibilities responsible preferred must include including excellent good knowledge proven demonstrated looking seeking join company opportunity position job able including etc plus asset high level multiple various related relevant within across new".split(" "));
+function gaps(post,txt){const P=tlW(post),rs=new Set(toks(norm(txt))),sf={};post.split(/[^A-Za-z0-9+#.\/&-]+/).forEach(w=>{w=w.replace(/^[.\-\/&]+|[.\-\/&]+$/g,"");const t=toks(norm(w))[0];if(t&&w.length>=3&&!sf[t])sf[t]=w});return[...P].filter(([k])=>!rs.has(k)&&sf[k]&&!GEN.has(sf[k].toLowerCase())).sort((a,b)=>b[1]-a[1]).slice(0,12).map(([k,w])=>({k,w:sf[k]}))}
+const score=(post,txt)=>{const P=tlW(post),rs=new Set(toks(norm(txt)));let a=0,b=0;P.forEach((w,k)=>{b+=w;if(rs.has(k))a+=w});return b?Math.round(100*a/b):0};
+let KP=[];
+/* 1 */ $("x1").onclick=()=>{const m=need(),post=postT();if(m||!post){out(1,m||"Paste a job posting first.");return}
+ const G=gaps(post,allTxt()),B=bl();if(!G.length){out(1,"No missing keywords found.");return}KP=[];
+ const lines=post.split(/\r?\n/);
+ G.forEach(g=>{const ctx=new Set();lines.filter(l=>new RegExp("\\b"+esx(g.w)+"\\b","i").test(l)).forEach(l=>toks(norm(l)).forEach(t=>t!==g.k&&ctx.add(t)));let best=null,bs=0;B.forEach(b=>{const sc=toks(norm(b.t+" "+b.L)).filter(t=>ctx.has(t)).length;if(sc>bs){bs=sc;best=b}});KP.push({g,best:bs>=1?best:null})});
+ out(1,KP.length+" missing keyword(s).",KP.map((x,i)=>'<div class="cand" style="display:block"><b>'+esc(x.g.w)+"</b> "+(x.best?'<span class="m">closest: '+esc(x.best.t)+'</span><br>“'+esc(x.best.L)+'”<div class="row"><button type="button" class="k1" data-i="'+i+'">Add to this bullet</button><button type="button" class="k1s" data-i="'+i+'">Add to Skills</button></div>':'<span class="m">no close bullet. Add to Skills only if you have the skill.</span><div class="row"><button type="button" class="k1s" data-i="'+i+'">Add to Skills</button></div>')+"</div>").join(""))};
+$("x1o").addEventListener("click",e=>{const b=e.target.closest("button");if(!b||!/^k1/.test(b.className))return;if(!$("nok").checked){$("x1s").textContent="Tick “I confirm” in the tailor above first.";return}const x=KP[+b.dataset.i];
+ if(b.className==="k1s"){$("x1s").textContent=addSkills([x.g.w]);return}
+ if(setLine(x.best.j,x.best.L,x.best.L.replace(/[.;,]+$/,"")+(/^[A-Z0-9]|[+#.\d]/.test(x.g.w)?", using ":", with a focus on ")+x.g.w)){b.disabled=true;$("x1s").textContent="Added. Reword it so it reads naturally and is true."}else $("x1s").textContent="That bullet changed. Run the map again."});
+/* 2 */ const AK="ats.apps",aget=()=>{try{return JSON.parse(localStorage.getItem(AK)||"[]")}catch(e){return[]}},aset=a=>{try{localStorage.setItem(AK,JSON.stringify(a));return true}catch(e){return false}};
+let PS2=[];const ST=["Saved","Applied","Interview","Offer","Rejected"];
+function trk(){const a=aget(),td=new Date().toISOString().slice(0,10),due=a.filter(x=>x.follow&&x.follow<=td&&x.status==="Applied").length;
+ $("x2t").innerHTML=(a.length?'<h5 style="margin:10px 0 4px">Tracker'+(due?' · <span class="warn">'+due+" follow-up(s) due</span>":"")+"</h5>"+a.map((x,i)=>'<div class="card" data-a="'+i+'"><b>'+esc(x.title||"(untitled)")+'</b> <span class="m">match '+x.score+"% · saved "+esc(x.date)+'</span><div class="row"><input placeholder="Employer" value="'+esc(x.employer||"")+'" data-f="employer" style="flex:1"><select data-f="status">'+ST.map(s=>"<option"+(s===x.status?" selected":"")+">"+s+"</option>").join("")+'</select><input type="date" value="'+esc(x.follow||"")+'" data-f="follow" aria-label="Follow-up date"><button type="button" class="a2d">Delete</button></div></div>').join(""):"")}
+$("x2o").insertAdjacentHTML("afterend",'<div id="x2t"></div>');trk();
+$("x2").onclick=()=>{const raw=$("x2in").value.trim();if(!raw){out(2,"Paste at least one posting.");return}const txt=ensB()?allTxt():$("res").value;PS2=raw.split(/^\s*---+\s*$/m).map(x=>x.trim()).filter(Boolean).map(p=>({p,title:tlTitle(p)||p.split(/\r?\n/)[0].slice(0,60),score:score(p,txt),miss:gaps(p,txt).slice(0,4).map(g=>g.w)}));
+ out(2,PS2.length+" posting(s) scored against your resume.",PS2.map((x,i)=>'<div class="card"><b>'+esc(x.title)+'</b> <span class="m">match '+x.score+"%"+(x.miss.length?" · missing: "+esc(x.miss.join(", ")):"")+'</span><div class="row"><button type="button" class="a2s" data-i="'+i+'">Save to tracker</button><button type="button" class="a2v" data-i="'+i+'">Save my resume as a version for this job</button></div></div>').join(""))};
+$("x2o").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const x=PS2[+b.dataset.i];if(b.className==="a2s"){const a=aget();a.unshift({title:x.title,score:x.score,date:new Date().toISOString().slice(0,10),status:"Saved",employer:"",follow:""});$("x2s").textContent=aset(a)?"Saved to the tracker.":"Could not save here (storage blocked).";trk()}
+ if(b.className==="a2v"){$("x2s").textContent=tlSave(x.p)||"Build or import your resume first."}});
+$("x2t").addEventListener("change",e=>{const c=e.target.closest("[data-a]"),f=e.target.dataset.f;if(!c||!f)return;const a=aget();a[+c.dataset.a][f]=e.target.value;aset(a);trk()});
+$("x2t").addEventListener("click",e=>{if(!e.target.classList.contains("a2d"))return;const a=aget();a.splice(+e.target.closest("[data-a]").dataset.a,1);aset(a);trk()});
+/* 3 */ let AP=[];
+$("x3").onclick=()=>{const m=need();if(m){out(3,m);return}const post=postT(),txt=allTxt(),all=post+"\n"+txt,pr=[],add=(f,a)=>{if(!pr.some(p=>p.a.toLowerCase()===a.toLowerCase()))pr.push({f:f.trim(),a})};
+ for(const q of all.matchAll(/\b([A-Z][A-Za-z&-]*(?:\s+(?:and|of|for|&)?\s*[A-Z][A-Za-z&-]*){1,5})\s*\(([A-Z][A-Za-z]{1,7})\)/g))add(q[1],q[2]);
+ SYNG.forEach(g=>{const ac=g.find(x=>/^[a-z]{2,6}$/.test(x));if(!ac)return;g.filter(x=>/ /.test(x)).forEach(f=>{if(f.split(/\s+/).filter(w=>!/^(and|of|for|the)$/.test(w)).map(w=>w[0]).join("")===ac)add(f.replace(/\b\w/g,c=>c.toUpperCase()),ac.toUpperCase())})});
+ const re=(x,ci)=>new RegExp("(^|[^A-Za-z0-9])"+esx(x)+"(?![A-Za-z0-9])",ci?"i":"");AP=[];
+ pr.forEach(p=>{const hf=re(p.f,1).test(txt),ha=re(p.a,0).test(txt),pf=re(p.f,1).test(post),pa=re(p.a,0).test(post),paired=new RegExp(esx(p.f)+"\\s*\\("+esx(p.a)+"\\)","i").test(txt);if(paired||(!hf&&!ha))return;
+  if(ha&&!hf&&(pf||pa))AP.push({...p,from:p.a,to:p.f+" ("+p.a+")",ci:0});else if(hf&&!ha&&(pa||pf))AP.push({...p,from:p.f,to:p.f+" ("+p.a+")",ci:1})});
+ out(3,AP.length?AP.length+" suggestion(s).":"Nothing to pair. Your acronyms and full terms already match the posting.",AP.map((x,i)=>'<div class="cand" style="display:block"><b>'+esc(x.from)+"</b> → "+esc(x.to)+'<div class="row"><button type="button" class="k3" data-i="'+i+'">Apply to first use</button></div></div>').join(""))};
+$("x3o").addEventListener("click",e=>{const b=e.target.closest(".k3");if(!b)return;const x=AP[+b.dataset.i],r=new RegExp("(^|[^A-Za-z0-9])"+esx(x.from)+"(?![A-Za-z0-9])",x.ci?"i":"");
+ const els=[$("bs"),...BC().map(c=>c.querySelector("[data-k=b]")),$("bsk")];for(const el of els){if(r.test(el.value)){el.value=el.value.replace(r,(a,p)=>p+x.to);pv();b.disabled=true;$("x3s").textContent="Applied.";return}}$("x3s").textContent="Could not find it in the builder."});
+/* 4 */ const LV=/^(led|lead|manage[ds]?|supervis\w+|direct\w*|mentor\w*|coach\w*|train\w*|oversaw|oversee\w*|head\w*|spearhead\w*)$/i;
+$("x4").onclick=()=>{const m=need(),post=postT();if(m||!post){out(4,m||"Paste a job posting first.");return}
+ const M=model(),dts=M.jobs.map(j=>j.dates),cy=new Date().getFullYear(),iv=[];dts.forEach(d=>{const y=[...String(d).matchAll(/(?:19|20)\d{2}/g)].map(x=>+x[0]),pres=CUR.test(d);if(y.length){const a=Math.min(...y),b=pres?cy:Math.max(...y);iv.push([a,Math.max(a,b)])}});
+ iv.sort((a,b)=>a[0]-b[0]);let yrs=0,end=-1;iv.forEach(([a,b])=>{if(b>end){yrs+=b-Math.max(a,end);end=b}});
+ const reqY=Math.max(0,...[...post.matchAll(/(\d{1,2})\s*\+?\s*(?:years|yrs|ans)/gi)].map(x=>+x[1])),sen=/\b(senior|sr\.?|lead|principal|staff|head of|director|manager|vp|vice president|chief|supervisor)\b/i.test(post),jun=/\b(junior|jr\.?|entry[- ]level|graduate|intern|trainee|apprentice)\b/i.test(post),lvl=sen&&!jun?"senior":jun?"junior":"mid-level";
+ const tl=t=>/\b(director|vp|vice president|head|chief)\b/i.test(t)?3:/\b(senior|sr\.?|lead|manager|principal|supervisor)\b/i.test(t)?2:/\b(junior|jr\.?|intern|trainee|assistant)\b/i.test(t)?0:1,mx=Math.max(0,...M.jobs.map(j=>tl(j.title))),B=bl(),lp=B.length?Math.round(100*B.filter(b=>LV.test(b.L.split(/\s+/)[0])).length/B.length):0,W=[];
+ if(reqY>yrs+.5)W.push("The posting asks for "+reqY+"+ years; your dates add up to about "+yrs+". Make sure every role has dates, or apply only if your experience is close.");
+ if(lvl==="senior"&&mx<2&&lp<10)W.push("The posting is senior, but your titles and bullets show few leadership signals ("+lp+"% of bullets start with a leadership verb). Add leading, managing or mentoring work you really did.");
+ if(lvl==="junior"&&yrs>8)W.push("The posting is entry-level and you show about "+yrs+" years. You may look over-qualified: lead with the most relevant roles and keep older ones short.");
+ out(4,"Posting looks "+lvl+(reqY?" (asks "+reqY+"+ years)":"")+". Your resume: about "+yrs+" year(s), highest title level "+["junior/other","standard","senior/lead","director+"][mx]+", "+lp+"% leadership verbs.",W.length?"<ul>"+W.map(w=>'<li class="warn">'+esc(w)+"</li>").join("")+"</ul>":'<p class="m high">No level mismatch found.</p>')};
+/* 5 */ $("x5").onclick=()=>{const m=need();if(m){out(5,m);return}const M=model(),cy=new Date().getFullYear(),rec=M.edu.some(e=>{const y=[...String(e).matchAll(/(?:19|20)\d{2}/g)].map(x=>+x[0]);return y.length&&Math.max(...y)>=cy-2})&&M.jobs.length<=2;let o="experience",why="Your experience is your strongest evidence, so keep it first.";
+ const j0=M.jobs[0],pt=tlTitle(postT());if(rec){o="education";why="You graduated recently and have little experience, so lead with Education."}else if(pt&&j0){const a=IDX.match(j0.title,j0.bullets.join(" "),1)[0],b=IDX.match(pt,"",1)[0];if(a&&b&&String(a.code).slice(0,2)!==String(b.code).slice(0,2)){o="skills";why="Your latest role is in a different field from the posting, so lead with Skills."}}
+ $("x5v").value=o;out(5,"Suggested: "+o+" first. "+why+" Press Apply order to use it (it applies to the preview and downloads).")};
+$("x5a").onclick=()=>{ZSO=$("x5v").value;pv();$("x5s").textContent=ZSO==="auto"?"Default order restored.":"Order applied. Sections now start with Summary, then "+ZSO+"."};
+/* 6 */ const TPL={a:[", resulting in [result]",", for [number] [customers, projects or team members]",", saving [amount or time]",", improving [measure] by [percent]"]};let QP=[];
+$("x6").onclick=()=>{const m=need();if(m){out(6,m);return}QP=bl().filter(b=>!/[\d%$€£]/.test(b.L)&&b.L.split(/\s+/).length>=3).slice(0,12);
+ out(6,QP.length?QP.length+" bullet(s) have no number or outcome.":"Every bullet already has a figure.",QP.map((b,i)=>'<div class="cand" style="display:block"><span class="m">'+esc(b.t)+"</span><br>“"+esc(b.L)+"”<div class=\"row\">"+TPL.a.map((t,k)=>'<button type="button" class="k6" data-i="'+i+'" data-k="'+k+'">'+esc(t.slice(2).replace(/\[.*$/,"…"))+"</button>").join("")+"</div></div>").join(""))};
+$("x6o").addEventListener("click",e=>{const b=e.target.closest(".k6");if(!b)return;const x=QP[+b.dataset.i];if(setLine(x.j,x.L,x.L.replace(/[.;,]+$/,"")+TPL.a[+b.dataset.k])){$("x6s").textContent="Template added. Replace the [brackets] with real figures or delete it.";b.closest(".cand").remove()}else $("x6s").textContent="That bullet changed. Run it again."});
+/* 7 */ let SV=[];
+$("x7").onclick=()=>{const m=need();if(m){out(7,m);return}SV=[];try{SV=(sumVariants()||[]).filter(Boolean).slice(0,3)}catch(e){}
+ out(7,SV.length?"":"Add a job title and a few bullets first.",SV.map((t,i)=>'<div class="cand" style="display:block"><b>Option '+(i+1)+"</b><br>"+esc(t)+'<div class="row"><button type="button" class="k7" data-i="'+i+'">Use this summary</button></div></div>').join(""))};
+$("x7o").addEventListener("click",e=>{const b=e.target.closest(".k7");if(!b)return;$("bs").value=SV[+b.dataset.i];pv();$("x7s").textContent="Summary updated. Edit it so it sounds like you."});
+/* 8 */ let VR=[];
+$("x8").onclick=()=>{const m=need();if(m){out(8,m);return}VR=[];BC().forEach((c,j)=>{const cur=CUR.test(c.querySelector("[data-k=d]").value),t=c.querySelector("[data-k=t]").value.trim(),L=c.querySelector("[data-k=b]").value.split("\n").map(x=>x.trim()).filter(Boolean),cnt={};L.forEach(l=>{const w=l.split(/\s+/)[0].toLowerCase();cnt[w]=(cnt[w]||0)+1});
+  const seen={};L.forEach(l=>{const w=l.split(/\s+/)[0].toLowerCase();seen[w]=(seen[w]||0)+1;if(cnt[w]>=3&&seen[w]>=2){const r=vBase(w),g=r&&TLV.find(g=>g.some(x=>x===r[0]||x===vPast(r[0])));if(g){const alt=g.map(x=>stemForm(x)).filter(x=>x&&x.toLowerCase()!==w).map(x=>cur?x:vPast(x)).map(cap);VR.push({j,t,L:l,w,alt:[...new Set(alt)]})}}})});
+ out(8,VR.length?VR.length+" repeated opener(s).":"No verb is repeated three or more times in a role.",VR.map((x,i)=>'<div class="cand" style="display:block"><span class="m">'+esc(x.t)+" · “"+esc(x.w)+'” used again</span><br>“'+esc(x.L)+'”<div class="row">'+x.alt.map((a,k)=>'<button type="button" class="k8" data-i="'+i+'" data-k="'+k+'">'+esc(a)+"</button>").join("")+"</div></div>").join(""))};
+function stemForm(x){const r=vBase(x);return r?r[0]:null}
+$("x8o").addEventListener("click",e=>{const b=e.target.closest(".k8");if(!b)return;const x=VR[+b.dataset.i],a=x.alt[+b.dataset.k],rest=x.L.replace(/^\S+/,"");if(setLine(x.j,x.L,a+rest)){$("x8s").textContent="Changed. Check it still describes what you did.";b.closest(".cand").remove()}else $("x8s").textContent="That bullet changed. Run it again."});
+/* 9 */ const MO={jan:1,feb:2,"fév":2,fev:2,mar:3,mars:3,apr:4,avr:4,may:5,mai:5,jun:6,juin:6,jul:7,juil:7,aug:8,"août":8,aout:8,sep:9,sept:9,oct:10,nov:11,dec:12,"déc":12,janv:1};
+function rng(d){const s=String(d||"").toLowerCase(),cy=new Date().getFullYear(),cm=new Date().getMonth()+1,P=[],fm=[];
+ for(const q of s.matchAll(/(?:([a-zéûô]{3,5})\.?\s+)?((?:19|20)\d{2})|(\d{1,2})[\/.-]((?:19|20)\d{2})|\b(present|current|now|ongoing|today|actuel|présent|en cours)\b/g)){if(q[5]){P.push({y:cy,m:cm,k:0,pres:1});continue}
+  if(q[4]){P.push({y:+q[4],m:+q[3],k:1});fm.push("MM/YYYY");continue}const mo=q[1]&&MO[q[1].replace(/\.$/,"")];if(mo){P.push({y:+q[2],m:mo,k:1});fm.push("Month YYYY")}else{P.push({y:+q[2],m:0,k:0});fm.push("YYYY")}}
+ return{P,fm}}
+$("x9").onclick=()=>{const m=need();if(m){out(9,m);return}const M=model(),W=[],fmts=new Set(),R=[],cy=new Date().getFullYear();
+ M.jobs.forEach(j=>{const r=rng(j.dates);r.fm.forEach(f=>fmts.add(f));if(r.P.length<2){W.push((j.title||"A role")+": "+(r.P.length?"only one date found":"no dates found")+". Give a start and end.");return}
+  const a=r.P[0],b=r.P[r.P.length-1],A=a.y*12+(a.m?a.m-1:0),B=b.y*12+(b.m?b.m-1:11);if(B<A)W.push((j.title||"A role")+": the end date is before the start date.");if(a.y>cy+1)W.push((j.title||"A role")+": starts in the future.");R.push({t:j.title||"A role",A,B,known:a.k&&b.k})});
+ const S=[...R].sort((x,y)=>x.A-y.A);for(let i=1;i<S.length;i++){const g=S[i].A-S[i-1].B-1;if(g>=4)W.push("Gap of about "+g+" months between "+S[i-1].t+" and "+S[i].t+". Be ready to explain it, or add what you did (study, caring, freelancing).");const ov=S[i-1].B-S[i].A;if(ov>=2&&S[i].known&&S[i-1].known)W.push(S[i-1].t+" and "+S[i].t+" overlap by about "+ov+" months. That is fine for part-time or a handover, but check the dates.")}
+ if(fmts.size>1)W.push("Mixed date formats ("+[...fmts].join(", ")+"). Use one style, for example Jan 2021 - Mar 2023.");
+ out(9,W.length?W.length+" thing(s) to check.":"",W.length?"<ul>"+W.map(w=>'<li class="warn">'+esc(w)+"</li>").join("")+"</ul>":'<p class="m high">Dates look consistent: no gaps, overlaps or mixed formats found.</p>')};
+/* 10 */ const wset=t=>{const o={};(t.toLowerCase().match(/[\p{L}\p{N}+#@.%$-]{2,}/gu)||[]).forEach(w=>{w=w.replace(/^[.-]+|[.-]+$/g,"");if(w)o[w]=(o[w]||0)+1});return o};
+async function infl(u8){const ds=new DecompressionStream("deflate"),w=ds.writable.getWriter();w.write(u8).catch(()=>{});w.close().catch(()=>{});return new Uint8Array(await new Response(ds.readable).arrayBuffer())}
+async function pdfText(u8){let s="";for(let i=0;i<u8.length;i++)s+=String.fromCharCode(u8[i]);const o=[];let p=0;while((p=s.indexOf("stream",p))>=0){if(s.slice(p-3,p)==="end"){p+=6;continue}let a=p+6;if(s[a]==="\r")a++;if(s[a]==="\n")a++;const e=s.indexOf("endstream",a);if(e<0)break;let ch=u8.slice(a,e);while(ch.length&&(ch[ch.length-1]===10||ch[ch.length-1]===13))ch=ch.slice(0,-1);let t="";try{t=Array.from(await infl(ch),c=>String.fromCharCode(c)).join("")}catch(_){t=s.slice(a,e)}
+  for(const q of t.matchAll(/<([0-9A-Fa-f]+)>\s*Tj/g)){let x="";for(let k=0;k<q[1].length;k+=2)x+=String.fromCharCode(parseInt(q[1].substr(k,2),16));o.push(x)}p=e+9}return o.join("\n")}
+$("x10").onclick=async()=>{const m=need();if(m){out(10,m);return}out(10,"Building and reading your files…");try{const B=blocks(model()),want=wset(B.map(b=>(b.s||"")+" "+(b.r||"")).join("\n")),R=[];
+  const cmp=(lab,got)=>{const miss=Object.keys(want).filter(w=>(got[w]||0)<want[w]);R.push({lab,miss:miss.slice(0,15),n:miss.length})};
+  const pd=await mkPdf(B);cmp("PDF",wset(await pdfText(pd instanceof Uint8Array?pd:new Uint8Array(pd))));
+  if(!window.JSZip)await loadScript(JSZIP);const dx=await mkDocx(B),buf=dx instanceof Blob?await dx.arrayBuffer():dx,z=await JSZip.loadAsync(buf),xml=await z.file("word/document.xml").async("string");cmp("DOCX",wset((xml.match(/<w:t[^>]*>[^<]*<\/w:t>/g)||[]).map(x=>x.replace(/<[^>]+>/g,"")).join(" ").replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">")));
+  const bad=[...new Set((B.map(b=>(b.s||"")+(b.r||"")).join("").match(/[^\u0000-\u00ff\u2013\u2014\u2018-\u201d\u2022\u2026\u20ac]/g)||[]))];
+  out(10,"",R.map(r=>'<p class="'+(r.n?"warn":"high")+'"><b>'+r.lab+":</b> "+(r.n?r.n+" word(s) missing or changed, for example: "+esc(r.miss.join(", ")):"every word is present, readable and in the file.")+"</p>").join("")+(bad.length?'<p class="warn">These characters cannot be shown in the PDF fonts and become “?”: '+esc(bad.join(" "))+"</p>":""));$("x10s").textContent="Checked "+Object.keys(want).length+" distinct words in "+B.length+" blocks."}catch(e){out(10,"Could not run the check ("+(e&&e.message||e)+"). Your browser may not support reading compressed PDF data.")}};
+/* 11 */ $("x11").onclick=()=>{const m=need(),post=postT();if(m){out(11,m);return}const lines=toTxt(blocks(model())).split("\n").filter(l=>l.trim()).slice(0,16),P=[...tlW(post||" ")].sort((a,b)=>b[1]-a[1]).slice(0,10).map(x=>x[0]),top=new Set(P),hit=new Set();
+ const hl=l=>l.replace(/[A-Za-z0-9+#.-]+/g,w=>{const t=toks(norm(w))[0];if(post&&t&&top.has(t)){hit.add(t);return'<mark class="hk g">'+esc(w)+"</mark>"}return esc(w)});
+ const html=lines.map((l,i)=>"<div style=\"margin:2px 0;"+(i===0?"font-weight:800;font-size:15px":/^[A-Z][A-Z &]{3,}$/.test(l.trim())?"font-weight:700;margin-top:8px;border-bottom:1px solid #ccc":"")+"\">"+hl(l)+"</div>").join("");
+ out(11,post?hit.size+" of the posting's top "+P.length+" keywords are visible in this view.":"Paste a posting to see which keywords a recruiter would spot.",'<div style="background:#fff;color:#111;border:1px solid var(--bd);border-radius:6px;padding:14px;max-width:520px;font-size:12.5px;line-height:1.4;box-shadow:0 2px 10px rgba(0,0,0,.12)">'+html+"</div>")};
+})();
 </script>
 <script>(function(){var S={tscan:["🔍","Scan"],bld:["📝","Build"],tcl:["✉️","Letter"],tjb:["💼","Jobs"],tlb:["📚","Library"],trw:["🔔","Releases"]};
 document.querySelectorAll(".tabs button").forEach(function(b){var k=b.dataset.tab,f=b.textContent.trim();b.dataset.full=f;b.setAttribute("aria-label",f);b.innerHTML='<i aria-hidden="true">'+S[k][0]+"</i><span>"+S[k][1]+"</span>"});
@@ -1872,7 +2061,10 @@ b.hidden=false;lab();var u=document.getElementById("ui");if(u)u.addEventListener
 window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();ev=e});
 window.addEventListener("appinstalled",function(){b.hidden=true});
 b.onclick=function(){if(ev){ev.prompt();ev=null}else location.href="install.html"}})();
-try{FRD.set("Install app","Installer")}catch(e){}</script>
-<script>if("serviceWorker"in navigator){var hadSW=!!navigator.serviceWorker.controller;navigator.serviceWorker.addEventListener("controllerchange",function(){if(!hadSW){hadSW=true;return}if(document.getElementById("newver"))return;var d=document.createElement("div");d.id="newver";d.setAttribute("style","position:fixed;left:12px;right:12px;bottom:12px;z-index:99;background:#111;color:#fff;padding:12px 14px;border-radius:12px;display:flex;gap:12px;align-items:center;justify-content:space-between;font:15px system-ui,sans-serif");var fr=/^fr/i.test(document.documentElement.lang||navigator.language||"");d.innerHTML='<span>'+(fr?"Une nouvelle version est prête.":"A new version is ready.")+'</span><button style="background:#fff;color:#111;border:0;border-radius:8px;padding:8px 14px;font:600 15px system-ui">'+(fr?"Mettre à jour":"Update")+'</button>';d.querySelector("button").onclick=function(){location.reload()};document.body.appendChild(d)});window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}</script>
+try{FRD.set("Install app","Installer");[["Fix tense and wording when importing","Corriger les temps et la formulation à l'importation"],["Show the changes","Voir les changements"],["Suggest stronger verbs","Suggérer des verbes plus forts"],["Verb suggestions work on English resumes.","Les suggestions de verbes fonctionnent pour les CV en anglais."],["Import or write your resume first.","Importez ou rédigez d'abord votre CV."],["No weak openers found.","Aucun début de phrase faible trouvé."],[" bullet(s) could open with a clearer verb."," puce(s) pourraient commencer par un verbe plus clair."],["Only if true, because these claim more ownership:","Seulement si c'est vrai, car ces verbes revendiquent plus de responsabilité :"],["That bullet changed. Check again.","Cette puce a changé. Vérifiez à nouveau."],["Changed to: ","Remplacé par : "],["Open in the Resume builder","Ouvrir dans le créateur de CV"],["Fixed ","Corrigé : "],[" phrase(s) for tense and wording. Check them below, then edit anything."," phrase(s) (temps et formulation). Vérifiez-les ci-dessous, puis modifiez au besoin."],["Imported automatically from your scan. ","Importé automatiquement depuis votre analyse. "]].forEach(a=>FRD.set(a[0],a[1]))}catch(e){}</script>
+<script>function atsUpd(){var b=document.getElementById("abv");if(!b||b.classList.contains("upd"))return;var fr=/^fr/i.test(document.documentElement.lang||navigator.language||"");
+function show(n){var ib=document.getElementById("pwaI");if(ib)ib.hidden=true;b.classList.add("upd");b.textContent=(fr?"Mise à jour ":"Update ")+(n?"v1."+n:(fr?"disponible":"available"));b.setAttribute("role","button");b.tabIndex=0;b.title=fr?"Touchez pour mettre à jour":"Tap to update";b.onclick=function(){location.reload()};b.onkeydown=function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();location.reload()}}}
+try{caches.keys().then(function(k){var n=k.map(function(x){var m=/^atsresume-(\d+)$/.exec(x);return m?+m[1]:0}).sort(function(a,c){return c-a})[0];show(n)},function(){show()})}catch(e){show()}}</script>
+<script>if("serviceWorker"in navigator){var hadSW=!!navigator.serviceWorker.controller;navigator.serviceWorker.addEventListener("controllerchange",function(){if(!hadSW){hadSW=true;return}if(document.getElementById("newver"))return;var d=document.createElement("div");d.id="newver";d.setAttribute("style","position:fixed;left:12px;right:12px;bottom:12px;z-index:99;background:#111;color:#fff;padding:12px 14px;border-radius:12px;display:flex;gap:12px;align-items:center;justify-content:space-between;font:15px system-ui,sans-serif");var fr=/^fr/i.test(document.documentElement.lang||navigator.language||"");d.innerHTML='<span>'+(fr?"Une nouvelle version est prête.":"A new version is ready.")+'</span><button style="background:#fff;color:#111;border:0;border-radius:8px;padding:8px 14px;font:600 15px system-ui">'+(fr?"Mettre à jour":"Update")+'</button>';d.querySelector("button").onclick=function(){location.reload()};document.body.appendChild(d);try{atsUpd()}catch(e){}});window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").then(function(r){try{r.update().catch(function(){});document.addEventListener("visibilitychange",function(){if(!document.hidden)r.update().catch(function(){})})}catch(e){}}).catch(function(){})})}</script>
 </body>
 </html>

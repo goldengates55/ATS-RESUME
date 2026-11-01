@@ -11,7 +11,7 @@ Installable web app (PWA). Scan a resume against official job classifications an
 After that first visit the app opens with no internet. PDF and DOCX export work offline because the libraries are bundled.
 
 ## Release an update
-Replace `index.html`, then change `VERSION` in `sw.js` (for example `atsresume-3`). Devices will show "A new version is ready" with an Update button.
+Replace `index.html`, then change `VERSION` in `sw.js` (for example `atsresume-13`) and the version label in `index.html` and `install.html` (search for `v1.12` and `Version 1.12`, for example change to 1.13). Devices will show "A new version is ready" with an Update button.
 
 ## Notes
 - Fonts load from Google Fonts on the first online visit and are then kept; until then the app uses system fonts.
