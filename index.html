@@ -551,7 +551,7 @@ const pv=()=>{const t=tpl(),e=$("pv");e.style.fontFamily=t.f==="times"?"Georgia,
 const toTxt=B=>B.map(b=>b.t==="h"?"\n"+b.s.toUpperCase():b.t==="job"?b.s+(b.r?"  ("+b.r+")":""):b.t==="b"?"• "+b.s:b.s).join("\n");
 const PS=s=>String(s).replace(/[\u00A0\u2000-\u200A\u202F\u205F\u3000]/g," ").replace(/[\u200B-\u200D\u2060\uFEFF]/g,"").replace(/\t/g," ").replace(/[\x00-\x08\x0B-\x1F\x7F-\x9F]/g,"").replace(/[\u2018\u2019\u201A\u2032\u02BC]/g,"'").replace(/[\u201C\u201D\u201E\u2033]/g,'"').replace(/[\u2010-\u2015\u2212]/g,"-").replace(/\u2026/g,"...").replace(/[\u2022\u2023\u25AA\u25AB\u25CF\u25E6\u2043]/g,"-").replace(/\u0141/g,"L").replace(/\u0142/g,"l").replace(/\u0110/g,"D").replace(/\u0111/g,"d").replace(/\u0153/g,"oe").replace(/\u0152/g,"OE").replace(/\u20AC/g,"EUR").replace(/\u2122/g,"(TM)").replace(/\uFB00/g,"ff").replace(/\uFB01/g,"fi").replace(/\uFB02/g,"fl").replace(/\uFB03/g,"ffi").replace(/\uFB04/g,"ffl").normalize("NFC").replace(/[^\x00-\xFF]/g,c=>{const b=c.normalize("NFD").replace(/[\u0300-\u036f]/g,"");return/^[\x00-\xFF]+$/.test(b)?b:""});
 async function mkPdf(B0){if(!window.PDFLib)await loadScript(PDFLIB);const{PDFDocument,StandardFonts:SF,rgb}=window.PDFLib,t=tpl(),lh=t.bs*1.3,tm=t.f==="times",doc=await PDFDocument.create(),fn=await doc.embedFont(tm?SF.TimesRoman:SF.Helvetica),fb=await doc.embedFont(tm?SF.TimesRomanBold:SF.HelveticaBold),
- sf=x=>{try{fn.encodeText(x);return x}catch(e){return[...x].map(c=>{try{fn.encodeText(c);return c}catch(_){return"?"}}).join("")}},
+ sf=x=>{try{fn.encodeText(x);return x}catch(e){return[...x].map(c=>{if(c==="\n")return c;try{fn.encodeText(c);return c}catch(_){return"?"}}).join("")}},
  B=B0.map(b=>({...b,s:sf(PS(b.s)),r:b.r?sf(PS(b.r)):b.r})),pgz=RG[RGC()].pg==="a4"?[595,842]:[612,792],W=pgz[0],HT=pgz[1],M=54,mw=W-2*M,ac=rgb(t.ac[0]/255,t.ac[1]/255,t.ac[2]/255),blk=rgb(0,0,0);
  const wrap=(txt,f,sz,m)=>{const o=[];String(txt).split("\n").forEach(par=>{let cur="";par.split(" ").forEach(w=>{const ts=cur?cur+" "+w:w;if(f.widthOfTextAtSize(ts,sz)<=m){cur=ts;return}if(cur){o.push(cur);cur=""}while(f.widthOfTextAtSize(w,sz)>m&&w.length>1){let k=w.length-1;while(k>1&&f.widthOfTextAtSize(w.slice(0,k),sz)>m)k--;o.push(w.slice(0,k));w=w.slice(k)}cur=w});o.push(cur)});return o};
  let pg=doc.addPage([W,HT]),y=M;const np=()=>{pg=doc.addPage([W,HT]);y=M},tx=(x,px,yy,f,sz,c,right)=>{if(!x)return;pg.drawText(x,{x:right?px-f.widthOfTextAtSize(x,sz):px,y:HT-yy,size:sz,font:f,color:c})};
@@ -585,7 +585,7 @@ async function save(name,data,sid="bst"){const st=$(sid);let dl=null;try{dl=awai
 const exp=(name,mk)=>async()=>{const m=model();if(!m.name&&!m.jobs.length){$("bst").textContent="Add your name and some content first.";return}
  if(typeof exFlag==="function"&&exFlag().length){exRender();$("bst").textContent="Confirm or replace the example numbers under Check your numbers first ("+exFlag().length+" line(s)).";return}
  if(m.jobs.some(j=>j.bullets.some(b=>/\[[^\]]*\]/.test(b)))){$("bst").textContent="Replace every [bracket] with a real figure (or delete that line) before downloading.";return}
- $("bst").textContent="Building…";try{await save(name,await mk(blocks(m)))}catch(_){$("bst").textContent="Couldn't build the file."}};
+ $("bst").textContent="Building…";try{await save(name,await mk(blocks(m)))}catch(e){$("bst").textContent="Couldn't build the file"+(e&&e.message?" ("+e.message+")":"")+"."}};
 function fromLast(){if(!LAST){$("bst").textContent="Analyze a resume first, then import.";return}
  const{sec,jobs,edu}=LAST,hd=(sec.header||[]).map(s=>s.trim()).filter(Boolean),all=hd.join(" | ");
  $("bn").value=(hd[0]||"").split(/\s*[|•·]\s*/)[0];$("be").value=(all.match(/[\w.+-]+@[\w-]+\.[\w.]+/)||[""])[0];$("bp").value=(all.match(/\+?\d[\d\s().-]{8,}\d/)||[""])[0];
@@ -677,7 +677,7 @@ const L=[name,m.contact.join(" | "),"",new Date().toLocaleDateString(LOC(lang),{
  if(mg||co){if(mg)L.push(mg);if(co)L.push(co);L.push("")}
  L.push(fr?"Madame, Monsieur,":mg?`Dear ${mg},`:"Dear Hiring Manager,","",...[p1,pick.map(ln).join(" "),p3,cl].filter(Boolean).flatMap(p=>[p,""]),fr?"Cordialement,":"Sincerely,",name);
  $("clt").value=L.join("\n");st.textContent=post?"Draft created from your resume and posting. Check every sentence and edit before sending.":"No job posting on the Scan tab, so this draft is generic. Add a posting and generate again for a tailored letter."}
-const expL=(f,mk)=>async()=>{const t=$("clt").value.trim();if(!t){$("cst").textContent="Generate or write a letter first.";return}$("cst").textContent="Building…";try{await save(f,await mk(lblocks(t)),"cst")}catch(_){$("cst").textContent="Couldn't build the file."}};
+const expL=(f,mk)=>async()=>{const t=$("clt").value.trim();if(!t){$("cst").textContent="Generate or write a letter first.";return}$("cst").textContent="Building…";try{await save(f,await mk(lblocks(t)),"cst")}catch(e){$("cst").textContent="Couldn't build the file"+(e&&e.message?" ("+e.message+")":"")+"."}};
 $("clg").onclick=genLetter;$("clpdf").onclick=expL("cover-letter.pdf",mkPdf);$("cldoc").onclick=expL("cover-letter.docx",mkDocx);$("cltxt").onclick=expL("cover-letter.txt",()=>$("clt").value);
 const CUR={ca:"$",us:"$",au:"$",nz:"$",uk:"£",it:"€",pt:"€",be:"€"};
 const MRU={en:["[Reduced/Increased] [metric] by [X]% over [period]","Saved [X] hours per week by [automating/streamlining] [process]","Served [X] customers, clients or users per [day/month]","Managed a budget or portfolio of ¤[X]","Led or trained a team of [X] people","Delivered [X] projects on time and [X]% under budget","Improved [quality/accuracy/satisfaction] from [X]% to [Y]%","Processed [X] [orders/tickets/invoices] per [week] with [X]% accuracy","Cut [cost/errors/turnaround time] by [X]%, saving about ¤[Y] per year","Ranked in the top [X]% of [N] [people/teams] for [metric]"],
@@ -832,7 +832,9 @@ function run(){LNS={};LNID=0;NFAMSEEN={};buildSyn();setOcc();
  LAST={sec,jobs,edu,tops};IMPORTED=false;$("out").innerHTML=h;$("out").scrollIntoView({behavior:"smooth"})}
 const readFile=(f,cb)=>{const r=new FileReader();r.onload=()=>cb(String(r.result));r.readAsText(f)};
 const PDFV="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";
-const loadScript=src=>new Promise((ok,no)=>{const s=document.createElement("script");s.src=src;s.onload=ok;s.onerror=()=>no(new Error("load"));document.head.appendChild(s)});
+const LIBCDN={"vendor/pdf-lib.min.js":"https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js","vendor/jszip.min.js":"https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"},
+ ld1=src=>new Promise((ok,no)=>{const s=document.createElement("script");s.src=src;s.onload=ok;s.onerror=()=>{s.remove();no(new Error("could not load "+src))};document.head.appendChild(s)}),
+ loadScript=async src=>{const t=[src];if(LIBCDN[src]){t.push(src.split("/").pop());t.push(LIBCDN[src])}let er;for(const u of t){try{return await ld1(u)}catch(e){er=er||e}}throw er}
 let pdfReady=null;
 const loadPdf=()=>pdfReady??=(async()=>{await loadScript(PDFV+"pdf.worker.min.js");await loadScript(PDFV+"pdf.min.js");pdfjsLib.GlobalWorkerOptions.workerSrc=PDFV+"pdf.worker.min.js"})().catch(e=>{pdfReady=null;throw e});
 async function pdfText(buf){await loadPdf();
@@ -1235,7 +1237,7 @@ function rptBlocks(){const fr=typeof UI!=="undefined"&&UI==="fr",B=[{t:"name",s:
  rptLines($("out").innerHTML).forEach(l=>{const t=l.trim();if(l.startsWith("\u0001H2 "))B.push({t:"h",s:t.slice(4).trim()});else if(l.startsWith("\u0001H3 "))B.push({t:"job",s:t.slice(4).trim()});else if(!t)B.push({t:"p",s:""});else if(/^\[|^\d{4,5} /.test(t))B.push({t:"b",s:t});else B.push({t:"p",s:t})});
  while(B.length&&B[B.length-1].t==="p"&&!B[B.length-1].s)B.pop();return B}
 function rptShow(){const h=!String($("out").innerHTML||"").trim(),r=$("rpt"),n=$("nbar");if(r)r.hidden=h;if(n)n.hidden=h;nfamNote()}
-const rptGo=(name,mk)=>async()=>{const st=$("rst");if(!String($("out").innerHTML||"").trim()){st.textContent=uiTr("Run a scan first.");return}st.textContent="…";try{await save(name,await mk(rptBlocks()),"rst")}catch(e){st.textContent=uiTr("Could not build the report.")}};
+const rptGo=(name,mk)=>async()=>{const st=$("rst");if(!String($("out").innerHTML||"").trim()){st.textContent=uiTr("Run a scan first.");return}st.textContent="…";try{await save(name,await mk(rptBlocks()),"rst")}catch(e){st.textContent=uiTr("Could not build the report.")+(e&&e.message?" ("+e.message+")":"")}};
 $("rpdf").onclick=rptGo("scan-report.pdf",mkPdf);$("rdoc").onclick=rptGo("scan-report.docx",mkDocx);$("rtxt").onclick=rptGo("scan-report.txt",B=>toTxt(B));
 if(typeof MutationObserver!=="undefined")new MutationObserver(rptShow).observe($("out"),{childList:true});rptShow();
 ((P)=>P.forEach(([a,b])=>FRD.set(a,b)))([["Download scan report","Télécharger le rapport d'analyse"],["Saves the results below as a file you can keep or send.","Enregistre les résultats ci-dessous dans un fichier à conserver ou à envoyer."],["Scan report","Rapport d'analyse"],["Run a scan first.","Lancez d'abord une analyse."],["Could not build the report.","Impossible de créer le rapport."]]);
