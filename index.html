@@ -102,6 +102,32 @@ mark{background:var(--hl);color:inherit}
 .lbfr{flex:1;min-height:0}.lbfr iframe{border:0;width:100%;height:100%;display:block;background:#fff}
 #nbar select{width:100%;padding:8px 10px;margin:3px 0;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--fg);font:inherit}
 </style>
+<style id="appui">
+body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent}
+button,.tabs,.abi{-webkit-user-select:none;user-select:none;touch-action:manipulation}
+.appbar{position:sticky;top:0;z-index:30;padding-top:env(safe-area-inset-top,0px);box-shadow:0 1px 0 rgba(0,0,0,.14)}
+.abi{display:flex;align-items:center;gap:10px;max-width:960px;margin:0 auto;padding:8px 14px;min-height:52px}
+.abi img{width:32px;height:32px;border-radius:8px;flex:none}
+.abt{display:flex;flex-direction:column;line-height:1.15;min-width:0;flex:1}
+.abt b{font-size:1rem;font-weight:800}.abt span{font-size:.8rem;opacity:.92;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.abr{display:flex;gap:6px;align-items:center;flex:none}
+.abr button{background:rgba(255,255,255,.16);color:inherit;border:1px solid rgba(255,255,255,.5);border-radius:999px;min-height:38px;padding:4px 12px;font:inherit;font-weight:700;font-size:.85rem;cursor:pointer}
+#abg{width:42px;padding:0;font-size:1.15rem}
+body:not(.seto) .set{display:none}
+.set{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:10px 12px}
+.tabs{position:fixed!important;left:0;right:0;bottom:0;top:auto!important;z-index:40;display:flex;justify-content:space-around;gap:0!important;margin:0!important;padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px))!important;background:var(--card);border-top:1px solid var(--bd)!important;box-shadow:0 -4px 16px rgba(0,0,0,.08);overflow:visible}
+.tabs button{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;border:0!important;border-radius:12px!important;padding:6px 2px!important;background:none!important;color:var(--mut)!important;font-size:.7rem;font-weight:700;min-height:52px;white-space:normal}
+.tabs button i{font-style:normal;font-size:1.35rem;line-height:1;filter:grayscale(.7);opacity:.75;transition:transform .15s}
+.tabs button.on{color:var(--c)!important;background:color-mix(in srgb,var(--c) 14%,transparent)!important}
+.tabs button.on i{filter:none;opacity:1;transform:scale(1.1)}
+main{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+#tscan:not([hidden]),section:not([hidden]){animation:tin .18s ease both}
+@keyframes tin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (min-width:900px){body{padding-left:88px}
+.tabs{right:auto;top:0!important;width:88px;flex-direction:column;justify-content:flex-start;gap:6px!important;padding:14px 6px!important;border-top:0!important;border-right:1px solid var(--bd);box-shadow:none}
+.tabs button{flex:none}main{padding-bottom:40px}}
+</style>
 </head>
 <body>
 <div id="lbapp" class="lbapp" hidden role="dialog" aria-modal="true" aria-label="Application"><div class="lbbar"><button id="lbback">← Library</button><b id="lbtt"></b></div><div id="lbfr" class="lbfr"></div></div>
@@ -111,9 +137,7 @@ mark{background:var(--hl);color:inherit}
 <div class="row" style="justify-content:center"><button id="lkr" type="button">Check again</button></div></div></div>
 <p id="lkb" class="m" hidden style="max-width:960px;margin:8px auto 0;padding:0 16px"></p>
 <details id="lkxd" hidden style="max-width:960px;margin:4px auto 0;padding:0 16px"><summary class="m">Have a code to add time?</summary><textarea id="lkxt" rows="3" autocomplete="off" placeholder="Activation code" aria-label="Code to add time"></textarea><div class="row"><button class="p" id="lkxb" type="button">Add time</button></div><p class="m" id="lkxs" role="status"></p></details>
-<header class="hero"><div class="hw"><div><h1>ATS Resume Optimiser</h1><p>Check your resume against official job classifications and a job posting, then build a stronger one. Everything runs in your browser; nothing is uploaded.</p>
-<button type="button" id="pwaI" hidden style="margin-top:10px;background:transparent;color:inherit;border:1px solid currentColor;border-radius:8px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer">Install on your phone</button></div>
-<div class="key" aria-label="How to read the highlights"><b>Reading the highlights</b><span><mark class="hk g">Python</mark> found in your resume</span><span><mark class="hk y">ML</mark> matched through a synonym</span><span><mark class="hk r">Kubernetes</mark> missing</span></div></div></header>
+<header class="hero appbar"><div class="abi"><img src="icon-192.png" alt="" width="32" height="32"><div class="abt"><b id="abn">ATS Resume</b><span id="abt">Scan &amp; match</span></div><div class="abr"><button type="button" id="pwaI" hidden>Install app</button><button type="button" id="abg" aria-label="Settings" aria-expanded="false">⚙</button></div></div></header>
 <main>
 <div class="tabs" role="tablist"><button class="on" data-tab="tscan">Scan &amp; match</button><button data-tab="bld">Resume builder</button><button data-tab="tcl">Cover letter</button><button data-tab="tjb">Jobs &amp; employers</button><button data-tab="tlb">Library</button><button data-tab="trw">Release watch</button></div>
 <div class="set"><label for="rg">Region</label><select id="rg"><option value="ca">Canada</option><option value="us">United States</option><option value="uk">United Kingdom</option><option value="au">Australia</option><option value="nz">New Zealand</option><option value="it">Italy</option><option value="pt">Portugal</option><option value="be">Belgium</option></select><label for="lg">Document language</label><select id="lg"><option value="auto">Auto-detect</option><option value="en">English</option><option value="fr">Français</option></select><label for="ui">Interface</label><select id="ui"><option value="en">English</option><option value="fr">Français</option></select></div>
@@ -121,6 +145,7 @@ mark{background:var(--hl);color:inherit}
 
 <div id="rsb" class="card" hidden></div>
 <div id="tscan">
+<div class="key" aria-label="How to read the highlights"><b>Reading the highlights</b><span><mark class="hk g">Python</mark> found in your resume</span><span><mark class="hk y">ML</mark> matched through a synonym</span><span><mark class="hk r">Kubernetes</mark> missing</span></div>
 <div id="rwb" class="card" hidden></div>
 <label class="dz" id="dz"><b>Import your resume</b><br><span class="m">Drop a PDF, DOCX or TXT here, or click to choose a file. It is checked for missing items automatically.</span><input type="file" id="rf" accept=".pdf,.docx,.txt,application/pdf,text/plain"></label>
 <span class="m" id="pst" role="status"></span>
@@ -613,7 +638,7 @@ $("out").addEventListener("click",e=>{const b=e.target.closest("[data-mr]");if(!
 const again=()=>{try{if(!$("tjb").hidden)jbRender()}catch(_){}pv();if($("res").value.trim()&&$("out").innerHTML)run()};
 $("rg").onchange=()=>{const r=RGC();$("rgn").textContent=RG[r].tip+" These are general norms; follow the employer's instructions.";$("bco").checked=r==="it"||r==="pt";$("bl").placeholder=uiTr(RG[r].place);$("os").value={ca:"noc",it:"esco",pt:"esco",be:"esco",uk:"soc",au:"osca",nz:"nol",us:"onet"}[r];setOcc();again()};
 $("lg").onchange=again;$("rg").onchange();
-function tab(id){["tscan","bld","tcl","trw","tjb","tlb"].forEach(t=>{$(t).hidden=t!==id});document.querySelectorAll(".tabs button").forEach(b=>b.classList.toggle("on",b.dataset.tab===id));if(document.documentElement)document.documentElement.style.setProperty("--ta","var(--c"+({tscan:1,bld:2,tcl:3,tjb:4,trw:5,tad:6,tlb:7})[id]+")");window.scrollTo(0,0);if(id==="tcl"&&!$("clt").value&&(LAST||$("bn").value.trim()))genLetter();if(id==="trw")rwRender();if(id==="tjb"){jbFill(false);jbRender()}}
+function tab(id){["tscan","bld","tcl","trw","tjb","tlb"].forEach(t=>{$(t).hidden=t!==id});document.querySelectorAll(".tabs button").forEach(b=>b.classList.toggle("on",b.dataset.tab===id));if(document.documentElement)document.documentElement.style.setProperty("--ta","var(--c"+({tscan:1,bld:2,tcl:3,tjb:4,trw:5,tad:6,tlb:7})[id]+")");window.scrollTo(0,0);try{const q=document.querySelector('.tabs button[data-tab="'+id+'"]');$("abt").textContent=q.dataset.full}catch(_){}if(id==="tcl"&&!$("clt").value&&(LAST||$("bn").value.trim()))genLetter();if(id==="trw")rwRender();if(id==="tjb"){jbFill(false);jbRender()}}
 document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>tab(b.dataset.tab));
 $("out").addEventListener("click",e=>{const g=e.target.closest("[data-goto]");if(!g)return;tab("bld");if(bdEmpty())fromLast();const f=$(g.dataset.goto);f.scrollIntoView({behavior:"smooth",block:"center"});f.focus()});
 $("bj").innerHTML=jobT();$("bd").innerHTML=eduT("");pv();
@@ -1835,13 +1860,19 @@ document.querySelector('.tabs button[data-tab="bld"]').addEventListener("click",
 
 ((P)=>P.forEach(([a,b])=>FRD.set(a,b)))([["Activation required","Activation requise"],["Your access has ended","Votre accès est terminé"],["Send your device code to the administrator to get an activation code, then paste it below.","Envoyez le code de votre appareil à l'administrateur pour obtenir un code d'activation, puis collez-le ci-dessous."],["Copy device code","Copier le code de l'appareil"],["Have an activation code?","Vous avez un code d'activation?"],["Activation code","Code d'activation"],["Activate","Activer"],["Have a code to add time?","Vous avez un code pour ajouter du temps?"],["Code to add time","Code pour ajouter du temps"],["Paste your code first.","Collez d'abord votre code."],["That code is not valid. Check that you copied all of it.","Ce code n'est pas valide. Vérifiez que vous l'avez copié en entier."],["That code is not valid.","Ce code n'est pas valide."],["This code was already used on this device.","Ce code a déjà été utilisé sur cet appareil."],["Device code copied.","Code de l'appareil copié."],["Activated: lifetime access.","Activé : accès à vie."],["You already have lifetime access.","Vous avez déjà un accès à vie."],["Your time has already run out, so this code cannot add to it. Ask for a new activation code.","Votre temps est déjà écoulé, ce code ne peut donc pas en ajouter. Demandez un nouveau code d'activation."],["The date on this device looks wrong. Fix the date and time, then try again.","La date de cet appareil semble incorrecte. Corrigez la date et l'heure, puis réessayez."]]);
 </script>
+<script>(function(){var S={tscan:["🔍","Scan"],bld:["📝","Build"],tcl:["✉️","Letter"],tjb:["💼","Jobs"],tlb:["📚","Library"],trw:["🔔","Releases"]};
+document.querySelectorAll(".tabs button").forEach(function(b){var k=b.dataset.tab,f=b.textContent.trim();b.dataset.full=f;b.setAttribute("aria-label",f);b.innerHTML='<i aria-hidden="true">'+S[k][0]+"</i><span>"+S[k][1]+"</span>"});
+var g=document.getElementById("abg"),seen=0;try{seen=localStorage.getItem("ats.setSeen")}catch(e){}
+function so(on){document.body.classList.toggle("seto",on);g.setAttribute("aria-expanded",on)}
+so(!seen);g.onclick=function(){var on=!document.body.classList.contains("seto");so(on);if(!on){try{localStorage.setItem("ats.setSeen","1")}catch(e){}}else window.scrollTo(0,0)};
+try{[["Scan","Analyse"],["Build","Créer"],["Letter","Lettre"],["Jobs","Emplois"],["Library","Bibliothèque"],["Releases","Parutions"],["Settings","Paramètres"]].forEach(function(a){FRD.set(a[0],a[1])})}catch(e){}})();</script>
 <script>(function(){var b=document.getElementById("pwaI"),ev=null,sa=(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)||navigator.standalone===true;if(!b||sa)return;
-function lab(){try{b.textContent=uiTr("Install on your phone")}catch(e){}}
+function lab(){try{b.textContent=uiTr("Install app")}catch(e){}}
 b.hidden=false;lab();var u=document.getElementById("ui");if(u)u.addEventListener("change",function(){setTimeout(lab,0)});
 window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();ev=e});
 window.addEventListener("appinstalled",function(){b.hidden=true});
 b.onclick=function(){if(ev){ev.prompt();ev=null}else location.href="install.html"}})();
-try{FRD.set("Install on your phone","Installer sur votre téléphone")}catch(e){}</script>
+try{FRD.set("Install app","Installer")}catch(e){}</script>
 <script>if("serviceWorker"in navigator){var hadSW=!!navigator.serviceWorker.controller;navigator.serviceWorker.addEventListener("controllerchange",function(){if(!hadSW){hadSW=true;return}if(document.getElementById("newver"))return;var d=document.createElement("div");d.id="newver";d.setAttribute("style","position:fixed;left:12px;right:12px;bottom:12px;z-index:99;background:#111;color:#fff;padding:12px 14px;border-radius:12px;display:flex;gap:12px;align-items:center;justify-content:space-between;font:15px system-ui,sans-serif");var fr=/^fr/i.test(document.documentElement.lang||navigator.language||"");d.innerHTML='<span>'+(fr?"Une nouvelle version est prête.":"A new version is ready.")+'</span><button style="background:#fff;color:#111;border:0;border-radius:8px;padding:8px 14px;font:600 15px system-ui">'+(fr?"Mettre à jour":"Update")+'</button>';d.querySelector("button").onclick=function(){location.reload()};document.body.appendChild(d)});window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}</script>
 </body>
 </html>

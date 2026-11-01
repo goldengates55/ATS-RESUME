@@ -3,7 +3,7 @@
 Installable web app (PWA). Scan a resume against official job classifications and a job posting, tailor it, and download it as PDF, DOCX or TXT. Everything runs in the browser; nothing is uploaded.
 
 ## Publish on GitHub Pages
-1. Create a new repository and upload **all files and the `vendor` folder** from this zip to the root (keep the structure; include the hidden `.nojekyll` file).
+1. Create a new repository and upload **all files and the `vendor` folder** from this zip to the root. If PDF or DOCX download fails, the `vendor` folder (with `pdf-lib.min.js` and `jszip.min.js`) was probably not uploaded: add it, keeping that folder name. Include the hidden `.nojekyll` file too.
 2. Go to **Settings, Pages**, choose **Deploy from a branch**, pick `main` and `/ (root)`, then Save.
 3. Share `https://YOUR-NAME.github.io/REPO/install.html` with your users. It has an **Install the app** button and English and French steps for iPhone (Safari) and Android (Chrome). The app itself also shows an **Install on your phone** button.
 4. To change the WhatsApp number for activation codes, edit `WA` in the script of `install.html` and the number in its footer.
