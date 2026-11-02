@@ -11,9 +11,12 @@ Installable web app (PWA). Scan a resume against official job classifications an
 After that first visit the app opens with no internet. PDF and DOCX export work offline because the libraries are bundled.
 
 ## Release an update
-Replace `index.html`, then change `VERSION` in `sw.js` (for example `atsresume-13`) and the version label in `index.html` and `install.html` (search for `v1.12` and `Version 1.12`, for example change to 1.13). Devices will show "A new version is ready" with an Update button.
+Replace `index.html`, then change `VERSION` in `sw.js` (for example `atsresume-14`) and the version label in `index.html` and `install.html` (search for `v1.13` and `Version 1.13`, for example change to 1.14). Devices will show "A new version is ready" with an Update button.
 
 ## Notes
 - Fonts load from Google Fonts on the first online visit and are then kept; until then the app uses system fonts.
 - The optional local AI rewriting downloads its own ~1 GB model on first use and needs a connection then.
 - Files: `index.html`, `install.html`, `sw.js`, `manifest.webmanifest`, 3 icons, `vendor/` (pdf-lib, JSZip), `.nojekyll`.
+
+## Backup
+In the Resume builder, **Full backup** saves accounts, saved resumes, tracker, certificates, score history and settings in one file (optional passphrase). Activation is never included, so a restored backup on a new phone still needs its own activation code.
