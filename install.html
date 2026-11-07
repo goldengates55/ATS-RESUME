@@ -51,6 +51,12 @@ footer a{color:inherit}
 <a class="btn ghost" href="./index.html" data-k="open">Open the app in the browser</a>
 </div>
 
+<div class="card hide" id="qrc">
+<h2 data-k="qrT">Open on your phone</h2>
+<p style="margin:0 0 8px" data-k="qr">Scan this code with your phone camera to open this page and install the app.</p>
+<div id="qrbox" style="max-width:240px;margin:0 auto"></div>
+</div>
+
 <div class="card" id="android">
 <h2>Android (Chrome)</h2>
 <ol data-k-list="and"></ol>
@@ -68,20 +74,21 @@ footer a{color:inherit}
 <a class="btn" id="wa" href="#" data-k="wa">Contact us on WhatsApp</a>
 </div>
 </main>
-<footer><div data-k="callT">WhatsApp and calls</div><div><b>00237 651 279 347</b></div><div class="small" style="margin-top:6px">Version 1.15</div></footer>
+<footer><div data-k="callT">WhatsApp and calls</div><div><b>00237 651 279 347</b></div><div class="small" style="margin-top:6px">Version 1.16</div></footer>
 
+<script src="vendor/qr.js"></script>
 <script>
 (function(){
   var WA="237651279347"; /* WhatsApp number for activation codes (country code first, digits only). Also change the number shown in the footer. */
   var TXT={
-    en:{iosT:"iPhone (Safari only)",tag:"Scan, tailor and build ATS-friendly resumes. Everything runs on your phone; nothing is uploaded.",introT:"Put the app on your phone",intro:"Scan your resume against a job posting, tailor it, and download it as PDF, DOCX or TXT. It works offline and opens full screen, like a normal app. No app store needed.",installBtn:"Install the app",open:"Open the app in the browser",
+    en:{iosT:"iPhone (Safari only)",tag:"Scan, tailor and build ATS-friendly resumes. Everything runs on your phone; nothing is uploaded.",introT:"Put the app on your phone",qrT:"Open on your phone",qr:"Scan this code with your phone camera to open this page and install the app.",intro:"Scan your resume against a job posting, tailor it, and download it as PDF, DOCX or TXT. It works offline and opens full screen, like a normal app. No app store needed.",installBtn:"Install the app",open:"Open the app in the browser",
       and:["Open this page in Chrome.","Tap the menu (3 dots, top right).","Tap Install app (or Add to Home screen).","Open the app from its new icon."],
       ios:["Open this page in Safari.","Tap the Share button.","Scroll down and tap Add to Home Screen, then Add.","Always open the app from its Home Screen icon."],
       iosWarn:"On iPhone, use Safari only. Chrome and in-app browsers cannot add the app. Keep using the Home Screen icon so Safari does not clear your data, and save a backup file regularly (Resume builder > Export accounts).",
       actT:"Activate",act:"After installing, the app shows your device code. Send it to us on WhatsApp and we will send you your activation code.",wa:"Contact us on WhatsApp",callT:"WhatsApp and calls",
       inappT:"Open this page in your browser first.",inapp:"You opened the link inside another app (WhatsApp, Facebook, Instagram...). Tap the menu (3 dots) and choose Open in Chrome (Android) or Open in Safari (iPhone), or copy the link and paste it there.",copy:"Copy the link",copied:"Link copied",
       doneT:"The app is already installed.",done:"Open it from your home screen.",waMsg:"Hello, I installed ATS Resume Optimiser and want to activate it."},
-    fr:{iosT:"iPhone (Safari uniquement)",tag:"Analysez, adaptez et créez des CV compatibles ATS. Tout se passe sur votre téléphone ; rien n'est envoyé.",introT:"Mettez l'application sur votre téléphone",intro:"Analysez votre CV par rapport à une offre d'emploi, adaptez-le et téléchargez-le en PDF, DOCX ou TXT. Elle fonctionne sans internet et s'ouvre en plein écran, comme une vraie application. Pas besoin de boutique d'applications.",installBtn:"Installer l'application",open:"Ouvrir l'application dans le navigateur",
+    fr:{iosT:"iPhone (Safari uniquement)",tag:"Analysez, adaptez et créez des CV compatibles ATS. Tout se passe sur votre téléphone ; rien n'est envoyé.",introT:"Mettez l'application sur votre téléphone",qrT:"Ouvrir sur votre téléphone",qr:"Scannez ce code avec la caméra de votre téléphone pour ouvrir cette page et installer l'application.",intro:"Analysez votre CV par rapport à une offre d'emploi, adaptez-le et téléchargez-le en PDF, DOCX ou TXT. Elle fonctionne sans internet et s'ouvre en plein écran, comme une vraie application. Pas besoin de boutique d'applications.",installBtn:"Installer l'application",open:"Ouvrir l'application dans le navigateur",
       and:["Ouvrez cette page dans Chrome.","Touchez le menu (3 points, en haut à droite).","Touchez Installer l'application (ou Ajouter à l'écran d'accueil).","Ouvrez l'application depuis sa nouvelle icône."],
       ios:["Ouvrez cette page dans Safari.","Touchez le bouton Partager.","Faites défiler et touchez Sur l'écran d'accueil, puis Ajouter.","Ouvrez toujours l'application depuis son icône de l'écran d'accueil."],
       iosWarn:"Sur iPhone, utilisez uniquement Safari. Chrome et les navigateurs intégrés ne peuvent pas ajouter l'application. Utilisez toujours l'icône de l'écran d'accueil pour que Safari n'efface pas vos données, et enregistrez régulièrement un fichier de sauvegarde (Créateur de CV > Exporter les comptes).",
@@ -107,6 +114,7 @@ footer a{color:inherit}
   var standalone=(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)||navigator.standalone===true;
   /* both sets of steps are always shown; the visitor's own phone comes first */
   if(ios) $("#android").parentNode.insertBefore($("#iphone"),$("#android"));
+  if(!ios&&!android&&!standalone&&window.ATSQR){try{$("#qrbox").innerHTML=ATSQR.svg(location.href.split("#")[0],240);$("#qrc").classList.remove("hide")}catch(e){}}
   if(standalone) $("#done").classList.remove("hide");
   if(inapp&&!standalone) $("#inapp").classList.remove("hide");
   $("#copy").onclick=function(){

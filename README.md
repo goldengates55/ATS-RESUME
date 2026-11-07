@@ -16,7 +16,11 @@ Replace `index.html`, then change `VERSION` in `sw.js` (for example `atsresume-1
 ## Notes
 - Fonts load from Google Fonts on the first online visit and are then kept; until then the app uses system fonts.
 - The optional local AI rewriting downloads its own ~1 GB model on first use and needs a connection then.
-- Files: `index.html` (about 450 KB), `data/` (occupation data, loaded when a region is chosen and then kept on the device), `install.html`, `sw.js`, `manifest.webmanifest`, 3 icons, `vendor/` (pdf-lib, JSZip), `.nojekyll`.
+- Files: `vendor/qr.js` (QR codes), `index.html` (about 450 KB), `data/` (occupation data, loaded when a region is chosen and then kept on the device), `install.html`, `sw.js`, `manifest.webmanifest`, 3 icons, `vendor/` (pdf-lib, JSZip), `.nojekyll`.
+
+## Sharing and accessibility
+- **Share the app (QR code):** in More tailoring tools, make a QR code for your install page, save it as a PNG or print a flyer. `install.html` also shows a QR code when opened on a computer.
+- **Accessibility:** skip link, labelled fields, visible keyboard focus, text size setting (gear menu), and an accessibility check in the self-check.
 
 ## Backup
 In the Resume builder, **Full backup** saves accounts, saved resumes, tracker, certificates, score history and settings in one file (optional passphrase). Activation is never included, so a restored backup on a new phone still needs its own activation code.

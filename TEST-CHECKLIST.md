@@ -21,3 +21,8 @@ Extra checks for version 1.15:
 13. **Scam check:** paste a posting that asks for a fee and see the red warning after the scan.
 14. **Best version:** save two versions of a resume, paste a posting and press "Compare my versions".
 15. **Clients:** add a client price and a payment and check the balance, then export the CSV.
+
+Extra checks for version 1.16:
+16. **QR code:** open `install.html` on a computer and scan the code with a phone. In the app, make a QR code and print the flyer.
+17. **ATS parser view:** run it on a real resume. Check the name, email, phone and each job are found, and fix anything marked "Fix".
+18. **Accessibility:** set Text size to Extra large and check nothing is cut off. If you use a screen reader (TalkBack or VoiceOver), move through the tabs and one tool.
