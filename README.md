@@ -18,6 +18,9 @@ Replace `index.html`, then change `VERSION` in `sw.js` (for example `atsresume-1
 - The optional local AI rewriting downloads its own ~1 GB model on first use and needs a connection then.
 - Files: `vendor/qr.js` (QR codes), `index.html` (about 450 KB), `data/` (occupation data, loaded when a region is chosen and then kept on the device), `install.html`, `sw.js`, `manifest.webmanifest`, 3 icons, `vendor/` (pdf-lib, JSZip), `.nojekyll`.
 
+## Suggestions (Scan tab, under Tailor to this posting)
+Suggestions work offline and come only from your own resume text: hard and soft skills with the evidence for each, keyword gaps with an "I have this" form, figures for bullets, a wording coach, and title match at the same seniority. Anything added or renamed must be confirmed, and any [blank] must be filled, before a PDF, Word, text or pack download.
+
 ## Sharing and accessibility
 - **Share the app (QR code):** in More tailoring tools, make a QR code for your install page, save it as a PNG or print a flyer. `install.html` also shows a QR code when opened on a computer.
 - **Accessibility:** skip link, labelled fields, visible keyboard focus, text size setting (gear menu), and an accessibility check in the self-check.

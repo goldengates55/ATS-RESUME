@@ -26,3 +26,7 @@ Extra checks for version 1.16:
 16. **QR code:** open `install.html` on a computer and scan the code with a phone. In the app, make a QR code and print the flyer.
 17. **ATS parser view:** run it on a real resume. Check the name, email, phone and each job are found, and fix anything marked "Fix".
 18. **Accessibility:** set Text size to Extra large and check nothing is cut off. If you use a screen reader (TalkBack or VoiceOver), move through the tabs and one tool.
+
+Extra checks for version 1.17:
+19. **Suggestions:** on the Scan tab under Tailor to this posting, try Suggest hard skills, Find my keyword gaps (tap I have this and add one), Suggest figures, Check my wording and Suggest title match.
+20. **Download gate:** after adding or renaming something, try to download. It should ask you to confirm first, and should refuse while a [blank] remains.
