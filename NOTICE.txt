@@ -1,4 +1,0 @@
-Bundled libraries (unchanged, so the app works offline):
-- pdf-lib 1.17.1, MIT licence, https://github.com/Hopding/pdf-lib (creates the PDF downloads)
-- JSZip 3.10.1, MIT licence, https://github.com/Stuk/jszip (creates DOCX files and reads .xlsx/.docx)
-- QRCode for JavaScript, MIT licence, Kazuhiko Arase, http://www.d-project.com/ (draws the install QR code). QR Code is a registered trademark of DENSO WAVE INCORPORATED.
