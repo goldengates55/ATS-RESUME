@@ -29,6 +29,12 @@ Suggestions work offline and come only from your own resume text: hard and soft 
 - **Receipts and invoices:** one-page PDFs from the Clients tool.
 - **Backup reminder:** a banner appears when you have saved work and no recent backup.
 
+## Filled-in estimates
+"Find bullets to quantify" and "Figures for bullets" now fill bullets with complete phrases (a scale, a process, time saved, an improvement or a result) matched to the type of work, with High or Typical values. No [brackets] are inserted. They are estimates, not facts: each one is listed under "Confirm before download", and the download asks you to confirm or change it first.
+
+## Push to 100% (job focus)
+In "Official expectations by role" and in the Tailor section, **Push to 100%** is offered only for the role that matches the job you are applying for (the NOC matched to the posting), or your latest role if none match or there is no posting. Other roles can still add single items, one by one.
+
 ## Sharing and accessibility
 - **Share the app (QR code):** in More tailoring tools, make a QR code for your install page, save it as a PNG or print a flyer. `install.html` also shows a QR code when opened on a computer.
 - **Accessibility:** skip link, labelled fields, visible keyboard focus, text size setting (gear menu), and an accessibility check in the self-check.

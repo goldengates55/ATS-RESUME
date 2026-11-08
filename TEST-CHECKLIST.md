@@ -37,3 +37,9 @@ Extra checks for version 1.18:
 23. **Calendar:** save an event as .ics and open it on the phone. Check it lands in the calendar at the right time.
 24. **Receipt and invoice:** make both from a client with a payment. Check the amounts and open the PDF on the phone.
 25. **Offer comparison:** enter two offers you know the numbers for and check the totals by hand.
+
+Extra check for version 1.19:
+26. **Filled estimates:** run "Find bullets to quantify" on a real resume. Tap a phrase for each bullet type, check no [brackets] appear, then try to download: it should ask you to confirm the estimates first. Change one to a real figure and check it still downloads.
+
+Extra check for version 1.20:
+27. **Job focus:** with a resume that has two different jobs, paste a posting for one of them and scan. Only that role should show Push to 100%. Remove the posting and scan again: only your latest role should show it.
