@@ -30,3 +30,10 @@ Extra checks for version 1.16:
 Extra checks for version 1.17:
 19. **Suggestions:** on the Scan tab under Tailor to this posting, try Suggest hard skills, Find my keyword gaps (tap I have this and add one), Suggest figures, Check my wording and Suggest title match.
 20. **Download gate:** after adding or renaming something, try to download. It should ask you to confirm first, and should refuse while a [blank] remains.
+
+Extra checks for version 1.18:
+21. **Backup reminder:** save a resume version, wait two days (or ask me for a test build) and check the banner appears, then make a backup and check it goes away.
+22. **Ready to send?:** run it on a real resume and fix each item marked Fix.
+23. **Calendar:** save an event as .ics and open it on the phone. Check it lands in the calendar at the right time.
+24. **Receipt and invoice:** make both from a client with a payment. Check the amounts and open the PDF on the phone.
+25. **Offer comparison:** enter two offers you know the numbers for and check the totals by hand.
