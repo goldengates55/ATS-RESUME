@@ -1,6 +1,6 @@
 /* ATS Resume Optimiser service worker: keeps the app files on the device so it opens with no internet.
    Change VERSION whenever you upload a new index.html so devices pick up the update. */
-var VERSION = "atsresume-20";
+var VERSION = "atsresume-21";
 var FILES = ["./", "./index.html", "./install.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png", "./vendor/pdf-lib.min.js", "./vendor/jszip.min.js", "./vendor/qr.js"];
 var DATA = ["./data/esco-en.txt", "./data/esco-fr.txt", "./data/soc-uk.txt", "./data/osca-au.txt", "./data/nol-nz.txt", "./data/noc-ca.txt", "./data/noc-ca-fr.txt", "./data/onet-us.txt"];
 var CORE = FILES.filter(function (f) { return f.indexOf("vendor/") < 0; }), VENDOR = FILES.filter(function (f) { return f.indexOf("vendor/") >= 0; }).concat(DATA);

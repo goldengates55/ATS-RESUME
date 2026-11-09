@@ -146,7 +146,7 @@ html{font-size:calc(16px*var(--ts,1))}body{font-size:calc(17px*var(--ts,1))}
 <div class="row" style="justify-content:center"><button id="lkr" type="button">Check again</button></div></div></div>
 <p id="lkb" class="m" hidden style="max-width:960px;margin:8px auto 0;padding:0 16px"></p>
 <details id="lkxd" hidden style="max-width:960px;margin:4px auto 0;padding:0 16px"><summary class="m">Have a code to add time?</summary><textarea id="lkxt" rows="3" autocomplete="off" placeholder="Activation code" aria-label="Code to add time"></textarea><div class="row"><button class="p" id="lkxb" type="button">Add time</button></div><p class="m" id="lkxs" role="status"></p></details>
-<header class="hero appbar"><div class="abi"><img src="icon-192.png" alt="" width="32" height="32"><div class="abt"><b id="abn">ATS Resume <small id="abv" title="Software version" data-v="v1.20">v1.20</small></b><span id="abt">Scan &amp; match</span></div><div class="abr"><button type="button" id="pwaI" hidden>Install app</button><button type="button" id="abg" aria-label="Settings" aria-expanded="false">⚙</button></div></div></header>
+<header class="hero appbar"><div class="abi"><img src="icon-192.png" alt="" width="32" height="32"><div class="abt"><b id="abn">ATS Resume <small id="abv" title="Software version" data-v="v1.21">v1.21</small></b><span id="abt">Scan &amp; match</span></div><div class="abr"><button type="button" id="pwaI" hidden>Install app</button><button type="button" id="abg" aria-label="Settings" aria-expanded="false">⚙</button></div></div></header>
 <a class="skip" href="#main">Skip to content</a>
 <main id="main" tabindex="-1">
 <div class="tabs" role="tablist"><button class="on" data-tab="tscan">Scan &amp; match</button><button data-tab="bld">Resume builder</button><button data-tab="tcl">Cover letter</button><button data-tab="tjb">Jobs &amp; employers</button><button data-tab="tlb">Library</button><button data-tab="trw">Release watch</button></div>
@@ -781,8 +781,8 @@ const MRD=[["Software and IT",/software|develop|program|\bcode|api\b|devops|data
 ["Project management",/project|program manager|scrum|agile|projet/g,["Delivered [X] projects worth ¤[X] on time","Kept [X] projects within [X]% of budget","Coordinated [X] stakeholders across [X] teams","Cut delivery time by [X]%","Closed [X]% of [X] risks and issues on schedule","Rolled out [X] releases to [X] users or sites"]],
 ["Management",/manager|supervisor|director|\bhead\b|team lead|gestionnaire|directeur/g,["Led a team of [X] people across [X] sites","Managed a ¤[X] budget or P&L","Raised team output by [X]%","Hired or promoted [X] team members and retained [X]%","Delivered [X] initiatives, saving ¤[X]","Improved [metric] from [X] to [Y]"]],
 ["Health and teaching",/nurse|health|patient|teach|instructor|student|training|school|clinic|enseign|infirm/g,["Cared for or taught [X] patients or students per [day/term]","Raised average results or scores by [X]%","Achieved [X]% satisfaction, attendance or compliance","Trained [X] staff or students on [topic]","Developed [X] programs or lessons used by [X] people","Kept [X]% documentation accuracy or compliance"]]];
-function mrseg(jobs,tops){const fr=curLang(jobs.map(j=>j.duties.join(" ")).join(" "))==="fr",cur=CUR[RGC()]||"$",fx=s=>s.replace(/¤/g,cur);let out="";
- jobs.forEach((j,i)=>{const bl=j.duties,nm=bl.filter(d=>/\d|%|\$/.test(d)).length;if(bl.length&&nm/bl.length>=1/3)return;
+function mrseg(jobs,tops){const fr=curLang(jobs.map(j=>j.duties.join(" ")).join(" "))==="fr",cur=CUR[RGC()]||"$",fx=s=>s.replace(/¤/g,cur);let out="";const FM=(($("post").value||"").trim()&&!ZOTH())?zFocus(jobs,tops):null;
+ jobs.forEach((j,i)=>{if(FM&&!FM.S.has(i))return;const bl=j.duties,nm=bl.filter(d=>/\d|%|\$/.test(d)).length;if(bl.length&&nm/bl.length>=1/3)return;
   const tx=fold([j.title,j.employer,...bl,tops[i]?tops[i].title:""].join(" ")),
    dm=MRD.map(d=>[d,(tx.match(d[1])||[]).length]).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]).slice(0,2).map(x=>x[0]),
    list=[...new Set([...(fr?[]:dm.flatMap(d=>d[2])),...MRU[fr?"fr":"en"]])].map(fx),shown=list.slice(0,8),more=list.slice(8,14),
@@ -798,7 +798,7 @@ function mrseg(jobs,tops){const fr=curLang(jobs.map(j=>j.duties.join(" ")).join(
 const OFFSRC={onet:["U.S. Department of Labor (O*NET)","https://www.onetcenter.org/"],noc:["Employment and Social Development Canada and Statistics Canada","https://noc.esdc.gc.ca/"],soc:["Office for National Statistics","https://www.ons.gov.uk/methodology/classificationsandstandards/standardoccupationalclassificationsoc"],osca:["Australian Bureau of Statistics","https://www.abs.gov.au/statistics/classifications/osca-occupation-standard-classification-australia/latest-release"],nol:["Stats NZ","https://www.stats.govt.nz/methods/about-the-national-occupation-list/"],esco:["European Commission (ESCO)","https://esco.ec.europa.eu/en/classification/occupation_main"]};
 const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
 function offseg(jobs,tops){const sys=$("os").value,src=OFFSRC[sys];if(!src||!jobs.length)return"";PUSHB={};let tot=0,okc=0,out="";const FOC=zFocus(jobs,tops);
- jobs.forEach((j,i)=>{const t=tops[i];if(!t)return;const e=IDX.E.find(x=>x.code===t.code);if(!e)return;
+ jobs.forEach((j,i)=>{const t=tops[i];if(!t)return;if(($("post").value||"").trim()&&!ZOTH()&&!FOC.S.has(i))return;const e=IDX.E.find(x=>x.code===t.code);if(!e)return;
   const jt=[j.title,...j.duties].join(" "),T=new Set(toks(norm(jt)));
   const fr=docLang()==="fr",cur=CUR[RGC()]||"$",pres=isCurJob(j),duty=dutyItems(e.duties,fr).slice(0,24).map(s=>{const k=[...new Set(toks(norm(s)).filter(w=>w.length>=3))];return{s:s.length>230?s.slice(0,230)+"…":s,full:s,ok:!k.length||k.filter(w=>T.has(w)).length/k.length>=.45}});
   let sk=[];if(ESREL&&t.uri&&ESREL.get(t.uri)){const f=escoFind(jt);sk=ESREL.get(t.uri).e.slice(0,15).map(u=>({s:ESKILL.get(u),ok:f.has(u),kn:!!(ESKN&&ESKN.has(u))})).filter(x=>x.s)}
@@ -906,12 +906,12 @@ function jobscan(text,sec,jobs,edu,post){
 function run(){LNS={};LNID=0;NFAMSEEN={};buildSyn();setOcc();
  const text=$("res").value.trim();if(!text){$("out").innerHTML='<p class="m">Paste a resume first.</p>';return}
  const sec=sections(text),jobs=parseExp(sec.experience||[]),edu=parseEdu(sec.education||[]),warn=ats(text,sec),post=$("post").value.trim();
- const tops=[];let h=(post?jobscan(text,sec,jobs,edu,post):"")+mrender(missing(text,sec,jobs,edu))+`<h2>Experience and ${OCCN()} suggestions</h2>`+occNote();
+ const tops=[];let h=(post?jobscan(text,sec,jobs,edu,post):"")+mrender(missing(text,sec,jobs,edu))+`<h2>Experience and ${OCCN()} suggestions</h2>${zFocusHead(jobs)}`+occNote();
  if(!jobs.length)h+='<p class="m">No experience entries detected. Check that the section is headed "Experience" or "Work Experience".</p>';
- jobs.forEach(j=>{const c=IDX.match(j.title,j.duties.join(" "));
+ const FOC0=(post&&!ZOTH())?zFocus(jobs,jobs.map(j=>IDX.match(j.title,j.duties.join(" "),1)[0]||null)):null;jobs.forEach((j,ji)=>{const c=IDX.match(j.title,j.duties.join(" "));
   const top=c[0],st0=tops.push(top||null),st=!c.length?"no_match":(top.conf==="high"&&(c.length<2||top.score-c[1].score>.1))?"suggested":"needs_review";
   h+=`<div class="card"><h3>${esc(j.title||"(untitled)")}${j.employer?" · "+esc(j.employer):""}</h3><div class="m">${esc(j.dates||"dates not detected")} · ${j.duties.length} duty line(s) · <span class="${STAT[st][1]}">${STAT[st][0]}</span></div>`+
-  c.map((m,ix)=>`<div class="cand"><span class="code">${esc(m.code)}</span><span>${esc(m.title)}</span><span class="m">${m.teer?OCCT()+" "+esc(m.teer)+" · ":""}score ${m.score}</span><span class="b ${m.conf}">${m.conf}</span><span class="m" style="flex-basis:100%">matched: ${esc(m.ev.join(", ")||"none")}</span>${ix===0&&m.extra?`<span class="m" style="flex-basis:100%">${esc(m.xl||"Typical entry")}: ${esc(m.extra.length>420?m.extra.slice(0,420)+"…":m.extra)}</span>`:""}</div>`).join("")+hdLine(j,c,post)+"</div>"});
+  zShowC(c,ji,FOC0).map((m,ix)=>`<div class="cand"><span class="code">${esc(m.code)}</span><span>${esc(m.title)}</span><span class="m">${m.teer?OCCT()+" "+esc(m.teer)+" · ":""}score ${m.score}</span><span class="b ${m.conf}">${m.conf}</span><span class="m" style="flex-basis:100%">matched: ${esc(m.ev.join(", ")||"none")}</span>${ix===0&&m.extra?`<span class="m" style="flex-basis:100%">${esc(m.xl||"Typical entry")}: ${esc(m.extra.length>420?m.extra.slice(0,420)+"…":m.extra)}</span>`:""}</div>`).join("")+(FOC0&&!FOC0.S.has(ji)&&c.length?'<div class="m">'+esc(uiTr("NOC suggestions for this role are hidden because it is not the job you are applying for."))+"</div>":"")+(FOC0&&!FOC0.S.has(ji)?"":hdLine(j,zShowC(c,ji,FOC0),post))+"</div>"});
  h+="<h2>Education</h2>";
  if(!edu.length)h+='<p class="m">No education credentials detected.</p>';
  edu.forEach(e=>{h+=`<div class="card"><h3>${esc(e.level)}</h3><div class="m">${e.country?"Country: "+esc(e.country):"Country not detected"}${e.eca?' · <span class="warn">Foreign credential: an ECA may be needed</span>':""}</div><div class="cmp"><div><span class="m">As written</span><br>${esc(e.original)}</div><div><span class="m">Suggested</span><br>${esc(e.suggested)}<br><button data-ed data-old="${esc(e.original)}" data-new="${esc(e.suggested)}" style="margin-top:6px">Add to builder</button></div></div></div>`});
@@ -1723,7 +1723,7 @@ function tupGo(){const st=$("tus"),o=$("tuo");o.innerHTML="";TUG=[];
  if($("os").value!=="noc"){st.textContent=uiTr("TEER applies to the Canadian NOC. Choose NOC 2021 under Occupation data.");return}
  if(!LAST||!String($("out").innerHTML||"").trim()){st.textContent=uiTr("Run a scan first.");return}
  if(bdEmpty())fromLast();
- const m=model(),j0=m.jobs[0];if(!j0||!j0.title){st.textContent=uiTr("Add your most recent job title first.");return}
+ const m=model(),F0=zFocusCards(),fi=F0.S.size?[...F0.S][0]:0,j0=m.jobs[fi]||m.jobs[0];if(!j0||!j0.title){st.textContent=uiTr("Add your most recent job title first.");return}
  const du=j0.bullets.join(" "),cur=IDX.match(j0.title,du,1)[0];if(!cur){st.textContent=uiTr("No matching occupation found for your latest role.");return}
  const tv=c=>/^\d{5}$/.test(String(c.code))?+String(c.code)[1]:parseInt(c.teer),ct=tv(cur);
  if(isNaN(ct)){st.textContent=uiTr("This occupation list has no TEER levels.");return}
@@ -1776,10 +1776,10 @@ var HDS=[],HDSN=null;
 function hdPlan(){const st=$("hds"),o=$("hdo");o.innerHTML="";HDS=[];
  if(!LAST||!String($("out").innerHTML||"").trim()){st.textContent=uiTr("Run a scan first.");return}
  if(bdEmpty())fromLast();
- const post=($("post").value||"").trim(),pt=post?tlTitle(post):"",nk=x=>toks(norm(x)).join(" ");
- document.querySelectorAll("#bj .card").forEach((c,j)=>{const t=c.querySelector("[data-k=t]").value.trim(),b=c.querySelector("[data-k=b]").value.split("\n").map(x=>x.trim()).filter(Boolean);if(!t&&!b.length)return;
+ const post=($("post").value||"").trim(),pt=post?tlTitle(post):"",nk=x=>toks(norm(x)).join(" "),F=(post&&!ZOTH())?zFocusCards():null;
+ document.querySelectorAll("#bj .card").forEach((c,j)=>{if(F&&!F.S.has(j))return;const t=c.querySelector("[data-k=t]").value.trim(),b=c.querySelector("[data-k=b]").value.split("\n").map(x=>x.trim()).filter(Boolean);if(!t&&!b.length)return;
   const du=b.join(" "),rt=new Set(toks(norm(t+" "+du))),ov=x=>{const k=toks(norm(x)).filter(w=>w.length>=3);return k.length?k.filter(w=>rt.has(w)).length/k.length:0},S=[],seen=new Set([nk(t)]),
-   add=(x,src,why)=>{x=String(x).trim();const k=nk(x);if(!x||x.length>60||seen.has(k))return;seen.add(k);S.push({x,src,why})},m3=IDX.match(t,du,3);
+   add=(x,src,why)=>{x=String(x).trim();const k=nk(x);if(!x||x.length>60||seen.has(k))return;seen.add(k);S.push({x,src,why})};let m3=IDX.match(t,du,3);if(F){const k=F.code?m3.filter(m=>zSameCode(m.code,F.code)):[];m3=k.length?k:m3.slice(0,1)}
   m3.filter(m=>m.conf!=="low").forEach(m=>add(m.title,uiTr("Official title ")+m.code,tpPct(m.score)+uiTr(" match")));
   const e=m3[0]&&IDX.E.find(z=>z.code===m3[0].code);
   if(e)String(e.ex||"").split(";").map(x=>x.trim()).filter(Boolean).map(x=>[x,ov(x)]).filter(p=>p[1]>=.5).sort((a,b)=>b[1]-a[1]).slice(0,5).forEach(p=>add(p[0],uiTr("Alternate title"),uiTr("wording found in your duties")));
@@ -1794,6 +1794,7 @@ $("hdo").addEventListener("click",e=>{const b=e.target.closest&&e.target.closest
  $("hds").innerHTML="<span>"+esc(uiTr("Title changed: ")+old+" → "+x.x+". ")+'</span><button id="hdund" type="button">'+esc(uiTr("Undo"))+"</button>"});
 $("hds").addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#hdund")&&HDSN){bdRestore(HDSN.snap);$("res").value=HDSN.orig;HDSN=null;run();hdPlan();$("hds").textContent=uiTr("Undone.")}});
 ((P)=>P.forEach(([a,b])=>FRD.set(a,b)))([["Title ideas","Idées de titres"],["alternate title","autre appellation"],["posting's title","titre de l'offre"],["click one to use it as this job's title, but only if it honestly fits. Undo is under Job heading suggestions in the tailoring area above.","cliquez sur un titre pour l'utiliser pour ce poste, seulement s'il correspond honnêtement. Annuler se trouve sous Suggestions de titres dans la zone d'adaptation ci-dessus."],["Suggest headings for my jobs","Suggérer des titres pour mes postes"],["Use this title","Utiliser ce titre"],["Alternate title","Autre appellation"],["Official title ","Titre officiel "],[" match"," de correspondance"],["Title changed: ","Titre modifié : "],["No better-supported title found for this role.","Aucun titre mieux appuyé trouvé pour ce poste."],["(untitled)","(sans titre)"]]);
+$("out").addEventListener("change",e=>{if(e.target&&e.target.id==="shoth"){try{localStorage.setItem("ats.showoth",e.target.checked?"1":"0")}catch(_){}run()}});
 $("out").addEventListener("click",e=>{const b=e.target.closest&&e.target.closest(".hdsc");if(!b)return;const jt=decodeURIComponent(b.dataset.jt),x=decodeURIComponent(b.dataset.x),msg=b.parentElement.querySelector(".hdst"),nk=q=>toks(norm(q)).join(" ");
  if(bdEmpty())fromLast();
  const card=[...document.querySelectorAll("#bj .card")].find(c=>nk(c.querySelector("[data-k=t]").value)===nk(jt));
@@ -1967,6 +1968,11 @@ function jobToBullets(raw,cur){let t=String(raw||"").replace(/\s+/g," ").trim();
 function zSameCode(a,b){const x=String(a||"").replace(/\D/g,""),y=String(b||"").replace(/\D/g,"");if(!x||!y)return false;const n=Math.max(4,Math.min(x.length,y.length)-1);return x.slice(0,n)===y.slice(0,n)}
 function zPostCode(){const post=($("post").value||"").trim();if(!post)return null;try{const t=(typeof tlTitle==="function"&&tlTitle(post))||post.split(/\r?\n/)[0],m=IDX.match(t,post.slice(0,1200),1)[0];return m&&m.conf!=="low"?m.code:null}catch(_){return null}}
 function zFocus(jobs,tops){const pc=zPostCode(),S=new Set();if(pc)jobs.forEach((j,i)=>{const t=tops[i];if(t&&zSameCode(t.code,pc))S.add(i)});if(!S.size){const i0=jobs.findIndex((j,i)=>tops[i]);if(i0>=0)S.add(i0)}return{code:pc,S}}
+function ZOTH(){try{return localStorage.getItem("ats.showoth")==="1"}catch(_){return false}}
+function zShowC(c,ji,F){if(!F)return c;if(!F.S.has(ji))return[];const k=F.code?c.filter(m=>zSameCode(m.code,F.code)):[];return k.length?k:c.slice(0,1)}
+function zFocusCards(){const cs=[...document.querySelectorAll("#bj .card")],tops=cs.map(c=>{const t=c.querySelector("[data-k=t]").value.trim(),du=c.querySelector("[data-k=b]").value.split("\n").join(" ");try{return t?IDX.match(t,du,1)[0]||null:null}catch(_){return null}});return zFocus(cs,tops)}
+function zFocusHead(jobs){const post=($("post").value||"").trim();if(!post)return"";const pc=zPostCode();let ttl="";if(pc){const e=IDX.E.find(x=>x.code===pc);ttl=e?e.title:""}
+ return'<p class="m">'+esc(uiTr("Job focus: "))+"<b>"+esc(pc?(OCCN()+" "+pc+" "+ttl):uiTr("your latest role (the posting did not match one occupation clearly)"))+"</b>. "+esc(uiTr("Only suggestions for this occupation are shown."))+'</p><label class="m" style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="shoth" style="width:auto"'+(ZOTH()?" checked":"")+"> "+esc(uiTr("Show suggestions for my other roles too"))+"</label>"}
 /* ===== Filled-in estimates (no brackets) ===== */
 var Z_LV="h";const Z_REQ=/^(?:am|is|are|be|being|able|ability|must|should|have|has|had|willing|available|can)\b/i;
 const Z_V=[["greenhouse",/greenhouse|garden|plant|farm|crop|harvest|irrigat|nursery|agricult|livestock|soil/i,["across about 10 plant beds","across about 30 plant beds","saving about 20 minutes per day","saving about 40 minutes per day","improving plant health by about 10%","improving plant health by about 20%","by following a watering and inspection schedule","keeping plants healthy and ready for harvest"],null],
@@ -2110,7 +2116,7 @@ $("x10").onclick=async()=>{const m=need();if(m){out(10,m);return}out(10,"Buildin
 })();
 
 /* ===== Backup, history, letters, interview, LinkedIn, certificates, pack, help ===== */
-const Z_KEYS=["ats-accounts","ats-draft-v1","ats.apps","ats-t","ats-ui","ats-rel","ats.so","ats.certs","ats.hist","ats.setSeen","ats.clients","ats.ts","ats.answers","ats.biz","ats.rcount"],Z_VER="1.20",Z_WA="237651279347";
+const Z_KEYS=["ats-accounts","ats-draft-v1","ats.apps","ats-t","ats-ui","ats-rel","ats.so","ats.certs","ats.hist","ats.setSeen","ats.clients","ats.ts","ats.answers","ats.biz","ats.rcount"],Z_VER="1.21",Z_WA="237651279347";
 function zScore(post,txt){const P=tlW(post),rs=new Set(toks(norm(txt)));let a=0,b=0;P.forEach((w,k)=>{b+=w;if(rs.has(k))a+=w});return b?Math.round(100*a/b):0}
 function zHist(){const post=($("post").value||"").trim(),txt=$("res").value||"";if(!post||!txt.trim())return;const k=(tlTitle(post)||post.split(/\r?\n/)[0]).slice(0,60).toLowerCase(),sc=zScore(post,txt);let h=[];try{h=JSON.parse(localStorage.getItem("ats.hist")||"[]")}catch(_){}
  const l=h.filter(x=>x.k===k).pop();if(l&&l.score===sc&&Date.now()-new Date(l.t)<6e4)return;h.push({k,t:new Date().toISOString(),score:sc});h=h.slice(-80);try{localStorage.setItem("ats.hist",JSON.stringify(h))}catch(_){}}
@@ -2387,9 +2393,9 @@ $("sgwb").onclick=()=>{chips("w","");if(!ensB()){note("w","Import or write your 
 $("sgwbox").addEventListener("click",e=>{const c=e.target.closest(".sgw1");if(!c)return;const w=WP[+c.dataset.i];if(setLine(w.j,w.L,w.fix)){flag("edit",w.fix);c.closest(".cand").remove();note("w","Changed. Check it still describes what you did.")}else note("w","That bullet changed. Run it again.")});
 /* title match */
 const lvl=t=>/\b(director|vp|vice president|head|chief)\b/i.test(t)?3:/\b(senior|sr\.?|lead|manager|principal|supervisor)\b/i.test(t)?2:/\b(junior|jr\.?|intern|trainee|assistant)\b/i.test(t)?0:1;
-$("sgtb").onclick=()=>{chips("t","");$("sgtl").innerHTML="";if(!ensB()){note("t","Import or write your resume first.");return}const post=postT(),pt=post?tlTitle(post):"",nk=x=>toks(norm(x)).join(" ");TP=[];
- BC().forEach((c,j)=>{const t=c.querySelector("[data-k=t]").value.trim(),du=c.querySelector("[data-k=b]").value.split("\n").join(" "),rt=tt(t+" "+du),ov=x=>{const k=toks(norm(x)).filter(w=>w.length>=3);return k.length?k.filter(w=>rt.has(w)).length/k.length:0},seen=new Set([nk(t)]),S=[],add=(x,w)=>{x=String(x).trim();const k=nk(x);if(!x||x.length>60||seen.has(k)||lvl(x)!==lvl(t))return;seen.add(k);S.push({x,w})};
-  const m3=IDX.match(t,du,3),e=m3[0]&&IDX.E.find(z=>z.code===m3[0].code);if(e)String(e.ex||"").split(";").map(x=>x.trim()).filter(Boolean).map(x=>[x,ov(x)]).filter(p=>p[1]>=.5).sort((a,b)=>b[1]-a[1]).slice(0,4).forEach(p=>add(p[0],"alternate title"));if(pt&&ov(pt)>=.34)add(pt,"posting's title");m3.filter(m=>m.conf!=="low").forEach(m=>add(m.title,"official title "+m.code));TP.push({j,t,S})});
+$("sgtb").onclick=()=>{chips("t","");$("sgtl").innerHTML="";if(!ensB()){note("t","Import or write your resume first.");return}const post=postT(),pt=post?tlTitle(post):"",nk=x=>toks(norm(x)).join(" "),F=(post&&!ZOTH())?zFocusCards():null;TP=[];
+ BC().forEach((c,j)=>{if(F&&!F.S.has(j))return;const t=c.querySelector("[data-k=t]").value.trim(),du=c.querySelector("[data-k=b]").value.split("\n").join(" "),rt=tt(t+" "+du),ov=x=>{const k=toks(norm(x)).filter(w=>w.length>=3);return k.length?k.filter(w=>rt.has(w)).length/k.length:0},seen=new Set([nk(t)]),S=[],add=(x,w)=>{x=String(x).trim();const k=nk(x);if(!x||x.length>60||seen.has(k)||lvl(x)!==lvl(t))return;seen.add(k);S.push({x,w})};
+  let m3=IDX.match(t,du,3);if(F){const k=F.code?m3.filter(m=>zSameCode(m.code,F.code)):[];m3=k.length?k:m3.slice(0,1)}const e=m3[0]&&IDX.E.find(z=>z.code===m3[0].code);if(e)String(e.ex||"").split(";").map(x=>x.trim()).filter(Boolean).map(x=>[x,ov(x)]).filter(p=>p[1]>=.5).sort((a,b)=>b[1]-a[1]).slice(0,4).forEach(p=>add(p[0],"alternate title"));if(pt&&ov(pt)>=.34)add(pt,"posting's title");m3.filter(m=>m.conf!=="low").forEach(m=>add(m.title,"official title "+m.code));TP.push({j,t,S})});
  $("sgtl").innerHTML=TP.map((r,i)=>'<div class="cand" style="display:block"><b>'+esc(r.t||"(untitled)")+"</b><div class=\"chips\">"+(r.S.length?r.S.map((s,k)=>chip("sgt1",i+"-"+k,s.x,s.w)).join(""):'<span class="m">No title at the same level fits better.</span>')+"</div></div>").join("");note("t","Titles must still describe your real role and level.")};
 $("sgtbox").addEventListener("click",e=>{const c=e.target.closest(".sgt1");if(!c)return;const[i,k]=c.dataset.i.split("-").map(Number),r=TP[i],s=r.S[k],inp=BC()[r.j].querySelector("[data-k=t]"),old=inp.value;inp.value=s.x;pv();flag("title",old+" → "+s.x);note("t","Renamed. Confirm it below before you download.");$("sgtb").click()});
 })();
@@ -2490,6 +2496,8 @@ $("yP").onclick=async()=>{const st=$("yPs"),id=$("ypc").value,a=acGet().accounts
 ((P)=>P.forEach(([a,b])=>FRX.push([new RegExp(a),b])))([["^(\\d+) bullet\\(s\\) have no number or outcome\\. The phrases below are estimates, not facts: tap one to fill the bullet, then change it to your real figure or confirm it is true before you download\\.$", "$1 puce(s) sans chiffre ni résultat. Les phrases ci-dessous sont des estimations, pas des faits : touchez-en une pour remplir la puce, puis remplacez-la par votre vrai chiffre ou confirmez qu'elle est vraie avant de télécharger."]]);
 /* French strings: job focus */
 ((P)=>P.forEach(([a,b])=>{if(!FRD.has(a))FRD.set(a,b)}))([["Not the job you are applying for, so there is no Push to 100% for this role. You can still add single items below.", "Ce n'est pas le poste visé : il n'y a donc pas de bouton Pousser à 100 % pour ce rôle. Vous pouvez quand même ajouter des éléments un par un ci-dessous."], [" Only the job-focus role is shown.", " Seul le rôle correspondant au poste visé est affiché."]]);
+/* French strings: job focus suggestions */
+((P)=>P.forEach(([a,b])=>{if(!FRD.has(a))FRD.set(a,b)}))([["Job focus: ", "Poste visé : "], ["Only suggestions for this occupation are shown.", "Seules les suggestions pour cette profession sont affichées."], ["Show suggestions for my other roles too", "Afficher aussi les suggestions pour mes autres postes"], ["NOC suggestions for this role are hidden because it is not the job you are applying for.", "Les suggestions de CNP pour ce poste sont masquées, car ce n'est pas le poste visé."], ["your latest role (the posting did not match one occupation clearly)", "votre dernier poste (l'offre ne correspond pas clairement à une profession)"]]);
 </script>
 <script>(function(){var S={tscan:["🔍","Scan"],bld:["📝","Build"],tcl:["✉️","Letter"],tjb:["💼","Jobs"],tlb:["📚","Library"],trw:["🔔","Releases"]};
 document.querySelectorAll(".tabs button").forEach(function(b){var k=b.dataset.tab,f=b.textContent.trim();b.dataset.full=f;b.setAttribute("aria-label",f);b.innerHTML='<i aria-hidden="true">'+S[k][0]+"</i><span>"+S[k][1]+"</span>"});

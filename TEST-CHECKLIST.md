@@ -43,3 +43,6 @@ Extra check for version 1.19:
 
 Extra check for version 1.20:
 27. **Job focus:** with a resume that has two different jobs, paste a posting for one of them and scan. Only that role should show Push to 100%. Remove the posting and scan again: only your latest role should show it.
+
+Extra check for version 1.21:
+28. **Job focus:** scan a resume with two different jobs plus a posting for one of them. Check only that job shows NOC matches, official duties and title ideas, the other job shows a short note, and ticking "Show suggestions for my other roles too" brings everything back.
